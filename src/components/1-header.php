@@ -45,7 +45,7 @@
 
     <div id="page-content-wrapper">
       <!-- topo -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-primary bg-primary azulcascar">
         <div class="nav-left">
           <button class="btn btn-default" id="menu-toggle" data-toggle="tooltip" data-placement="top" title="Expandir Menu"><i class="fas fa-th"></i></button>
           <span class="span-usuario">Olá, <?= utf8_encode($usuario) ?>.</span>

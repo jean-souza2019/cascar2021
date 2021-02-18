@@ -24,14 +24,14 @@ include "src/Components/1-header.php";
 
   <div class="col-md-12">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header azulcascar">
         <h5 class="text-left">ORDENS EM ABERTO <span class="atualizar" onclick="atualizarPagina()">Atualizar </span> </h5>
       </div>
       <div class="card-body">
 
         <div class="col-md-2">
           <div class="card">
-            <div class="card-header">
+            <div class="card-header azulcascar">
               ITEM 1
             </div>
             <div class="card-body">

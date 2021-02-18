@@ -1,47 +1,69 @@
 <?php
-require_once('comapi.php');
+// require_once('comapi.php');
 
 
-class Autenticacao{
+class Autenticacao
+{
   private $usuario;
   private $senha;
 
-  public function __construct(Conexao $conexao){
+  public function __construct(Conexao $conexao)
+  {
     $this->conexao = $conexao->conectar(BD_USUARIO, BD_SENHA);
   }
 
-  public function __get($atributo){
+  public function __get($atributo)
+  {
     return $this->$atributo;
   }
 
-  public function __set($atributo, $valor){
+  public function __set($atributo, $valor)
+  {
     $this->$atributo = $valor;
   }
 
-  public function autenticar(){
-    $api = new comapi;
+  public function autenticar()
+  {
 
-    echo $api->conectar($this->usuario, $this->senha);
+    $query  = "SELECT * FROM USUARIOS 
+              WHERE nome = '$this->usuario' AND SENHA = '$this->senha'";
+
+    echo $query;
+
+    $objeto = mysqli_query($this->conexao, $query);
+    // echo($objeto->num_rows);
+
+    // if (!empty($objeto)) {
+    if ($objeto->num_rows <> 0) {
+      $_SESSION['USUARIO'] = $objeto;
+      $_SESSION['CONECTADO'] = TRUE;
+      header('Location: http://localhost/cascar/index');
+    } else {
+      header('Location: pagina-login.php?status=erro');
+    }
   }
 
 
   // public static function check($pagina_atual = null, $niveis_permitidos = null) {
-  public static function check(){
+  public static function check()
+  {
     //verificar niveis de acesso e se o usuário está ativo
-    if (empty($_SESSION['USUARIO']) || !$_SESSION['CONECTADO']){
+    if (empty($_SESSION['USUARIO']) || !$_SESSION['CONECTADO']) {
       header('Location: src/components/bd/pagina-login?status=acesso');
     }
   }
 
 
 
-  public static function sair(){
+  public static function sair()
+  {
     unset($_SESSION['USUARIO']);
     unset($_SESSION['CONECTADO']);
     header('Location:  pagina-login?status=logout');
   }
 
-  public static function imprimeSessao(){
+  public static function imprimeSessao()
+  {
     if (!session_id()) session_start();
     echo "<pre>";
     print_r($_SESSION);
