@@ -1,7 +1,4 @@
 <?php
-// require_once('comapi.php');
-
-
 class Autenticacao
 {
   private $usuario;
@@ -24,18 +21,24 @@ class Autenticacao
 
   public function autenticar()
   {
+    $senha =  md5($this->senha);
 
     $query  = "SELECT * FROM USUARIOS 
-              WHERE nome = '$this->usuario' AND SENHA = '$this->senha'";
+              WHERE usuario = '$this->usuario' AND SENHA = '$senha'";
 
-    echo $query;
+    // echo $query;
+    // echo ($this->senha);
+    // echo $senha;
 
     $objeto = mysqli_query($this->conexao, $query);
     // echo($objeto->num_rows);
 
+    $row = $objeto->fetch_assoc();
+    // var_dump($row['nome']);
+
     // if (!empty($objeto)) {
     if ($objeto->num_rows <> 0) {
-      $_SESSION['USUARIO'] = $objeto;
+      $_SESSION['USUARIO'] = $row['nome'];
       $_SESSION['CONECTADO'] = TRUE;
       header('Location: http://localhost/cascar/index');
     } else {

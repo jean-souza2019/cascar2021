@@ -30,9 +30,9 @@
         <a href="<?= SIS_URL ?>" title="Painel"><img class="mb-4" src="<?= SIS_URL ?>src/assets/img/logo.png" alt="Agrodanieli" style=" max-width: 185px;"></a>
       </div>
 
-      <!-- <div class="list-group list-group-flush">
-        <a href="<?= SIS_URL ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-chart-line"></i> Dashboard</a>
-      </div> -->
+      <div class="list-group list-group-flush" style="margin-bottom: 40px">
+        <a href="<?= SIS_URL ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-home"></i> Início</a>
+      </div>
       <div class="list-group list-group-flush">
         <a href="<?= SIS_URL_LISCLI ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user-plus"></i> Clientes</a>
       </div>

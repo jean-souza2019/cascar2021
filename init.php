@@ -6,7 +6,7 @@ define('SIS_URL', "http://localhost/Cascar/");
 
 // define('SIS_URL_CADFOR', "http:/localhost/Cascar/cadastro_fornecedor");
 // define('SIS_URL_LISFORN', "http:/localhost/Cascar/Outras/listar_fornecedores");
-define('SIS_URL_LISCLI', "http:/localhost/Cascar/src/pages/clientes/listar_clientes");
+define('SIS_URL_LISCLI', SIS_URL."src/pages/clientes/listar_clientes");
 // define('SIS_URL_EDITFORN', "http:/localhost/Cascar/editar_fornecedor");
 
 // define('SIS_URL_CADTIPDOC', "http:/localhost/Cascar/cadastro_tipo_documento");

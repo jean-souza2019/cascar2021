@@ -1,28 +1,28 @@
 <?php
 
-require_once 'init.php';
+require_once '../../../init.php';
 
-require('Components/Autenticacao.php');
+require('../../components/bd/Autenticacao.php');
 Autenticacao::check();
 $usuario = $_SESSION['USUARIO'];
 
-require('Components/Conexao.php');
-require('Components/Dashboard.php');
-require('Components/Fila.php');
-require('Components/Crd.php');
+require('../../components/bd/Conexao.php');
+// require('Components/Dashboard.php');
+// require('Components/Fila.php');
+// require('Components/Crd.php');
 
-$conexao = new Conexao();
-$dashboard = new Dashboard();
+// $conexao = new Conexao();
+// $dashboard = new Dashboard();
 
-$fila = new Fila($conexao, $dashboard);
-$crd = new Crd($conexao, $dashboard);
+// $fila = new Fila($conexao, $dashboard);
+// $crd = new Crd($conexao, $dashboard);
 
 
 // Consulta todos os registros
-$objetos = $crd->getFornecedores();
+// $objetos = $crd->getFornecedores();
 
 // Incluí o cabeçalho
-include "1-header.php";
+include "../../components/1-header.php";
 ?>
 
 <div class="container-fluid ">
@@ -76,16 +76,17 @@ include "1-header.php";
 
 <?php
 // Incluí o cabeçalho
-include "2-footer.php";
+include "../../components/2-footer.php";
+
 ?>
 
 <script>
   function atualizarPagina() {
-    window.location.href = "<?= SIS_URL_LISFORN ?>";
+    window.location.href = "<?= SIS_URL_LISCLI ?>";
   }
 
   function cadastrarFornecedor() {
-    window.location.href = "<?= SIS_URL_CADFOR ?>";
+    window.location.href = "<?= SIS_URL_CADCLI ?>";
   }
 
 
