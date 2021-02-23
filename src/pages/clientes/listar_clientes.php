@@ -32,7 +32,7 @@ include "../../components/1-header.php";
     <div class="card">
       <div class="card-header">
 
-        <h5 class="text-left">Fornecedores <span class="atualizar" onclick="atualizarPagina()">Atualizar </span> <span class="incluir" onclick="cadastrarFornecedor()">Incluir </span> </h5>
+        <h5 class="text-left">Clientes <span class="atualizar" onclick="atualizarPagina()">Atualizar </span> <span class="incluir" onclick="cadastrarCliente()">Incluir </span> </h5>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -42,8 +42,8 @@ include "../../components/1-header.php";
                 <!-- <th scope="col">ID</th> -->
                 <th scope="col" style="text-align:center">Código</th>
                 <th scope="col" style="text-align:left">Nome</th>
-                <th scope="col" style="text-align:center">CNPJ</th>
-                <th scope="col" style="text-align:center">Situação</th>
+                <th scope="col" style="text-align:center">CPF</th>
+                <th scope="col" style="text-align:center">Email</th>
                 <th scope="col" style="text-align:center">Opções</th>
 
               </tr>
@@ -85,7 +85,7 @@ include "../../components/2-footer.php";
     window.location.href = "<?= SIS_URL_LISCLI ?>";
   }
 
-  function cadastrarFornecedor() {
+  function cadastrarCliente() {
     window.location.href = "<?= SIS_URL_CADCLI ?>";
   }
 

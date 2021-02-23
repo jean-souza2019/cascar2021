@@ -47,7 +47,22 @@ if (!empty($_SESSION['USUARIO']) || $_SESSION['CONECTADO']) {
       background: #fff;
       padding: 20px 30px 50px 30px;
       margin-top: 30px;
+      border-radius: 25px 0px 25px 0px;
     }
+
+    .btnLogin {
+      display: initial !important;
+      width: 50% !important;
+      border-radius: 10px 0px 10px 0px;
+      margin-top: 20px;
+    }
+
+    .imgLogo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+
   </style>
   <title><?= $pagina_titulo ?></title>
 </head>
@@ -56,9 +71,9 @@ if (!empty($_SESSION['USUARIO']) || $_SESSION['CONECTADO']) {
 
   <div class="container">
     <div class="row justify-content-md-center">
-      <div class="col-md-4">
+      <div class="col-md-4" style="text-align: center;">
         <div class="panel panel-default">
-          <div class="panel-heading">
+          <div class="panel-heading imgLogo">
             <img src="<?= SIS_URL ?>src/assets/img/logo.png" alt="Agrodanieli">
           </div>
           <div class="panel-body">
@@ -70,7 +85,7 @@ if (!empty($_SESSION['USUARIO']) || $_SESSION['CONECTADO']) {
                 <div class="form-group">
                   <input class="form-control" placeholder="Senha" name="senha" type="password">
                 </div>
-                <input class="btn btn-lg btn-success btn-block" type="submit" value="Acessar">
+                <input class="btn btn-lg btn-success btn-block btnLogin" type="submit" value="Acessar">
               </fieldset>
             </form>
           </div>
