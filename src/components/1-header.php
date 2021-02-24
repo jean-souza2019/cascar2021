@@ -76,7 +76,7 @@
                           </a>
                         </li> -->
               <li class="nav-item ">
-                <a class="nav-link" role="button" href="src/Components/bd/sair.php">
+                <a class="nav-link" role="button" href="<?= SIS_URL ?>src/Components/bd/sair.php">
                   <i class="fas fa-sign-out-alt"></i>
                 </a>
               </li>
