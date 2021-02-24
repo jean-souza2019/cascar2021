@@ -7,19 +7,18 @@ Autenticacao::check();
 $usuario = $_SESSION['USUARIO'];
 
 require('../../components/bd/Conexao.php');
-// require('Components/Dashboard.php');
-// require('Components/Fila.php');
-// require('Components/Crd.php');
+require('../../components/bd/Crd.php');
 
-// $conexao = new Conexao();
-// $dashboard = new Dashboard();
+$conexao = new Conexao();
 
-// $fila = new Fila($conexao, $dashboard);
-// $crd = new Crd($conexao, $dashboard);
+$crd = new Crd($conexao);
 
 
 // Consulta todos os registros
-// $objetos = $crd->getFornecedores();
+
+
+$objetos = $crd->getClientes();
+
 
 // Incluí o cabeçalho
 include "../../components/1-header.php";
@@ -30,7 +29,7 @@ include "../../components/1-header.php";
 
   <div class="col-md-12">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header azulcascar">
 
         <h5 class="text-left">Clientes <span class="atualizar" onclick="atualizarPagina()">Atualizar </span> <span class="incluir" onclick="cadastrarCliente()">Incluir </span> </h5>
       </div>
@@ -40,11 +39,12 @@ include "../../components/1-header.php";
             <thead>
               <tr style="background: #ffffff; color: #5f5f5f;">
                 <!-- <th scope="col">ID</th> -->
-                <th scope="col" style="text-align:center">Código</th>
-                <th scope="col" style="text-align:left">Nome</th>
-                <th scope="col" style="text-align:center">CPF</th>
-                <th scope="col" style="text-align:center">Email</th>
-                <th scope="col" style="text-align:center">Opções</th>
+                <th scope="col" style="text-align:center;width: 5%;">Código</th>
+                <th scope="col" style="text-align:left; width: 35%;">Nome</th>
+                <th scope="col" style="text-align:center; width: 15%;">CPF</th>
+                <th scope="col" style="text-align:center; width: 15%;">Cidade</th>
+                <th scope="col" style="text-align:center; width: 15%;">Telefone</th>
+                <th scope="col" style="text-align:center;width: 15%;">Opções</th>
 
               </tr>
             </thead>
@@ -53,14 +53,15 @@ include "../../components/1-header.php";
                 <?php foreach ($objetos as $item) { ?>
                   <tr>
 
-                    <td style="text-align:center;width: 5%;"><?= $item->CODFOR ?></td>
-                    <td style="text-align:left; width: 45%;"><?= $item->NOMFOR ?></td>
-                    <td style="text-align:center; width: 10%;" class="mask"><?= $item->CGCCPF ?></td>
-                    <td style="text-align:center; width: 10%;"><?= $item->SITFOR == 'A' ? 'Ativo' : 'Inativo' ?></td>
-
+                    <td style="text-align:center;width: 5%;"><?= $item['ID'] ?></td>
+                    <td style="text-align:left; width: 35%;"><?= $item['NOME'] ?></td>
+                    <td style="text-align:center; width: 15%;" class="cpf"><?= $item['CPFCNPJ'] ?></td>
+                    <td style="text-align:center; width: 15%;"><?= $item['CIDADE'] ?></td>
+                    <td style="text-align:center; width: 15%;" class="tel"><?= $item['TELEFONE'] ?></td>
+                    
                     <td style="text-align:center; width: 5%;" class=" btn-acoes">
-                      <a class="btn btn-outline-danger btn-sm" href="excluir_fornecedor?id=<?= $item->CODFOR ?>" role="button"><i class="far fa-trash-alt"></i></a>
-                      <a class="btn btn-outline-secondary btn-sm" href="editar_fornecedor?id=<?= $item->CODFOR ?>" role="button"><i class="fas fa-pen"></i></a>
+                      <a class="btn btn-outline-danger btn-sm" href="excluir_cliente?id=<?= $item['ID'] ?>" role="button"><i class="far fa-trash-alt"></i></a>
+                      <a class="btn btn-outline-secondary btn-sm" href="editar_cliente?id=<?= $item['ID'] ?>" role="button"><i class="fas fa-pen"></i></a>
                     </td>
 
                   </tr>
@@ -112,6 +113,7 @@ include "../../components/2-footer.php";
 
 
 
-    // $(".mask").mask("00.000.000/0000-00");
+    $(".cpf").mask("000.000.000-00");
+    $(".tel").mask("(00) 0 0000-0000");
   });
 </script>

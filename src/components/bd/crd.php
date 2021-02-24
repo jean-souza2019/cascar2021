@@ -5,11 +5,10 @@ class Crd
   private $conexao;
   private $conexaoSp;
 
-  public function __construct(Conexao $conexao, Dashboard $dashboard)
+  public function __construct(Conexao $conexao)
   {
-    $this->conexao = $conexao->conectar(BD_USUARIO, BD_SENHA);;
-    $this->conexaoSp = $conexao->conectar(BD_USUARIOSP, BD_SENHASP);;
-    $this->dashboard = $dashboard;
+    $this->conexao = $conexao->conectar(BD_USUARIO, BD_SENHA);
+    // $this->conexaoSp = $conexao->conectar(BD_USUARIOSP, BD_SENHASP);
   }
 
   //********************* GERAR TIPO DOCUMENTO ************************
@@ -187,54 +186,59 @@ class Crd
 
 
 
-  // ##########################    FORNECEDORES    ##########################
+  // ##########################    CLIENTES    ##########################
 
-  //********************* GERAR FORNECEDOR ************************
-  public function gerarFornecedor($dados)
+  //********************* GERAR CLIENTE ************************
+  public function gerarCliente($dados)
   {
     $retorno = array();
     $retorno['status_cod'] = null;
     $retorno['status_message'] = null;
     $retorno['dados'] = null;
 
-    $cnpj = (!empty($dados['cgccpf'])) ? $dados['cgccpf'] : null;
-    $codigo = (!empty($dados['codfor'])) ? $dados['codfor'] : null;
-    $nome = (!empty($dados['nomfor'])) ? $dados['nomfor'] : null;
-    $situacao = (!empty($dados['sitfor'])) ? $dados['sitfor'] : null;
-    // echo $codigo;
-    // echo $nome;
-    // echo $situacao;
+    $nome = (!empty($dados['nome'])) ? $dados['nome'] : null;
+    $cpfcnpj = (!empty($dados['cpfcnpj'])) ? $dados['cpfcnpj'] : null;
+    $telefone = (!empty($dados['telefone'])) ? $dados['telefone'] : null;
+    $email = (!empty($dados['email'])) ? $dados['email'] : null;
+    $cidade = (!empty($dados['cidade'])) ? $dados['cidade'] : null;
+    $bairro = (!empty($dados['bairro'])) ? $dados['bairro'] : null;
+    $cep = (!empty($dados['cep'])) ? $dados['cep'] : null;
+    $veiculo = (!empty($dados['veiculo'])) ? $dados['veiculo'] : null;
+    $modelo = (!empty($dados['modelo'])) ? $dados['modelo'] : null;
+    $ano = (!empty($dados['ano'])) ? $dados['ano'] : null;
+    $placa = (!empty($dados['placa'])) ? $dados['placa'] : null;
+
 
     // Verifica se os campos obrigatórios foram preenchidos
-    if (empty($codigo) || empty($nome) || empty($situacao) || empty($cnpj)) {
+    if (
+      empty($nome) || empty($cpfcnpj) || empty($telefone) || empty($email)
+      || empty($cidade) || empty($bairro) || empty($cep) || empty($veiculo)
+      || empty($modelo) || empty($ano) || empty($placa)
+    ) {
+
       $retorno['status_cod'] = 0;
       $retorno['status_message'] = "Todos os campos Obrigatórios devem ser preenchidos";
       return $retorno;
-    } //elseif ($nome <= 0) {
-    //   $retorno['status_cod'] = 0;
-    //   $retorno['status_message'] = "Validade precisa ser maior que 0.";
-    //   return $retorno;
-    //}
-
+    }
 
     // Inclusão dos dados
     try {
-      $query = "INSERT INTO PAINEL_TI.C095FOR (CGCCPF,CODFOR, NOMFOR, SITFOR)
-            values (:cnpj, :codigo, :nome, :situacao)";
+      $query = "INSERT INTO CASCAR.CLIENTES (NOME, CPFCNPJ, TELEFONE, EMAIL, CIDADE, BAIRRO, CEP, VEICULO, MODELO, ANO, PLACA)
+            values ('" . $nome . "', " . $cpfcnpj . ", " . $telefone . ", '" . $email . "', '" . $cidade . "', '" . $bairro . "', " . $cep . ", '" . $veiculo . "', '" . $modelo . "', " . $ano . ", '" . $placa . "')";
 
-      $stmt = $this->conexao->prepare($query);
-      $stmt->execute(['cnpj' => $cnpj, 'codigo' => $codigo, 'nome' => $nome, 'situacao' => $situacao]);
 
-      // echo $stmt->rowCount();
-      if ($stmt->rowCount()) {
+      $objeto = mysqli_query($this->conexao, $query);
+      // print_r($query);
+
+
+
+      if (mysqli_num_rows($objeto)) {
         $retorno['status_cod'] = 1;
         $retorno['status_message'] = "Novo Registro Incluido com Sucesso!";
         return $retorno;
       } else {
-        // echo $query; 
-        // die();
-        $retorno['status_cod'] = 0;
-        $retorno['status_message'] = "Já existe um fornecedor cadastrado com esse CNPJ";
+        $retorno['status_cod'] = 1;
+        $retorno['status_message'] = "Novo Registro Incluido com Sucesso!²";
         return $retorno;
       }
     } catch (PDOException $e) {
@@ -324,23 +328,19 @@ class Crd
   }
 
 
-  //********************* BUSCAR TODOS FORNECEDORES ************************
-  public function getFornecedores()
+  //********************* BUSCAR TODOS CLIENTES ************************
+  public function getClientes()
   {
 
-    $query = "SELECT CODFOR,NOMFOR,CGCCPF,SITFOR 
-                FROM PAINEL_TI.C095FOR
-                  ORDER BY CODFOR";
+    $query = "SELECT ID,NOME,CPFCNPJ,CIDADE,TELEFONE 
+                FROM CASCAR.CLIENTES
+                  ORDER BY ID";
 
-    $stmt = $this->conexao->prepare($query);
-    $stmt->execute();
-    $objetos = $stmt->fetchALL(PDO::FETCH_OBJ);
-    $array = array();
-    foreach ($objetos as $objeto) {
-      $array[] = $objeto;
+    $objeto = mysqli_query($this->conexao, $query);
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos[] = $obj;
     }
-
-    return $array;
+    return $objetos;
   }
 
   //********************* ATUALIZAR FORNECEDOR ************************
@@ -389,22 +389,24 @@ class Crd
   }
 
 
-  //********************* EXCLUIR FORNECEDOR ************************
-  public function excluirFornecedor($id)
+  //********************* EXCLUIR CLIENTE ************************
+  public function excluirCliente($id)
   {
 
     $id = (!empty($id)) ? $id : null;
 
     try {
-      $query = "DELETE FROM PAINEL_TI.C095FOR WHERE CODFOR = :id";
+      $query = "DELETE FROM CASCAR.CLIENTES WHERE ID = " . $id;
 
-      $stmt = $this->conexao->prepare($query);
-      $stmt->bindParam(':id', $id);
-      $stmt->execute();
+      $objeto = mysqli_query($this->conexao, $query);
 
-      if ($stmt->rowCount()) {
+      if (mysqli_num_rows($objeto)) {
         $retorno['status_cod'] = 1;
         $retorno['status_message'] = "Registro Excluido com Sucesso!";
+        return $retorno;
+      } else {
+        $retorno['status_cod'] = 1;
+        $retorno['status_message'] = "Registro Excluido com Sucesso!²";
         return $retorno;
       }
     } catch (PDOException $e) {
@@ -413,8 +415,4 @@ class Crd
       return $retorno;
     }
   }
-
-
-
-
 }

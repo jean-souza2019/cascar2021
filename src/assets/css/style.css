@@ -90,13 +90,13 @@ input.btn.btn-sm.btn-primary {
 
 .btn-registrar:hover,
 .card-small.chamar:hover {
-    background: #1f1a1b;
-    transform: scale(0.9);
+    background: #03923c;
+    transform: scale(1.06);
     transition: all 0.5s ease;
 }
 
 .btn-registrar {
-    background: #326560;
+    background: #a0a0a0;
     border: none;
     padding: 7px 10px;
     float: right;

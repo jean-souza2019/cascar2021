@@ -1,28 +1,31 @@
 <?php
 
-require_once 'init.php';
+require_once '../../../init.php';
 
-require('Components/Autenticacao.php');
+require('../../components/bd/Autenticacao.php');
 Autenticacao::check();
 $usuario = $_SESSION['USUARIO'];
 
-require('Components/Conexao.php');
-require('Components/Dashboard.php');
-require('Components/Fila.php');
-require('Components/Crd.php');
-
-$conexao = new Conexao();
-$dashboard = new Dashboard();
-
-$fila = new Fila($conexao, $dashboard);
-$crd = new Crd($conexao, $dashboard);
 
 
-// Consulta todos os registros
-$objetos = $crd->getTiposDocumentos();
+// require('Components/Conexao.php');
+// require('Components/Dashboard.php');
+// require('Components/Fila.php');
+// require('Components/Crd.php');
+
+// $conexao = new Conexao();
+// $dashboard = new Dashboard();
+
+// $fila = new Fila($conexao, $dashboard);
+// $crd = new Crd($conexao, $dashboard);
+
+
+// // Consulta todos os registros
+// $objetos = $crd->getTiposDocumentos();
 
 // Incluí o cabeçalho
-include "1-header.php";
+include "../../components/1-header.php";
+
 ?>
 
 <div class="container-fluid ">
@@ -32,7 +35,7 @@ include "1-header.php";
     <div class="card">
       <div class="card-header">
 
-        <h5 class="text-left">Tipos de Documentos <span class="atualizar" onclick="atualizarPagina()">Atualizar </span> <span class="incluir" onclick="cadastrarTipo()">Incluir </span> </h5>
+        <h5 class="text-left">Veiculos <span class="atualizar" onclick="atualizarPagina()">Atualizar </span> <span class="incluir" onclick="cadastrarTipo()">Incluir </span> </h5>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -75,8 +78,8 @@ include "1-header.php";
 </div>
 
 <?php
-// Incluí o cabeçalho
-include "2-footer.php";
+// Incluí o rodape
+include "../../components/2-footer.php";
 ?>
 
 <script>

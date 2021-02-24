@@ -4,7 +4,7 @@
 // Configuração do Sistema
 define('SIS_URL', "http://localhost/Cascar/");
 
-// define('SIS_URL_CADFOR', "http:/localhost/Cascar/cadastro_fornecedor");
+define('SIS_URL_CADCLI', SIS_URL."src/pages/clientes/cadastro_cliente");
 // define('SIS_URL_LISFORN', "http:/localhost/Cascar/Outras/listar_fornecedores");
 define('SIS_URL_LISCLI', SIS_URL."src/pages/clientes/listar_clientes");
 // define('SIS_URL_EDITFORN', "http:/localhost/Cascar/editar_fornecedor");
