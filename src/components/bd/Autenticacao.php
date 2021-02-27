@@ -40,7 +40,7 @@ class Autenticacao
     if ($objeto->num_rows <> 0) {
       $_SESSION['USUARIO'] = $row['nome'];
       $_SESSION['CONECTADO'] = TRUE;
-      header('Location: http://localhost/cascar/index');
+      header('Location:  '.SIS_URL);
     } else {
       header('Location: pagina-login.php?status=erro');
     }

@@ -2,12 +2,12 @@
 /* Objetivo centralizar a configuração do sistema */
 
 // Configuração do Sistema
-define('SIS_URL', "http://localhost/Cascar/");
+define('SIS_URL', "http://10.0.0.105/Cascar/");
 
 define('SIS_URL_CADCLI', SIS_URL."src/pages/clientes/cadastro_cliente");
 // define('SIS_URL_LISFORN', "http:/localhost/Cascar/Outras/listar_fornecedores");
 define('SIS_URL_LISCLI', SIS_URL."src/pages/clientes/listar_clientes");
-// define('SIS_URL_EDITFORN', "http:/localhost/Cascar/editar_fornecedor");
+define('SIS_URL_EDITCLI', SIS_URL."src/pages/clientes/editar_cliente");
 
 // define('SIS_URL_CADTIPDOC', "http:/localhost/Cascar/cadastro_tipo_documento");
 // define('SIS_URL_LISTIPDOC', "http:/localhost/Cascar/listar_tipo_documento");
@@ -27,7 +27,7 @@ define('BASE_PATH', dirname(__FILE__));
 define('DEBUG_ERROR', FALSE);
 
 // conexão com base de dados
-define( 'BD_SERVIDOR', 'localhost' );
+define( 'BD_SERVIDOR', "127.0.0.1" );
 define( 'BD_USUARIO', 'root' );
 define( 'BD_SENHA', '' );
 define( 'BD_NOME', 'cascar' );

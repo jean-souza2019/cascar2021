@@ -226,19 +226,16 @@ class Crd
       $query = "INSERT INTO CASCAR.CLIENTES (NOME, CPFCNPJ, TELEFONE, EMAIL, CIDADE, BAIRRO, CEP, VEICULO, MODELO, ANO, PLACA)
             values ('" . $nome . "', " . $cpfcnpj . ", " . $telefone . ", '" . $email . "', '" . $cidade . "', '" . $bairro . "', " . $cep . ", '" . $veiculo . "', '" . $modelo . "', " . $ano . ", '" . $placa . "')";
 
-
       $objeto = mysqli_query($this->conexao, $query);
-      // print_r($query);
 
-
-
-      if (mysqli_num_rows($objeto)) {
+      if ($objeto > 0) {
+        // print_r($objeto);
         $retorno['status_cod'] = 1;
         $retorno['status_message'] = "Novo Registro Incluido com Sucesso!";
         return $retorno;
       } else {
         $retorno['status_cod'] = 1;
-        $retorno['status_message'] = "Novo Registro Incluido com Sucesso!²";
+        $retorno['status_message'] = "Ocorreu um problema ao cadastrar novo cliente.";
         return $retorno;
       }
     } catch (PDOException $e) {
@@ -279,28 +276,6 @@ class Crd
 
 
 
-  //********************* BUSCAR P/ EDIÇÃO FORNECEDORES ************************
-  public function getFornecedoresPnl($id)
-  {
-    $id = (!empty($id)) ? $id : null;
-
-    $query = "SELECT CODFOR,NOMFOR,CGCCPF,SITFOR 
-                FROM PAINEL_TI.C095FOR
-                WHERE CODFOR = :id
-                ORDER BY CODFOR";
-
-    // echo($query);
-
-    $stmt = $this->conexao->prepare($query);
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
-    $objetos = $stmt->fetchALL(PDO::FETCH_OBJ);
-    $array = array();
-    foreach ($objetos as $objeto) {
-      $array[] = $objeto;
-    }
-    return $array;
-  }
 
 
 
@@ -343,50 +318,7 @@ class Crd
     return $objetos;
   }
 
-  //********************* ATUALIZAR FORNECEDOR ************************
-  public function atualizarFornecedor($dados)
-  {
-    $retorno = array();
-    $retorno['status_cod'] = null;
-    $retorno['status_message'] = null;
-    $retorno['dados'] = null;
 
-    $documento = (!empty($dados['cgccpf'])) ? $dados['cgccpf'] : null;
-    $codigo = (!empty($dados['codfor'])) ? $dados['codfor'] : null;
-    $nome = (!empty($dados['nomfor'])) ? $dados['nomfor'] : null;
-    $situacao = (!empty($dados['sitfor'])) ? $dados['sitfor'] : null;
-
-    // Verifica se os campos obrigatórios foram preenchidos
-    if (empty($documento) || empty($codigo) || empty($nome) || empty($situacao)) {
-      $retorno['status_cod'] = 0;
-      $retorno['status_message'] = "Todos os campos Obrigatórios devem ser preenchidos";
-      return $retorno;
-    }
-
-    // Inclusão dos dados
-    try {
-      $query = "UPDATE PAINEL_TI.C095FOR SET SITFOR = :situacao WHERE CGCCPF = :documento AND CODFOR = :codigo";
-
-      $stmt = $this->conexao->prepare($query);
-      $stmt->execute(['situacao' => $situacao, 'documento' => $documento, 'codigo' => $codigo]);
-
-      if ($stmt->rowCount()) {
-        $retorno['status_cod'] = 1;
-        $retorno['status_message'] = "Registro Atualizado com Sucesso!";
-        return $retorno;
-      } else {
-
-        die();
-        $retorno['status_cod'] = 0;
-        $retorno['status_message'] = "Ocorreu um erro ao atualizar o registro! Favor entrar em contato com a equipe de TI";
-        return $retorno;
-      }
-    } catch (PDOException $e) {
-      $retorno['status_cod'] = 0;
-      $retorno['status_message'] = "Erro: " . $e->getMessage();
-      return $retorno;
-    }
-  }
 
 
   //********************* EXCLUIR CLIENTE ************************
@@ -400,13 +332,97 @@ class Crd
 
       $objeto = mysqli_query($this->conexao, $query);
 
-      if (mysqli_num_rows($objeto)) {
+      if ($objeto > 0) {
+        // print_r($objeto);
         $retorno['status_cod'] = 1;
-        $retorno['status_message'] = "Registro Excluido com Sucesso!";
+        $retorno['status_message'] = "Registro excluido com Sucesso!";
         return $retorno;
       } else {
+        $retorno['status_cod'] = 0;
+        $retorno['status_message'] = "Problema ao excluir registro.";
+        return $retorno;
+      }
+    } catch (PDOException $e) {
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Erro: " . $e->getMessage();
+      return $retorno;
+    }
+    mysqli_close($this->conexao);
+  }
+
+
+  //********************* BUSCAR P/ EDIÇÃO CLIENTE ************************
+  public function getClientePnl($id)
+  {
+    $id = (!empty($id)) ? $id : null;
+
+    $query = "SELECT ID, NOME, CPFCNPJ, TELEFONE, EMAIL, CIDADE, BAIRRO, CEP, VEICULO, MODELO, ANO, PLACA
+                  FROM CASCAR.CLIENTES 
+                  WHERE ID = " . $id;
+
+    $objeto = mysqli_query($this->conexao, $query);
+
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos[] = $obj;
+    }
+    return $objetos;
+  }
+
+
+  //********************* ATUALIZAR CLIENTE ************************
+  public function atualizarCliente($dados)
+  {
+    $retorno = array();
+    $retorno['status_cod'] = null;
+    $retorno['status_message'] = null;
+    $retorno['dados'] = null;
+
+    $nome = (!empty($dados['nome'])) ? $dados['nome'] : null;
+    $id = (!empty($dados['id'])) ? $dados['id'] : null;
+    $cpfcnpj = (!empty($dados['cpfcnpj'])) ? $dados['cpfcnpj'] : null;
+    $telefone = (!empty($dados['telefone'])) ? $dados['telefone'] : null;
+    $email = (!empty($dados['email'])) ? $dados['email'] : null;
+    $cidade = (!empty($dados['cidade'])) ? $dados['cidade'] : null;
+    $bairro = (!empty($dados['bairro'])) ? $dados['bairro'] : null;
+    $cep = (!empty($dados['cep'])) ? $dados['cep'] : null;
+    $veiculo = (!empty($dados['veiculo'])) ? $dados['veiculo'] : null;
+    $modelo = (!empty($dados['modelo'])) ? $dados['modelo'] : null;
+    $ano = (!empty($dados['ano'])) ? $dados['ano'] : null;
+    $placa = (!empty($dados['placa'])) ? $dados['placa'] : null;
+
+
+    // Verifica se os campos obrigatórios foram preenchidos
+    if (
+      empty($id) ||   empty($nome) || empty($cpfcnpj) || empty($telefone) || empty($email)
+      || empty($cidade) || empty($bairro) || empty($cep) || empty($veiculo)
+      || empty($modelo) || empty($ano) || empty($placa)
+    ) {
+
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Todos os campos Obrigatórios devem ser preenchidos";
+      return $retorno;
+    }
+
+    // Inclusão dos dados
+    try {
+      $query = "UPDATE CASCAR.CLIENTES SET NOME = '" . $nome . "', CPFCNPJ = " . $cpfcnpj . ", TELEFONE = " . $telefone . ", EMAIL = '" . $email . "', CIDADE = '" . $cidade . "', 
+      BAIRRO = '" . $bairro . "', CEP = " . $cep . ", VEICULO = '" . $veiculo . "', MODELO = '" . $modelo . "', ANO = " . $ano . ", PLACA = '" . $placa . "'
+      WHERE ID = " . $id;
+
+      // print_r($query);
+
+      $objeto = mysqli_query($this->conexao, $query);
+
+      // print_r($objeto);
+      if ($objeto > 0) {
         $retorno['status_cod'] = 1;
-        $retorno['status_message'] = "Registro Excluido com Sucesso!²";
+        $retorno['status_message'] = "Registro Atualizado com Sucesso!";
+        return $retorno;
+      } else {
+
+        die();
+        $retorno['status_cod'] = 0;
+        $retorno['status_message'] = "Ocorreu um erro ao atualizar o registro! Favor entrar em contato com o suporte";
         return $retorno;
       }
     } catch (PDOException $e) {

@@ -24,7 +24,7 @@ if (!empty($_SESSION['USUARIO']) || $_SESSION['CONECTADO']) {
   <link rel="shortcut icon" href="<?= SIS_URL ?>src/assets/img/favicon.ico" type="image/x-icon">
   <link rel="icon" href="<?= SIS_URL ?>src/assets/img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="<?= SIS_URL ?>src/assets/js/bootstrap-4.2.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="http://192.168.3.42:82/AGRODANIELI/js/fontawesome-free-5.7.1/css/all.min.css">
+  <link rel="stylesheet" href="<?= SIS_URL ?>src/assets/js/fontawesome-free-5.7.1/css/all.min.css">
 
   <style>
     .panel-heading img {
@@ -74,7 +74,7 @@ if (!empty($_SESSION['USUARIO']) || $_SESSION['CONECTADO']) {
       <div class="col-md-4" style="text-align: center;">
         <div class="panel panel-default">
           <div class="panel-heading imgLogo">
-            <img src="<?= SIS_URL ?>src/assets/img/logo.png" alt="Agrodanieli">
+            <img src="<?= SIS_URL ?>src/assets/img/logo.png" alt="Casca Autocar">
           </div>
           <div class="panel-body">
             <form accept-charset="UTF-8" role="form" method="POST" action="login.php">
