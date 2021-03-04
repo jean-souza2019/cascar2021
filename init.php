@@ -4,6 +4,10 @@
 // Configuração do Sistema
 define('SIS_URL', "http://10.0.0.105/Cascar/");
 
+define('SIS_URL_LISEST', SIS_URL."src/pages/estoque/listar_estoque");
+define('SIS_URL_CADITEM', SIS_URL."src/pages/estoque/cadastro_item");
+// define('SIS_URL_EDITITEM', SIS_URL."src/pages/estoque/editar_item");
+
 define('SIS_URL_CADCLI', SIS_URL."src/pages/clientes/cadastro_cliente");
 // define('SIS_URL_LISFORN', "http:/localhost/Cascar/Outras/listar_fornecedores");
 define('SIS_URL_LISCLI', SIS_URL."src/pages/clientes/listar_clientes");

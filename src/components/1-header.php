@@ -37,6 +37,9 @@
         <a href="<?= SIS_URL_LISCLI ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user-plus"></i> Clientes</a>
       </div>
       <div class="list-group list-group-flush">
+        <a href="<?= SIS_URL_LISEST ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-box-open"></i> Estoque</a>
+      </div>
+      <div class="list-group list-group-flush">
         <a href="<?= SIS_URL_LISOS ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-file-alt"></i> Ordem Serviço</a>
       </div>
     </div>

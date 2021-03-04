@@ -431,4 +431,88 @@ class Crd
       return $retorno;
     }
   }
+
+
+
+
+
+
+
+
+  // ##########################    ESTOQUE    ##########################
+
+  //********************* BUSCAR TODO ESTOQUE ************************
+  public function getEstoque()
+  {
+
+    $query = "SELECT CODIGO, DESCRICAO, ENDERECAMENTO, VALOR, QUANTIDADE_ESTOQUE, IMAGEM
+                FROM CASCAR.ESTOQUE
+                  ORDER BY CODIGO";
+
+    $objeto = mysqli_query($this->conexao, $query);
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos[] = $obj;
+    }
+    return $objetos;
+  }
+
+
+
+  //********************* GERAR ITEM ************************
+
+  public function gerarItem($dados)
+  {
+
+    $retorno = array();
+    $retorno['status_cod'] = null;
+    $retorno['status_message'] = null;
+    $retorno['dados'] = null;
+
+    $descricao = (!empty($dados['descricao'])) ? $dados['descricao'] : null;
+    $enderecamento = (!empty($dados['enderecamento'])) ? $dados['enderecamento'] : null;
+    $valor = (!empty($dados['valor'])) ? $dados['valor'] : null;
+    $quantidade_estoque = (!empty($dados['quantidade_estoque'])) ? $dados['quantidade_estoque'] : null;
+
+    if (isset($_FILES['imagem'])) {
+      $extensao = strtolower(substr($_FILES['imagem']['name'], 4));
+      $novo_nome = md5(time()) . $extensao;
+      $diretorio = "C:/xampp/htdocs/Cascar/img/";
+
+      move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio . $novo_nome);
+    }
+
+
+    // Verifica se os campos obrigatórios foram preenchidos
+    if (
+      empty($descricao) || empty($enderecamento) || empty($valor) || empty($quantidade_estoque)
+    ) {
+
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Todos os campos Obrigatórios devem ser preenchidos";
+      return $retorno;
+    }
+
+    // Inclusão dos dados
+    try {
+      $query = "INSERT INTO CASCAR.ESTOQUE (DESCRICAO, ENDERECAMENTO, VALOR, QUANTIDADE_ESTOQUE, IMAGEM)
+             values ('" . $descricao . "', '" . $enderecamento . "', " . $valor . ", " . $quantidade_estoque . ", '" . $diretorio . $novo_nome . "')";
+
+      $objeto = mysqli_query($this->conexao, $query);
+
+      if ($objeto > 0) {
+        // print_r($objeto);
+        $retorno['status_cod'] = 1;
+        $retorno['status_message'] = "Novo Registro Incluido com Sucesso!";
+        return $retorno;
+      } else {
+        $retorno['status_cod'] = 1;
+        $retorno['status_message'] = "Ocorreu um problema ao cadastrar novo cliente.";
+        return $retorno;
+      }
+    } catch (PDOException $e) {
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Erro: " . $e->getMessage();
+      return $retorno;
+    }
+  }
 }
