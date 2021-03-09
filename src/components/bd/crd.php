@@ -515,4 +515,24 @@ class Crd
       return $retorno;
     }
   }
+
+
+
+  
+  //********************* BUSCAR P/ LISTAR ITEM ************************
+  public function getItemPnl($id)
+  {
+    $id = (!empty($id)) ? $id : null;
+
+    $query = "SELECT CODIGO, DESCRICAO, ENDERECAMENTO, VALOR, QUANTIDADE_ESTOQUE, IMAGEM
+                  FROM CASCAR.ESTOQUE 
+                  WHERE CODIGO = " . $id;
+
+    $objeto = mysqli_query($this->conexao, $query);
+
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos[] = $obj;
+    }
+    return $objetos;
+  }
 }

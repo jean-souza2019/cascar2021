@@ -35,16 +35,14 @@ include "../../components/1-header.php";
       </div>
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-bordered thead-light data-table" id="dataTableAll" width="100%" cellspacing="0">
+          <table class="table table-bordered thead-light data-table plusLisEst" id="dataTableAll" width="100%" cellspacing="0">
             <thead>
               <tr style="background: #ffffff; color: #5f5f5f;">
-                <!-- <th scope="col">ID</th> -->
                 <th scope="col" style="text-align:center;width: 5%;">Código</th>
                 <th scope="col" style="text-align:left; width: 40%;">Descrição</th>
                 <th scope="col" style="text-align:center; width: 10%;">Endereçamento</th>
                 <th scope="col" style="text-align:center; width: 10%;">Valor Unitário</th>
                 <th scope="col" style="text-align:center; width: 10%;">Quantidade Estoque</th>
-                <!-- <th scope="col" style="text-align:center;width: 15%;">Opções</th> -->
 
               </tr>
             </thead>
@@ -52,13 +50,11 @@ include "../../components/1-header.php";
               <?php if (!empty($objetos)) { ?>
                 <?php foreach ($objetos as $item) { ?>
                   <tr>
-
                     <td style="text-align:center;width: 5%;"><?= $item['CODIGO'] ?></td>
                     <td style="text-align:left; width: 40%;"><?= $item['DESCRICAO'] ?></td>
                     <td style="text-align:center; width: 10%;" class="enderecamento"><?= $item['ENDERECAMENTO'] ?></td>
                     <td style="text-align:center; width: 10%;" class="valor">R$ <?= $item['VALOR'] ?></td>
                     <td style="text-align:center; width: 10%;"><?= $item['QUANTIDADE_ESTOQUE'] ?></td>
-
                   </tr>
                 <?php } ?>
               <?php } ?>
@@ -89,5 +85,48 @@ include "../../components/2-footer.php";
   $(document).ready(function() {
     $(".enderecamento").mask("AA-AA-AA-AA");
     // $(".valor").mask("AAA,000");
+
+
+
+  });
+
+
+  var table = $("#dataTableAll").DataTable({
+    "pageLength": 15,
+    "language": {
+      "sEmptyTable": "Nenhum registro encontrado",
+      "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+      "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+      "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+      "sInfoPostFix": "",
+      "sInfoThousands": ".",
+      "sLengthMenu": "_MENU_ resultados por página",
+      "sLoadingRecords": "Carregando...",
+      "sProcessing": "Processando...",
+      "sZeroRecords": "Nenhum registro encontrado",
+      "sSearch": "Pesquisar",
+      "oPaginate": {
+        "sNext": "Próximo",
+        "sPrevious": "Anterior",
+        "sFirst": "Primeiro",
+        "sLast": "Último"
+      },
+      "oAria": {
+        "sSortAscending": ": Ordenar colunas de forma ascendente",
+        "sSortDescending": ": Ordenar colunas de forma descendente"
+      }
+    },
+    "order": [
+      [0, 'asc']
+    ]
+  });
+
+
+
+
+  $(".plusLisEst").on("click", "tr", function() {
+    var data = table.row(this).data();
+    var novaURL = "http://10.0.0.105/Cascar/src/pages/estoque/item?item=" + data[0];
+    $(window.document.location).attr('href', novaURL);
   });
 </script>
