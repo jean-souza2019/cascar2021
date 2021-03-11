@@ -8,9 +8,9 @@ require('../../components/bd/Crd.php');
 
 $conexao = new Conexao();
 $crd = new Crd($conexao);
+$codigo = (!empty($_POST['codigo'])) ? $_POST['codigo'] : null;
 
-$update = $crd->atualizarCliente($_POST);
-
+$update = $crd->atualizarItem($_POST);
 
 if (!$update['status_cod']) {
   echo "<script>alert('" . $update['status_message'] . "')</script>";
@@ -18,6 +18,6 @@ if (!$update['status_cod']) {
   die();
 } else {
   echo "<script>alert('" . $update['status_message'] . "')</script>";
-  echo "<script>window.top.location.href='" . SIS_URL_LISCLI . "'</script>";
+  echo "<script>window.top.location.href='" . SIS_URL_LISITEM. "?item=".$_POST['codigo']."'</script>";
   die();
 }

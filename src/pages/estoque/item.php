@@ -23,7 +23,7 @@ include "../../components/1-header.php";
     <div class="col-md-10">
       <div class='card card-formulario'>
         <div class="card-header azulcascar">
-          <h5 class="text-left">Listar Item<span class="atualizar" onclick="atualizarPagina()">Atualizar </span> <span class="incluir" onclick="editarItem()">Editar </span></h5>
+          <h5 class="text-left">Listar Item<span class="voltar cCza" onclick="voltar()">Voltar </span> <span class="excluir" onclick="excluir()">Excluir </span> <span class="incluir" onclick="editarItem()">Editar </span></h5>
         </div>
 
 
@@ -66,15 +66,16 @@ include "../../components/1-header.php";
               <div class="col-md-2  ">
                 <div class="form-group">
                   <label>Quantidade Estoque</label>
-                  <input class="form-control" id="quantidade_estoque" name="quantidade_estoque" value="<?= $objetos[0]['QUANTIDADE_ESTOQUE'] ?>/u" autofocus="true" readonly="false ">
+                  <input class="form-control" id="quantidade_estoque" name="quantidade_estoque" value="<?= $objetos[0]['QUANTIDADE_ESTOQUE'] ?>" autofocus="true" readonly="false ">
                 </div>
               </div>
 
               <div class="col-md-4  ">
                 <div class="form-group">
                   <!-- <label>Imagem</label> -->
-                  <img src="<?= $objetos[0]['IMAGEM'] ?>" class="imgObj" alt="<?= $objetos[0]['DESCRICAO'] ?>" width="200">
-
+                  <?php if( $objetos[0]['IMAGEM'] )  {  ?>
+                    <img src="<?= $objetos[0]['IMAGEM'] ?>" class="imgObj" alt="<?= $objetos[0]['DESCRICAO'] ?>" width="200">
+                  <?php }?>
                 </div>
               </div>
 
@@ -114,7 +115,12 @@ include "../../components/1-header.php";
 
         }
 
-        function atualizarPagina() {
-          window.location.reload();
+        function voltar() {
+          window.location.href = "<?= SIS_URL_LISEST ?>";
+        }
+
+
+        function excluir() {
+          window.location.href = "<?= SIS_URL_EXCLITEM ?>?item=<?= $objetos[0]['CODIGO'] ?>";
         }
       </script>
