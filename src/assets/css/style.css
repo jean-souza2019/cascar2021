@@ -273,6 +273,10 @@ span.incluir:hover {
     cursor: pointer;
 }
 
+.center {
+    text-align: center !important;
+}
+
 .ultimos-chamados {
     list-style: none;
     color: #333;

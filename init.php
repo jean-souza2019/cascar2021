@@ -4,6 +4,8 @@
 // Configuração do Sistema
 define('SIS_URL', "http://10.0.0.105/Cascar/");
 
+define( 'SIS_URL_IMG', SIS_URL . "src/assets/img/produto-sem-img.png");
+
 define('SIS_URL_LISEST', SIS_URL."src/pages/estoque/listar_estoque");
 define('SIS_URL_CADITEM', SIS_URL."src/pages/estoque/cadastro_item");
 define('SIS_URL_LISITEM', SIS_URL."src/pages/estoque/item");

@@ -23,14 +23,14 @@ include "../../components/1-header.php";
     <div class="col-md-10">
       <div class='card card-formulario'>
         <div class="card-header azulcascar">
-          <h5 class="text-left">Listar Item<span class="voltar cCza" onclick="voltar()">Voltar </span> <span class="excluir" onclick="excluir()">Excluir </span> <span class="incluir" onclick="editarItem()">Editar </span></h5>
+          <h5 class="text-left">Item Individual<span class="voltar cCza" onclick="voltar()">Voltar </span> <span class="excluir" onclick="excluir()">Excluir </span> <span class="incluir" onclick="editarItem()">Editar </span></h5>
         </div>
 
 
         <div class="card-body">
           <!-- <form class="form-caditem" action="gerar_item" method="POST" enctype="multipart/form-data"> -->
           <div class="col-md-12">
-            <div class="row">
+            <div class="row justify-content-md-center">
 
               <div class="col-md-2">
                 <div class="form-group">
@@ -70,28 +70,19 @@ include "../../components/1-header.php";
                 </div>
               </div>
 
-              <div class="col-md-4  ">
-                <div class="form-group">
-                  <!-- <label>Imagem</label> -->
-                  <?php if( $objetos[0]['IMAGEM'] )  {  ?>
+              <div class="col-md-3  ">
+                <div class="form-group center">
+                  <?php if ($objetos[0]['IMAGEM']) {  ?>
                     <img src="<?= $objetos[0]['IMAGEM'] ?>" class="imgObj" alt="<?= $objetos[0]['DESCRICAO'] ?>" width="200">
-                  <?php }?>
+                  <?php }else{ ?>
+                    <img src="<?= SIS_URL_IMG ?>" alt="Produto Sem Imagem ?>" width="120">
+                  <?php } ?>
                 </div>
               </div>
 
             </div>
           </div>
-          <!-- </form> -->
-          <!-- <div class="row">
-              <div class="col-md-12">
-                <div class="row justify-content-md-center">
-                  <div class="form-label-group">
-                    <button class="btn btn-sm btn-primary btn-registrar " onclick="salvarDados();">SALVAR</button>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          <!-- <button class="btn btn-sm btn-primary btn-registrar " onclick="">Cancelar</button> -->
+
         </div>
       </div>
 
