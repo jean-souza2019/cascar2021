@@ -373,3 +373,21 @@ ul.ultimos-chamados h4 {
     box-shadow: 1px 1px 13px 1px #d8d2d2;
     border-radius: 0px;
 }
+
+.card-OS {
+    margin: 15px !important;
+    box-shadow: 0px 0px 17px -4px rgb(50 50 50 / 77%) !important;
+    border-radius: 8px !important;
+    padding: 3px !important;
+    color: #000 !important;
+    background-color: #efefef !important;
+    display: inline-block;
+}
+
+.TitVerde {
+    background: #039228 !important;
+}
+
+.TitAmarelo {
+    background: #b99a00 !important;
+}

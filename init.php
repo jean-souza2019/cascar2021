@@ -13,14 +13,13 @@ define('SIS_URL_EDITITEM', SIS_URL."src/pages/estoque/editar_item");
 define('SIS_URL_EXCLITEM', SIS_URL . "src/pages/estoque/excluir_item");
 
 define('SIS_URL_CADCLI', SIS_URL."src/pages/clientes/cadastro_cliente");
-// define('SIS_URL_LISFORN', "http:/localhost/Cascar/Outras/listar_fornecedores");
 define('SIS_URL_LISCLI', SIS_URL."src/pages/clientes/listar_clientes");
 define('SIS_URL_EDITCLI', SIS_URL."src/pages/clientes/editar_cliente");
 
 // define('SIS_URL_CADTIPDOC', "http:/localhost/Cascar/cadastro_tipo_documento");
-// define('SIS_URL_LISTIPDOC', "http:/localhost/Cascar/listar_tipo_documento");
 // define('SIS_URL_EDITTIPDOC', "http:/localhost/Cascar/editar_tipo_documento");
 // define('SIS_URL_UPDTIPDOC', "http:/localhost/Cascar/update_tipo_documento");
+define('SIS_URL_LISOS', SIS_URL . "src/pages/ordem/listar_ordens");
 
 define('SIS_ATUALIZACAO', true);
 define('SIS_TITULO', 'Casca Autocar');
