@@ -32,10 +32,29 @@ include "src/Components/1-header.php";
         <div class="col-md-2">
           <div class="card">
             <div class="card-header azulcascar">
-              ITEM 1
+              <?php $teste = $_GET['id'];
+              if (!$teste) { ?>
+                <h5>
+                  ITEM 1
+                  <span class="atualizar" onclick="edit()">Edit</span>
+                </h5>
+
+              <?php } else { ?>
+
+                <input type="text" class="form-control" name="" placeholder="Atualizar Titulo" id="">
+              <?php } ?>
+
+
             </div>
             <div class="card-body">
-              corpo
+              <?php
+              if (!$teste) { ?>
+                corpo
+              <?php } else { ?>
+                <input type="text" name="" class="form-control" placeholder="Atualizar Texto" id="">
+                <button><a href="<?= SIS_URL ?>">ok</a></button>
+              <?php } ?>
+
             </div>
           </div>
         </div>
@@ -56,5 +75,9 @@ include "src/Components/1-header.php";
 
     function atualizarPagina() {
       window.location.href = "<?= SIS_URL ?>";
+    }
+
+    function edit() {
+      window.location.href = "?id=1";
     }
   </script>

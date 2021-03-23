@@ -32,44 +32,45 @@ include "../../components/1-header.php";
 
       <!-- Titulo -->
       <div class="card-header azulcascar">
-        <h5 class="text-left">Ordens de Serviço em andamento <span class="atualizar" onclick="atualizarPagina()">Atualizar </span> <span class="incluir" onclick="cadastrarOrdem()">Incluir </span> </h5>
+        <h5 class="text-left">Ordens de Serviço - Gerais<span class="atualizar" onclick="atualizarPagina()">Atualizar </span> <span class="incluir" onclick="cadastrarOrdem()">Incluir </span> </h5>
       </div>
       <!-- Corpo  Inicio -->
 
 
-      <div class="card-body center">
+      <div class="card-body center ">
 
-        <span class="card text-white bg-primary card-OS" style="max-width: 18rem;">
-          <div class="card-header TitVerde">Ordem 22450 - Em andamento</div>
-          <div class="card-body">
+        <span class="card text-white bg-primary card-OS onPass" style="max-width: 18rem;">
+          <div class="card-header TitVerde"></div>
+          <div class="card-body ">
             <h5 class="card-title">Jean Marcos de Souza</h5>
-            <p>Veiculo: <i>Golf</i></p>
-            <span class="card-text"> Criação: <i>01/03/2021</i></span>
+            <p>
+              <b>
+                Veiculo(s):
+              </b>
+              <br>
+              <i>Golf Sapão</i>
+            </p>
             <br>
-            <span class="card-text">Previsão de Entrega:<i> 15/04/2021</i></span>
+            <div class="card-text">Revisões efetuadas: 6</div>
+            <div class="card-text">Última revisão: 15/04/2021</div>
           </div>
         </span>
 
 
-        <span class="card text-white bg-primary card-OS" style="max-width: 18rem;">
-          <div class="card-header TitVerde">Ordem 22452 - Em andamento</div>
-          <div class="card-body">
-            <h5 class="card-title">Joao da Silva</h5>
-            <p>Veiculo: <i>Opala</i></p>
-            <span class="card-text"> Criação: <i>15/02/2021</i></span>
-            <br>
-            <span class="card-text">Previsão de Entrega:<i> 16/03/2021</i></span>
-          </div>
-        </span>
-
-        <span class="card text-white bg-primary card-OS" style="max-width: 18rem;">
-          <div class="card-header TitAmarelo">Ordem 22453 - Suspensa</div>
-          <div class="card-body">
+        <span class="card text-white bg-primary card-OS onPass" style="max-width: 18rem;">
+          <div class="card-header TitVerde"></div>
+          <div class="card-body ">
             <h5 class="card-title">Leonardo Milani Pizzi</h5>
-            <p>Veiculo: <i>Fox</i></p>
-            <span class="card-text"> Criação: <i>16/03/2021</i></span>
+            <p>
+              <b>
+                Veiculo(s):
+              </b>
+              <br>
+              <i>Gol Mi 1.6</i>
+            </p>
             <br>
-            <span class="card-text">Previsão de Entrega:<i> 20/03/2021</i></span>
+            <div class="card-text">Revisões efetuadas: 1</div>
+            <div class="card-text">Última revisão: 22/03/2021</div>
           </div>
         </span>
 
