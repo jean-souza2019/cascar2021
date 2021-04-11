@@ -42,6 +42,7 @@
       <div class="list-group list-group-flush">
         <a href="<?= SIS_URL_LISOS ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-file-alt"></i> Ordem Serviço</a>
       </div>
+
     </div>
     <!-- Sidebar -->
 
