@@ -2,7 +2,7 @@
 /* Objetivo centralizar a configuração do sistema */
 
 // Configuração do Sistema
-define('SIS_URL', "http://10.0.0.105/Cascar/");
+define('SIS_URL', "http://localhost/Cascar/");
 
 define( 'SIS_URL_IMG', SIS_URL . "src/assets/img/produto-sem-img.png");
 
@@ -16,14 +16,11 @@ define('SIS_URL_CADCLI', SIS_URL."src/pages/clientes/cadastro_cliente");
 define('SIS_URL_LISCLI', SIS_URL."src/pages/clientes/listar_clientes");
 define('SIS_URL_EDITCLI', SIS_URL."src/pages/clientes/editar_cliente");
 
-// define('SIS_URL_CADTIPDOC', "http:/localhost/Cascar/cadastro_tipo_documento");
-// define('SIS_URL_EDITTIPDOC', "http:/localhost/Cascar/editar_tipo_documento");
-// define('SIS_URL_UPDTIPDOC', "http:/localhost/Cascar/update_tipo_documento");
 define('SIS_URL_LISOS', SIS_URL . "src/pages/ordem/listar_ordens");
 
 define('SIS_ATUALIZACAO', true);
 define('SIS_TITULO', 'Casca Autocar');
-define('SIS_AUTOR', 'Jean DEV Ti.');
+define('SIS_AUTOR', 'Jean DEV it.');
 
 
 
@@ -38,9 +35,6 @@ define( 'BD_SERVIDOR', "127.0.0.1" );
 define( 'BD_USUARIO', 'root' );
 define( 'BD_SENHA', '' );
 define( 'BD_NOME', 'cascar' );
-
-// define('BD_USUARIOSP', 'senior_readonly');
-// define('BD_SENHASP', 'z87DmdX^+N');
 
 
 date_default_timezone_set('America/Sao_Paulo');

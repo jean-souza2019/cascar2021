@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="<?= SIS_URL ?>src/Assets/JS/Datatables/datatables.min.css">
   <link rel="stylesheet" href="<?= SIS_URL ?>src/Assets/CSS/sidebar.css">
   <link rel="stylesheet" href="<?= SIS_URL ?>src/Assets/CSS/style-padrao.css?t=<?= time() ?>">
-  <script src="https://kit.fontawesome.com/17f44d4100.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="<?= SIS_URL ?>src/Assets/CSS/style.css?t=<?= time() ?>">
   <link rel="stylesheet" href="<?= SIS_URL ?>src/Assets/CSS/select2/select2.min.css">
 

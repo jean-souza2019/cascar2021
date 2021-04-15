@@ -10,11 +10,6 @@ require('src/Components/bd/Conexao.php');
 
 $conexao = new Conexao();
 
-// $fila = new Fila($conexao, $dashboard);
-
-// // Consulta todos os registros
-// $objetos = $fila->getTodosRegistros();
-
 // Incluí o cabeçalho
 include "src/Components/1-header.php";
 ?>

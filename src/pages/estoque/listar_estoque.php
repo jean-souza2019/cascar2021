@@ -123,10 +123,9 @@ include "../../components/2-footer.php";
 
 
 
-
   $(".plusLisEst").on("click", "tr", function() {
     var data = table.row(this).data();
-    var novaURL = "http://10.0.0.105/Cascar/src/pages/estoque/item?item=" + data[0];
+    var novaURL = "<?= SIS_URL ?>src/pages/estoque/item?item=" + data[0];
     $(window.document.location).attr('href', novaURL);
   });
 </script>
