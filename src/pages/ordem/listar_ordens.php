@@ -96,7 +96,7 @@ include "../../components/2-footer.php";
   }
 
   function cadastrarOrdem() {
-    // window.location.href = "<?= SIS_URL_CADOS ?>";
+    window.location.href = "<?= SIS_URL_CADOS ?>";
   }
 
 

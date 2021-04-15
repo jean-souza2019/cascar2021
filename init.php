@@ -17,6 +17,7 @@ define('SIS_URL_LISCLI', SIS_URL."src/pages/clientes/listar_clientes");
 define('SIS_URL_EDITCLI', SIS_URL."src/pages/clientes/editar_cliente");
 
 define('SIS_URL_LISOS', SIS_URL . "src/pages/ordem/listar_ordens");
+define('SIS_URL_CADOS', SIS_URL . "src/pages/ordem/cadastro_ordem");
 
 define('SIS_ATUALIZACAO', true);
 define('SIS_TITULO', 'Casca Autocar');
