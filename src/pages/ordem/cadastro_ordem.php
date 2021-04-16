@@ -25,7 +25,6 @@ include "../../components/1-header.php";
         </div>
 
         <div class="card-body ">
-          <form class="form-cadcli" action="gerar_cliente" method="POST">
             <div class="col-md-12 ">
               <!-- justify-content-md-center -->
               <div class="row justify-content-md-center">
@@ -33,7 +32,7 @@ include "../../components/1-header.php";
                 <div class="col-md-1">
                   <div class="form-group">
                     <label>OS</label>
-                    <input type="text" class="form-control" id="os" name="os" placeholder="" autofocus="true" readonly="true">
+                    <input type="text" class="form-control" id="os" name="os" >
                   </div>
                 </div>
 
@@ -41,7 +40,7 @@ include "../../components/1-header.php";
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Cliente</label>
-                    <input type="text" class="form-control" id="cliente" name="cliente" placeholder="" autofocus="true">
+                    <input type="text" class="form-control" id="cliente" name="cliente" ">
                   </div>
                 </div>
 
@@ -51,7 +50,7 @@ include "../../components/1-header.php";
             </div>
             <div class="row justify-content-md-center">`
               <div class="col-md-8">
-                <?php require_once './carrinhoOrdem/carrinhoIndex.php';
+                <?php require_once('./carrinhoOrdem/carrinhoIndex.php');
                 ?>
               </div>
             </div>
@@ -62,11 +61,14 @@ include "../../components/1-header.php";
                     <button class="btn btn-sm btn-primary btn-registrar " onclick="salvarDados();">
                       Finalizar
                     </button>
+
                   </div>
                 </div>
               </div>
             </div>
-          </form>
+          <?php
+          var_dump($_SESSION);
+          ?>
         </div>
       </div>
     </div>
@@ -77,8 +79,4 @@ include "../../components/1-header.php";
 
     ?>
 
-    <script>
-      function salvarDados() {
-        $('.form-cadcli').submit();
-      }
-    </script>
+   

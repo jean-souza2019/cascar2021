@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="<?= SIS_URL ?>src/Assets/CSS/style-padrao.css?t=<?= time() ?>">
   <link rel="stylesheet" href="<?= SIS_URL ?>src/Assets/CSS/style.css?t=<?= time() ?>">
   <link rel="stylesheet" href="<?= SIS_URL ?>src/Assets/CSS/select2/select2.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <title><?= $pagina_titulo ?></title>
 

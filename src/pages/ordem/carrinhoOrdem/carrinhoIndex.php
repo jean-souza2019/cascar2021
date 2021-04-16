@@ -11,14 +11,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Jane</td>
-                <td>Doe</td>
-                <td>Doe</td>
-                <?php if (!isset($_GET['add'])) { ?>
-                    <td>Doe</td>
-                <?php } ?>
-            </tr>
+            <?php foreach ($_SESSION['carrinho'] as $item) { ?>
+                <tr>
+                    <td><?= $item['qtdItem'] ?></td>
+                    <td><?= $item['nomeItem'] ?></td>
+                    <td><?= $item['valorItem'] ?></td>
+                    <?php if (!isset($_GET['add'])) { ?>
+                        <td>
+                            <a class="btn btn-outline-danger btn-sm" href="removeItem?id=<?= $item['id'] ?>" role="button"><i class="fa fa-trash"></i></a>
+                        </td>
+                    <?php } ?>
+                </tr>
+            <?php } ?>
         </tbody>
     </table>
 
@@ -33,3 +37,20 @@
     ?>
 
 </div>
+
+<script>
+    $(function() {
+        $('.form').submit(function() {
+            $.ajax({
+                url: 'carrinhoOrdem/session.php',
+                type: 'POST',
+                data: $('.form').serialize(),
+                success: function(data) {
+                    console.log('teste');
+                    window.location.href = "/Carrinho";
+                }
+            });
+            return false;
+        });
+    });
+</script>
