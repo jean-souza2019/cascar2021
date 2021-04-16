@@ -2,7 +2,7 @@
 /* Objetivo centralizar a configuração do sistema */
 
 // Configuração do Sistema
-define('SIS_URL', "http://localhost/Cascar/");
+define('SIS_URL', "http://localhost/Cascar2021/");
 
 define( 'SIS_URL_IMG', SIS_URL . "src/assets/img/produto-sem-img.png");
 

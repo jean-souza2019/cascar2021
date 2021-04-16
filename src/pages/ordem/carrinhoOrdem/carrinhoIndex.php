@@ -18,7 +18,7 @@
                     <td><?= $item['valorItem'] ?></td>
                     <?php if (!isset($_GET['add'])) { ?>
                         <td>
-                            <a class="btn btn-outline-danger btn-sm" href="removeItem?id=<?= $item['id'] ?>" role="button"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-outline-danger btn-sm" href="carrinhoOrdem/removeItem?id=<?= $item['id'] ?>" role="button"><i class="fa fa-trash"></i></a>
                         </td>
                     <?php } ?>
                 </tr>
@@ -46,11 +46,56 @@
                 type: 'POST',
                 data: $('.form').serialize(),
                 success: function(data) {
-                    console.log('teste');
-                    window.location.href = "/Carrinho";
+                    window.location.href = "<?= SIS_URL_CADOS ?>";
                 }
             });
             return false;
         });
     });
+
+    function limpar() {
+        window.location.href = "./carrinhoOrdem/limparItens";
+    }
+
+
+
+    function buscarValorProduto() {
+
+        var req;
+        // Verificando Browser
+        if (window.XMLHttpRequest) {
+            req = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            req = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        // Arquivo PHP juntamente com o valor digitado no campo (método GET)
+        var produto = document.getElementById('nomeItem').value;
+        // resultado = produto.replace(/[^\d]+/g, '');
+        // var produto = resultado;
+        if (produto > 0) {
+            // console.log(produto);
+
+            var url = "carrinhoOrdem/model_vlr_produto?cod=" + produto;
+
+            // Chamada do método open para processar a requisição
+            req.open("Get", url, true);
+            // Quando o objeto recebe o retorno, chamamos a seguinte função;
+            req.onreadystatechange = function() {
+                // Exibe a mensagem "Buscando Distribuidores e Revendedores..." enquanto carrega
+                if (req.readyState == 1) {
+                    document.getElementById("valorItem").value = 'Buscando valor...';
+                }
+                if (req.readyState == 4 && req.status == 200) {
+                    var resposta = req.responseText;
+                    // console.log(resposta);
+                    document.getElementById("valorItem").value = resposta;
+                    if (resposta === "") {
+                        // alert("Fornecedor inativo ou inexistente.");
+                        document.getElementById("valorItem").value = "0";
+                    }
+                }
+            }
+            req.send(null);
+        }
+    }
 </script>

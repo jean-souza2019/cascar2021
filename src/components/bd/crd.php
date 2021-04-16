@@ -421,4 +421,21 @@ public function atualizarItem($dados)
       return $retorno;
     }
   }
+
+  // ##########################    ORDEM DE SERVIÇO    ##########################
+
+  //********************* BUSCAR ÚLTIMO ID OS ************************
+  public function getOS()
+  {
+
+    $query = "SELECT ID FROM CASCAR.OSID";
+
+    $objeto = mysqli_query($this->conexao, $query);
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos = $obj;
+    }
+    return $objetos;
+  }
+
+  
 }

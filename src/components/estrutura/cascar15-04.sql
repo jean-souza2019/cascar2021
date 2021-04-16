@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Abr-2021 às 00:19
--- Versão do servidor: 10.4.17-MariaDB
+-- Tempo de geração: 16-Abr-2021 às 04:15
+-- Versão do servidor: 10.4.18-MariaDB
 -- versão do PHP: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -47,7 +47,8 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `nome`, `email`, `cidade`, `cep`, `bairro`, `cpfcnpj`, `telefone`, `veiculo`, `ano`, `modelo`, `placa`) VALUES
-(59, 'Joãozinho da silva', 'jiamarcos@outlook.com.br', 'Tapejara', '99950000', 'São Paulo', 4398942041, 54996660580, 'Gol', 1986, 'LS', 'IFZ3768');
+(59, 'Leonardo Milani Pizzi', 'leonardo.milani.pizzi@gmail.com', 'Passo Fundo', '99950000', 'São Paulo', 4398942041, 54996660580, 'Gol', 1986, 'LS', 'IFZ3768'),
+(60, 'Jean Marcos de Souza', 'jiamarcos@outlook.com.br', 'Passo Fundo', '999595959', 'Sao paulo', 4399999999, 54996660580, 'golf', 20021, 'sportline', 'ii1i99');
 
 -- --------------------------------------------------------
 
@@ -71,6 +72,16 @@ CREATE TABLE `estoque` (
 INSERT INTO `estoque` (`codigo`, `descricao`, `enderecamento`, `valor`, `quantidade_estoque`, `imagem`) VALUES
 (16, 'teste', 'teste', 222, 22, NULL),
 (18, 'testando produto', 'suahsuah', 199, 99, 'img/9b95f97349cf631b1ce26ddf4b01074aadv.png');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `osid`
+--
+
+CREATE TABLE `osid` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -126,6 +137,12 @@ ALTER TABLE `estoque`
   ADD PRIMARY KEY (`codigo`);
 
 --
+-- Índices para tabela `osid`
+--
+ALTER TABLE `osid`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -146,13 +163,19 @@ ALTER TABLE `veiculos`
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de tabela `estoque`
 --
 ALTER TABLE `estoque`
   MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT de tabela `osid`
+--
+ALTER TABLE `osid`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`

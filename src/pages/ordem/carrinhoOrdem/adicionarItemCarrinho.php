@@ -15,7 +15,14 @@
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Produto:</label>
-                        <input type="text" class="form-control" name="nomeItem" placeholder="nomeItem" id="nomeItem">
+                        <!-- <input type="text" class="form-control" name="nomeItem" placeholder="nomeItem" id="nomeItem"> -->
+
+                        <select class="form-control" id="nomeItem" name="nomeItem" onchange="buscarValorProduto()">
+                                <option value=""></option>
+                            <?php foreach ($PRODUTOS as $pro) { ?>
+                                <option value="<?= $pro['CODIGO'] ?>"><?= $pro['DESCRICAO'] ?></option>
+                            <?php } ?>
+                        </select>
 
                     </div>
 
