@@ -8,6 +8,8 @@ $usuario = $_SESSION['USUARIO'];
 require('../../components/bd/Conexao.php');
 require('../../components/bd/Crd.php');
 
+// var_dump($_SESSION['cliente']);
+
 
 $conexao = new Conexao();
 $crd = new Crd($conexao);
@@ -46,11 +48,13 @@ include "../../components/1-header.php";
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Cliente</label>
-                  <!-- <select class="form-control" id="cliente" name="cliente" onchange="addCli()"> -->
-                  <select class="form-control" id="cliente" name="cliente" >
-                    <option value=""></option>
+                  <select class="form-control" id="cliente" name="cliente" onchange="addCli()">
+                    <!-- <select class="form-control" id="cliente" name="cliente" > -->
+                    <?php if (!$_SESSION['cliente']) { ?>
+                      <option value=""></option>
+                    <?php } ?>
                     <?php foreach ($CLIENTES as $cli) { ?>
-                      <option value="<?= $cli['ID'] ?>"><?= $cli['NOME'] ?></option>
+                      <option value="<?= $cli['ID'] ?>" <?= ($cli['ID'] === $_SESSION['cliente'] ? 'selected' : '') ?>><?= $cli['NOME'] ?></option>
                     <?php } ?>
 
                   </select>

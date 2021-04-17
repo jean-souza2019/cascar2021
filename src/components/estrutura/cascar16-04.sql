@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Abr-2021 às 04:15
--- Versão do servidor: 10.4.18-MariaDB
+-- Tempo de geração: 17-Abr-2021 às 03:02
+-- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -48,7 +48,8 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id`, `nome`, `email`, `cidade`, `cep`, `bairro`, `cpfcnpj`, `telefone`, `veiculo`, `ano`, `modelo`, `placa`) VALUES
 (59, 'Leonardo Milani Pizzi', 'leonardo.milani.pizzi@gmail.com', 'Passo Fundo', '99950000', 'São Paulo', 4398942041, 54996660580, 'Gol', 1986, 'LS', 'IFZ3768'),
-(60, 'Jean Marcos de Souza', 'jiamarcos@outlook.com.br', 'Passo Fundo', '999595959', 'Sao paulo', 4399999999, 54996660580, 'golf', 20021, 'sportline', 'ii1i99');
+(60, 'Jean Marcos de Souza', 'jiamarcos@outlook.com.br', 'Passo Fundo', '999595959', 'Sao paulo', 4399999999, 54996660580, 'golf', 20021, 'sportline', 'ii1i99'),
+(61, 'Tainara Policarpi', 'tai-policarpi@hotmail.com', 'Tapejara', '99950000', 'São Cristovão', 35645887455, 54999999999, 'Ka', 2007, 'Ford', 'AA3I22');
 
 -- --------------------------------------------------------
 
@@ -70,8 +71,11 @@ CREATE TABLE `estoque` (
 --
 
 INSERT INTO `estoque` (`codigo`, `descricao`, `enderecamento`, `valor`, `quantidade_estoque`, `imagem`) VALUES
-(16, 'teste', 'teste', 222, 22, NULL),
-(18, 'testando produto', 'suahsuah', 199, 99, 'img/9b95f97349cf631b1ce26ddf4b01074aadv.png');
+(16, 'Mouse Gamer', 'teste', 250, 30, NULL),
+(18, 'Teclado Mecânico RGB', 'suahsuah', 399, 12, 'img/9b95f97349cf631b1ce26ddf4b01074aadv.png'),
+(19, 'Notebook Gamer Avell', 'a1b1c2d4', 7500, 4, NULL),
+(20, 'Iphone 7 Black', '32312312', 2500, 6, NULL),
+(21, 'Mão de Obra', '-', 250, 999, NULL);
 
 -- --------------------------------------------------------
 
@@ -163,13 +167,13 @@ ALTER TABLE `veiculos`
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de tabela `estoque`
 --
 ALTER TABLE `estoque`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de tabela `osid`

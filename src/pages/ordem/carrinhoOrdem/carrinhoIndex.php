@@ -14,7 +14,10 @@
             <?php foreach ($_SESSION['carrinho'] as $item) { ?>
                 <tr>
                     <td><?= $item['qtdItem'] ?></td>
-                    <td><?= $item['nomeItem'] ?></td>
+                    <td><?php
+                        $desItem = $crd->getItemPnl($item['nomeItem']);
+                        echo ($desItem[0]['DESCRICAO']);
+                        ?></td>
                     <td><?= $item['valorItem'] ?></td>
                     <?php if (!isset($_GET['add'])) { ?>
                         <td>
