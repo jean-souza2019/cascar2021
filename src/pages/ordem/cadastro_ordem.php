@@ -8,6 +8,8 @@ $usuario = $_SESSION['USUARIO'];
 require('../../components/bd/Conexao.php');
 require('../../components/bd/Crd.php');
 
+// var_dump($_SESSION['carrinho']);
+// echo("</br>");
 // var_dump($_SESSION['cliente']);
 
 
@@ -112,4 +114,10 @@ include "../../components/1-header.php";
           }
         });
       }
+
+
+
+      $(document).ready(function() {
+        $('#cliente').select2();
+      });
     </script>
