@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17-Abr-2021 às 03:02
+-- Tempo de geração: 30-Abr-2021 às 02:55
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.3.27
 
@@ -48,8 +48,9 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id`, `nome`, `email`, `cidade`, `cep`, `bairro`, `cpfcnpj`, `telefone`, `veiculo`, `ano`, `modelo`, `placa`) VALUES
 (59, 'Leonardo Milani Pizzi', 'leonardo.milani.pizzi@gmail.com', 'Passo Fundo', '99950000', 'São Paulo', 4398942041, 54996660580, 'Gol', 1986, 'LS', 'IFZ3768'),
-(60, 'Jean Marcos de Souza', 'jiamarcos@outlook.com.br', 'Passo Fundo', '999595959', 'Sao paulo', 4399999999, 54996660580, 'golf', 20021, 'sportline', 'ii1i99'),
-(61, 'Tainara Policarpi', 'tai-policarpi@hotmail.com', 'Tapejara', '99950000', 'São Cristovão', 35645887455, 54999999999, 'Ka', 2007, 'Ford', 'AA3I22');
+(60, 'Jean Marcos de Souza', 'jiamarcos@outlook.com.br', 'Passo Fundo', '999595959', 'Sao paulo', 4399999999, 54996660580, 'Golf', 2001, 'Sportline', 'ii1i99'),
+(61, 'Tainara Policarpi', 'tai-policarpi@hotmail.com', 'Tapejara', '99950000', 'São Cristovão', 35645887455, 54999999999, 'Ka', 2007, 'Ford', 'AA3I22'),
+(62, 'Cristian Pizzi', 'cristian.pizzi@hotmail.com', 'Marau', '21313123123', 'kkkk', 12231123123, 1232112123, 'Toro', 2020, 'Fiat', 'ab1c23');
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,38 @@ INSERT INTO `estoque` (`codigo`, `descricao`, `enderecamento`, `valor`, `quantid
 (18, 'Teclado Mecânico RGB', 'suahsuah', 399, 12, 'img/9b95f97349cf631b1ce26ddf4b01074aadv.png'),
 (19, 'Notebook Gamer Avell', 'a1b1c2d4', 7500, 4, NULL),
 (20, 'Iphone 7 Black', '32312312', 2500, 6, NULL),
-(21, 'Mão de Obra', '-', 250, 999, NULL);
+(21, 'Mão de Obra', '-', 250, 999, NULL),
+(22, 'Junta cabeçote ap', '12s3as123a', 200, 3, 'img/500f4102139ac28a492d795741174d6asapp image 2021-03-03 at 10.31.03.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `itensordens`
+--
+
+CREATE TABLE `itensordens` (
+  `id` int(11) NOT NULL,
+  `os` int(11) NOT NULL,
+  `quantidade` int(11) NOT NULL,
+  `valor` float NOT NULL,
+  `data` date NOT NULL,
+  `cliente` varchar(255) DEFAULT NULL,
+  `produto` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `itensordens`
+--
+
+INSERT INTO `itensordens` (`id`, `os`, `quantidade`, `valor`, `data`, `cliente`, `produto`) VALUES
+(11, 1, 1, 200, '2021-04-30', '59', '22'),
+(12, 1, 1, 250, '2021-04-30', '59', '16'),
+(13, 2, 1, 250, '2021-04-29', '60', '21'),
+(14, 2, 3, 2500, '2021-04-29', '60', '20'),
+(15, 3, 1, 250, '2021-04-29', '59', '21'),
+(16, 4, 333, 250, '2021-04-29', '62', '16'),
+(17, 5, 333, 250, '2021-04-29', '62', '16'),
+(18, 6, 3333, 399, '2021-04-29', '60', '18');
 
 -- --------------------------------------------------------
 
@@ -86,6 +118,13 @@ INSERT INTO `estoque` (`codigo`, `descricao`, `enderecamento`, `valor`, `quantid
 CREATE TABLE `osid` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `osid`
+--
+
+INSERT INTO `osid` (`id`) VALUES
+(6);
 
 -- --------------------------------------------------------
 
@@ -141,6 +180,12 @@ ALTER TABLE `estoque`
   ADD PRIMARY KEY (`codigo`);
 
 --
+-- Índices para tabela `itensordens`
+--
+ALTER TABLE `itensordens`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `osid`
 --
 ALTER TABLE `osid`
@@ -167,19 +212,25 @@ ALTER TABLE `veiculos`
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT de tabela `estoque`
 --
 ALTER TABLE `estoque`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT de tabela `itensordens`
+--
+ALTER TABLE `itensordens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `osid`
 --
 ALTER TABLE `osid`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`

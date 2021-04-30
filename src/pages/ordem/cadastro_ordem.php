@@ -124,5 +124,8 @@ include "../../components/1-header.php";
 
       $(document).ready(function() {
         $('#cliente').select2();
+
       });
+
+   
     </script>
