@@ -20,7 +20,8 @@ $OSID = $crd->getOS();
 $CLIENTES = $crd->getClientes();
 $PRODUTOS = $crd->getEstoque();
 
-// var_dump($_SESSION['cliente']);
+$os = $OSID['ID'] + 1;
+// var_dump($_SESSION['cliente']); 
 
 // Incluí o cabeçalho
 include "../../components/1-header.php";
@@ -39,10 +40,12 @@ include "../../components/1-header.php";
             <!-- justify-content-md-center -->
             <div class="row justify-content-md-center">
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <div class="form-group">
                   <label>OS</label>
-                  <input type="text" class="form-control" id="os" value="<?= $OSID['ID'] + 1 ?>" name="os" readonly="true">
+                  <div class="row justify-content-md-center">
+                    <input type="text" class="form-control" id="os" value="<?= $os ?>" name="os" readonly="true">
+                  </div>
                 </div>
               </div>
 
@@ -77,7 +80,7 @@ include "../../components/1-header.php";
             <div class="col-md-12">
               <div class="row justify-content-md-center">
                 <div class="form-label-group">
-                  <button class="btn btn-sm btn-primary btn-registrar " onclick="salvarDados();">
+                  <button class="btn btn-sm btn-primary btn-registrar " onclick="finalizar()">
                     Finalizar
                   </button>
 
@@ -115,7 +118,9 @@ include "../../components/1-header.php";
         });
       }
 
-
+      function finalizar() {
+        window.location.href = "<?= SIS_URL_FIMOS ?>?os=<?= $os ?>&cliente=<?= $_SESSION['cliente'] ?>";
+      }
 
       $(document).ready(function() {
         $('#cliente').select2();

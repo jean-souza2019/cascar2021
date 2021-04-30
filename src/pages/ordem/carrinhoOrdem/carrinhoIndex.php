@@ -26,8 +26,24 @@
                     <?php } ?>
                 </tr>
             <?php } ?>
+            <tr>
+                <td></td>
+                <td style="text-align: right;">Total: </td>
+                <td> <?php
+                        if (isset($_SESSION['carrinho'])) {
+                            $total = 0;
+                            foreach ($_SESSION['carrinho'] as $item) {
+                                $it = $item['valorItem'] * $item['qtdItem'];
+                                $total = $total + $it;
+                            }
+                            echo $total;
+                        } ?></td>
+                <td></td>
+            </tr>
         </tbody>
     </table>
+
+
 
     <div class="components">
         <br>

@@ -19,6 +19,9 @@ define('SIS_URL_EDITCLI', SIS_URL."src/pages/clientes/editar_cliente");
 define('SIS_URL_LISOS', SIS_URL . "src/pages/ordem/listar_ordens");
 define('SIS_URL_CADOS', SIS_URL . "src/pages/ordem/cadastro_ordem");
 
+define('SIS_URL_FIMOS', SIS_URL . "src/pages/ordem/carrinhoOrdem/model_ins_carrinho");
+
+
 define('SIS_ATUALIZACAO', true);
 define('SIS_TITULO', 'Casca Autocar');
 define('SIS_AUTOR', 'Jean DEV it.');

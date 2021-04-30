@@ -8,10 +8,10 @@ class querys
 
   public function __construct()
   {
-    $this->hostname = 'localhost';
+    $this->hostname = '127.0.0.1';
     $this->username = 'root';
     $this->password = '';
-    $this->dbname =  'carrinho';
+    $this->dbname =  'cascar';
   }
 
   public function getProdutos()
@@ -34,16 +34,14 @@ class querys
 
 
 
-  public function addItem()
+  public function addItem($os, $cliente)
   {
     session_start();
     $_SESSION['mensagem'] = " ";
 
     $mysqli = new mysqli($this->hostname, $this->username, $this->password, $this->dbname);
 
-    if (isset($_SESSION['carrinho']) && isset($_SESSION['id']) && isset($_SESSION['cliente']) && isset($_SESSION['os'])) {
-      $os = $_SESSION['os'];
-      $cliente = $_SESSION['cliente'];
+    if (isset($_SESSION['carrinho']) && isset($_SESSION['id']) && isset($cliente) && isset($os)) {
 
       foreach ($_SESSION['carrinho'] as $item) {
         $query = "INSERT INTO ITENSORDENS 
@@ -53,11 +51,17 @@ class querys
         $res = $mysqli->query($query);
 
         if ($res) {
+
+          $mysqli->query("UPDATE OSID SET ID =" . $os . "WHERE ID = " . ($os - 1));
+
           $_SESSION['mensagem'] = "Novo registro criado com sucesso ";
         } else {
           $_SESSION['mensagem'] = "Erro ao inserir registro. ";
         }
       }
+      $res2 = $mysqli->query(
+        "UPDATE OSID SET ID =" . $os
+      );
     }
   }
 }
