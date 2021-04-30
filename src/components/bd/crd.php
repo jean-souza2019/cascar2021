@@ -75,7 +75,9 @@ class Crd
   public function getClientes()
   {
 
-    $query = "SELECT ID,NOME,CPFCNPJ,CIDADE,TELEFONE 
+    $query = "SELECT ID,NOME,EMAIL, CIDADE, 
+        CEP, BAIRRO, CPFCNPJ, TELEFONE, VEICULO, 
+        ANO, MODELO, PLACA
                 FROM CASCAR.CLIENTES
                   ORDER BY ID";
 

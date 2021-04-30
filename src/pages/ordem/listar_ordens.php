@@ -17,7 +17,7 @@ $crd = new Crd($conexao);
 // Consulta todos os registros
 
 
-$objetos = $crd->getClientes();
+$clientes = $crd->getClientes();
 
 
 // Incluí o cabeçalho
@@ -39,40 +39,26 @@ include "../../components/1-header.php";
 
       <div class="card-body center ">
 
-        <span class="card text-white bg-primary card-OS onPass" style="max-width: 18rem;">
-          <div class="card-header TitVerde"></div>
-          <div class="card-body ">
-            <h5 class="card-title">Jean Marcos de Souza</h5>
-            <p>
-              <b>
-                Veiculo(s):
-              </b>
-              <br>
-              <i>Golf Sapão</i>
-            </p>
-            <br>
-            <div class="card-text">Revisões efetuadas: 6</div>
-            <div class="card-text">Última revisão: 15/04/2021</div>
-          </div>
-        </span>
 
-
-        <span class="card text-white bg-primary card-OS onPass" style="max-width: 18rem;">
-          <div class="card-header TitVerde"></div>
-          <div class="card-body ">
-            <h5 class="card-title">Leonardo Milani Pizzi</h5>
-            <p>
-              <b>
-                Veiculo(s):
-              </b>
+        <?php foreach ($clientes as $cliente) { ?>
+          <span class="card text-white bg-primary card-OS onPass" style="max-width: 18rem;">
+            <div class="card-header TitVerde"></div>
+            <div class="card-body ">
+              <h5 class="card-title"><?= $cliente['NOME'] ?></h5>
+              <p>
+                <b>
+                  Veiculo(s):
+                </b>
+                <br>
+                <i><?= $cliente['VEICULO'] ?></i>
+              </p>
               <br>
-              <i>Gol Mi 1.6</i>
-            </p>
-            <br>
-            <div class="card-text">Revisões efetuadas: 1</div>
-            <div class="card-text">Última revisão: 22/03/2021</div>
-          </div>
-        </span>
+              <div class="card-text">Revisões efetuadas: 6</div>
+              <div class="card-text">Última revisão: 15/04/2021</div>
+            </div>
+          </span>
+
+        <?php } ?>
 
 
       </div>
