@@ -17,7 +17,7 @@ $crd = new Crd($conexao);
 // Consulta todos os registros
 
 
-$clientes = $crd->getClientes();
+$clientes = $crd->getClientesOS();
 
 
 // Incluí o cabeçalho
@@ -53,8 +53,15 @@ include "../../components/1-header.php";
                 <i><?= $cliente['VEICULO'] ?></i>
               </p>
               <br>
-              <div class="card-text">Revisões efetuadas: 6</div>
-              <div class="card-text">Última revisão: 15/04/2021</div>
+              <div class="card-text">Revisões efetuadas: <?= $cliente['REVISOES'] ?></div>
+              <div class="card-text">Última revisão: <?php
+                                                      $dt = explode("-", $cliente['ULTIMA_REVISAO']);
+                                                      echo ($dt[2] . "/" . $dt[1] . "/"
+                                                        . $dt[0]);
+
+
+
+                                                      ?></div>
             </div>
           </span>
 

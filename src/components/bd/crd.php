@@ -89,6 +89,28 @@ class Crd
   }
 
 
+  //********************* BUSCAR TODOS CLIENTES COM OS************************
+  public function getClientesOS()
+  {
+
+    $query = "SELECT CLIENTES.NOME as NOME,
+        CLIENTES.VEICULO AS VEICULO, 
+        COUNT(DISTINCT ITENSORDENS.OS) AS REVISOES,
+        MAX(ITENSORDENS.DATA) as ULTIMA_REVISAO
+        FROM ITENSORDENS
+        INNER JOIN CLIENTES
+          ON ITENSORDENS.CLIENTE = CLIENTES.ID
+        GROUP BY CLIENTES.NOME";
+
+    $objeto = mysqli_query($this->conexao, $query);
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos[] = $obj;
+    }
+    return $objetos;
+  }
+
+
+
   //********************* EXCLUIR CLIENTE ************************
   public function excluirCliente($id)
   {
