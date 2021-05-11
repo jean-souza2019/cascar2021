@@ -93,7 +93,7 @@ class Crd
   public function getClientesOS()
   {
 
-    $query = "SELECT CLIENTES.NOME as NOME,
+    $query = "SELECT CLIENTES.ID as ID, CLIENTES.NOME as NOME,
         CLIENTES.VEICULO AS VEICULO, 
         COUNT(DISTINCT ITENSORDENS.OS) AS REVISOES,
         MAX(ITENSORDENS.DATA) as ULTIMA_REVISAO
@@ -101,6 +101,23 @@ class Crd
         INNER JOIN CLIENTES
           ON ITENSORDENS.CLIENTE = CLIENTES.ID
         GROUP BY CLIENTES.NOME";
+
+    $objeto = mysqli_query($this->conexao, $query);
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos[] = $obj;
+    }
+    return $objetos;
+  }
+
+
+  //********************* BUSCAR CLIENTE COM OS ************************
+  public function getOSCliente($id)
+  {
+
+    $query = "SELECT ITENSORDENS.OS, COUNT(ITENSORDENS.OS) AS QTD_ITENS, SUM(ITENSORDENS.QUANTIDADE*ITENSORDENS.VALOR) AS VLR_TOTAL, ITENSORDENS.DATA
+		            FROM ITENSORDENS
+                WHERE ITENSORDENS.CLIENTE = " . $id . " 
+              GROUP BY ITENSORDENS.OS";
 
     $objeto = mysqli_query($this->conexao, $query);
     while ($obj = $objeto->fetch_assoc()) {
@@ -293,14 +310,14 @@ class Crd
         $tempImg = " ";
         $img = " ";
       }
-      
 
 
-      $query = "INSERT INTO CASCAR.ESTOQUE (DESCRICAO, ENDERECAMENTO, VALOR, QUANTIDADE_ESTOQUE ".$img.")
+
+      $query = "INSERT INTO CASCAR.ESTOQUE (DESCRICAO, ENDERECAMENTO, VALOR, QUANTIDADE_ESTOQUE " . $img . ")
              values ('" . $descricao . "', '" . $enderecamento . "', " . $valor . ", " . $quantidade_estoque . " " . $tempImg . ")";
 
       $objeto = mysqli_query($this->conexao, $query);
-      
+
       if ($objeto > 0) {
         // print_r($objeto);
         $retorno['status_cod'] = 1;
@@ -317,118 +334,117 @@ class Crd
       return $retorno;
     }
   }
-  
-  
-  
-  
+
+
+
+
   //********************* BUSCAR P/ LISTAR ITEM ************************
   public function getItemPnl($id)
   {
     $id = (!empty($id)) ? $id : null;
-    
+
     $query = "SELECT CODIGO, DESCRICAO, ENDERECAMENTO, VALOR, QUANTIDADE_ESTOQUE, IMAGEM
                   FROM CASCAR.ESTOQUE 
                   WHERE CODIGO = " . $id;
 
-$objeto = mysqli_query($this->conexao, $query);
+    $objeto = mysqli_query($this->conexao, $query);
 
-while ($obj = $objeto->fetch_assoc()) {
-  $objetos[] = $obj;
-}
-return $objetos;
-}
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos[] = $obj;
+    }
+    return $objetos;
+  }
 
 
 
-//********************* BUSCAR P/ LISTAR ITEM ************************
-public function excluirItem($item)
-{
-  $retorno['status_cod'] = null;
-  $retorno['status_message'] = null;
-  
-  $item = (!empty($item)) ? $item : null;
-  
-  try {
-    $query = "DELETE FROM CASCAR.ESTOQUE
+  //********************* BUSCAR P/ LISTAR ITEM ************************
+  public function excluirItem($item)
+  {
+    $retorno['status_cod'] = null;
+    $retorno['status_message'] = null;
+
+    $item = (!empty($item)) ? $item : null;
+
+    try {
+      $query = "DELETE FROM CASCAR.ESTOQUE
                   WHERE CODIGO = " . $item;
 
-$objeto = mysqli_query($this->conexao, $query);
+      $objeto = mysqli_query($this->conexao, $query);
 
-if ($objeto > 0) {
-  // print_r($objeto);
-  $retorno['status_cod'] = 1;
-  $retorno['status_message'] = "Item Excluido com Sucesso!";
-  return $retorno;
-} else {
-  $retorno['status_cod'] = 1;
-  $retorno['status_message'] = "Ocorreu um problema ao excluir item.";
-  return $retorno;
-}
-} catch (PDOException $e) {
-  $retorno['status_cod'] = 0;
-  $retorno['status_message'] = "Erro: " . $e->getMessage();
-  return $retorno;
-}
-}
-
-
-//********************* GERAR ITEM ************************
-
-public function atualizarItem($dados)
-{
-  
-  $retorno = array();
-  $retorno['status_cod'] = null;
-  $retorno['status_message'] = null;
-  $retorno['dados'] = null;
-  
-  $codigo = (!empty($dados['codigo'])) ? $dados['codigo'] : null;
-  $descricao = (!empty($dados['descricao'])) ? $dados['descricao'] : null;
-  $enderecamento = (!empty($dados['enderecamento'])) ? $dados['enderecamento'] : null;
-  $valor = (!empty($dados['valor'])) ? $dados['valor'] : null;
-  $quantidade_estoque = (!empty($dados['quantidade_estoque'])) ? $dados['quantidade_estoque'] : null;
-  
-
-  if ($_FILES['imagem']['name']) {
-    $extensao = strtolower(substr($_FILES['imagem']['name'], 4));
-    $novo_nome = md5(time()) . $extensao;
-    $diretorio = "img/";
-    
-    move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio . $novo_nome);
-  
+      if ($objeto > 0) {
+        // print_r($objeto);
+        $retorno['status_cod'] = 1;
+        $retorno['status_message'] = "Item Excluido com Sucesso!";
+        return $retorno;
+      } else {
+        $retorno['status_cod'] = 1;
+        $retorno['status_message'] = "Ocorreu um problema ao excluir item.";
+        return $retorno;
+      }
+    } catch (PDOException $e) {
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Erro: " . $e->getMessage();
+      return $retorno;
+    }
   }
-  
-  
-  // Verifica se os campos obrigatórios foram preenchidos
-  if (
-    empty($codigo) || empty($descricao) || empty($enderecamento) || empty($valor) || empty($quantidade_estoque)
+
+
+  //********************* GERAR ITEM ************************
+
+  public function atualizarItem($dados)
+  {
+
+    $retorno = array();
+    $retorno['status_cod'] = null;
+    $retorno['status_message'] = null;
+    $retorno['dados'] = null;
+
+    $codigo = (!empty($dados['codigo'])) ? $dados['codigo'] : null;
+    $descricao = (!empty($dados['descricao'])) ? $dados['descricao'] : null;
+    $enderecamento = (!empty($dados['enderecamento'])) ? $dados['enderecamento'] : null;
+    $valor = (!empty($dados['valor'])) ? $dados['valor'] : null;
+    $quantidade_estoque = (!empty($dados['quantidade_estoque'])) ? $dados['quantidade_estoque'] : null;
+
+
+    if ($_FILES['imagem']['name']) {
+      $extensao = strtolower(substr($_FILES['imagem']['name'], 4));
+      $novo_nome = md5(time()) . $extensao;
+      $diretorio = "img/";
+
+      move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio . $novo_nome);
+    }
+
+
+    // Verifica se os campos obrigatórios foram preenchidos
+    if (
+      empty($codigo) || empty($descricao) || empty($enderecamento) || empty($valor) || empty($quantidade_estoque)
     ) {
-      
+
       $retorno['status_cod'] = 0;
       $retorno['status_message'] = "Todos os campos Obrigatórios devem ser preenchidos";
       return $retorno;
     }
-    
+
     // Inclusão dos dados
     try {
-      
+
       if ($_FILES['imagem']['name']) {
         $tempImg = " , IMAGEM = '" . $diretorio . $novo_nome . "' ";
       } else {
         $tempImg = " ";
       }
-      
-      
+
+
       $query = "UPDATE CASCAR.ESTOQUE SET DESCRICAO = '" . $descricao . "', 
       ENDERECAMENTO = '" . $enderecamento . "', 
       VALOR = " . $valor . ", 
       QUANTIDADE_ESTOQUE = " . $quantidade_estoque . $tempImg
-      . " WHERE CODIGO = " . $codigo;
-      
+        . " WHERE CODIGO = " . $codigo;
+
       $objeto = mysqli_query($this->conexao, $query);
-      
+
       // echo $query;
-      
+
       if ($objeto > 0) {
         // print_r($objeto);
         $retorno['status_cod'] = 1;
@@ -460,6 +476,4 @@ public function atualizarItem($dados)
     }
     return $objetos;
   }
-
-  
 }
