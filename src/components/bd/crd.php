@@ -476,4 +476,19 @@ class Crd
     }
     return $objetos;
   }
+
+  //********************* BUSCAR ÚLTIMO ID OS ************************
+  public function getOSsCliente($cliente, $os)
+  {
+
+    $query = "SELECT OS, QUANTIDADE, VALOR, DATA, CLIENTE, PRODUTO 
+                  FROM itensordens 
+                WHERE CLIENTE = " . $cliente . " AND OS = " . $os;
+
+    $objeto = mysqli_query($this->conexao, $query);
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos = $obj;
+    }
+    return $objetos;
+  }
 }

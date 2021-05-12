@@ -8,21 +8,14 @@ $usuario = $_SESSION['USUARIO'];
 require('../../components/bd/Conexao.php');
 require('../../components/bd/Crd.php');
 
-// var_dump($_SESSION['carrinho']);
-// echo("</br>");
-// var_dump($_SESSION['cliente']);
-
-
 $conexao = new Conexao();
 $crd = new Crd($conexao);
 
-$OSID = $crd->getOS();
-$CLIENTES = $crd->getClientes();
-$PRODUTOS = $crd->getEstoque();
+$cliente = $_GET['cliente'];
+$Ordem = $_GET['ordem'];
 
-$os = $OSID['ID'] + 1;
-// var_dump($_SESSION['cliente']); 
-
+$dados_ordem = $crd->getOSsCliente($cliente, $Ordem);
+var_dump($dados_ordem);
 // Incluí o cabeçalho
 include "../../components/1-header.php";
 ?>
@@ -32,7 +25,7 @@ include "../../components/1-header.php";
     <div class="col-md-10">
       <div class='card card-formulario'>
         <div class="card-header azulcascar">
-          <h5 class="text-left"><a href="#" title="Cadastrar Cliente" class="link">Listar Ordem</a></h5>
+          <h5 class="text-left"><a href="#" title="Listar Ordem" class="link">Listar Ordem</a></h5>
         </div>
 
         <div class="card-body ">
@@ -72,25 +65,11 @@ include "../../components/1-header.php";
           </div>
           <div class="row justify-content-md-center">`
             <div class="col-md-8">
-              <?php require_once('./carrinhoOrdem/carrinhoIndex.php');
+              <?php require_once('./carrinhoOrdem/carrinhoListar.php');
               ?>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="row justify-content-md-center">
-                <div class="form-label-group">
-                  <button class="btn btn-sm btn-primary btn-registrar " onclick="finalizar()">
-                    Finalizar
-                  </button>
 
-                </div>
-              </div>
-            </div>
-          </div>
-          <?php
-          // var_dump($_SESSION);
-          ?>
         </div>
       </div>
     </div>
@@ -100,32 +79,3 @@ include "../../components/1-header.php";
     include "../../components/2-footer.php";
 
     ?>
-
-    <script>
-      function addCli() {
-        cliente = document.getElementById('cliente').value;
-        $.ajax({
-          url: 'carrinhoOrdem/addCliOs.php',
-          type: 'POST',
-          data: {
-            cliente: $('#cliente').val()
-          },
-          success: function(data) {
-            window.location.href = "/Carrinho";
-            window.top.location.href = " <?php SIS_URL_CADOS ?>";
-
-          }
-        });
-      }
-
-      function finalizar() {
-        window.location.href = "<?= SIS_URL_FIMOS ?>?os=<?= $os ?>&cliente=<?= $_SESSION['cliente'] ?>";
-      }
-
-      $(document).ready(function() {
-        $('#cliente').select2();
-
-      });
-
-   
-    </script>
