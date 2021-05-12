@@ -10,7 +10,7 @@
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Quantidade:</label>
-                        <input type="number" class="form-control" name="qtdItem" placeholder="Qtd" id="qtdItem">
+                        <input type="number" class="form-control" name="qtdItem" placeholder="Qtd" id="qtdItem" value="1">
                     </div>
 
                     <div class="mb-3">

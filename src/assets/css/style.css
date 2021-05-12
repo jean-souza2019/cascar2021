@@ -217,6 +217,24 @@ span.atualizar:hover {
     cursor: pointer;
 }
 
+span.voltar3 {
+    background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%);
+    border: 1px solid #5f5f5f;
+    color: black !important;
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    font-size: 0.8rem;
+    padding: 1px 5px 3px 5px;
+    border-radius: 4px;
+}
+
+span.voltar3:hover {
+    background: linear-gradient(to bottom, rgb(152, 153, 153) 0%, rgb(122, 122, 122) 100%);
+    color: white !important;
+    cursor: pointer;
+}
+
 span.excluir {
     background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%);
     border: 1px solid rgb(92, 92, 92);

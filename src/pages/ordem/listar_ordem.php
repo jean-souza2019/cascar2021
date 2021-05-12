@@ -15,7 +15,7 @@ $cliente = $_GET['cliente'];
 $Ordem = $_GET['ordem'];
 
 $dados_ordem = $crd->getOSsCliente($cliente, $Ordem);
-var_dump($dados_ordem);
+
 // Incluí o cabeçalho
 include "../../components/1-header.php";
 ?>
@@ -25,7 +25,7 @@ include "../../components/1-header.php";
     <div class="col-md-10">
       <div class='card card-formulario'>
         <div class="card-header azulcascar">
-          <h5 class="text-left"><a href="#" title="Listar Ordem" class="link">Listar Ordem</a></h5>
+          <h5 class="text-left"><a href="#" title="Listar Ordem" class="link">Listar Ordem</a> <span class="voltar3" onclick="voltar(<?= $cliente ?>)">voltar </span></h5>
         </div>
 
         <div class="card-body ">
@@ -37,7 +37,7 @@ include "../../components/1-header.php";
                 <div class="form-group">
                   <label>OS</label>
                   <div class="row justify-content-md-center">
-                    <input type="text" class="form-control" id="os" value="<?= $os ?>" name="os" readonly="true">
+                    <input type="text" class="form-control" id="os" value="<?= $dados_ordem[0]['OS'] ?>" name="os" readonly="true">
                   </div>
                 </div>
               </div>
@@ -46,16 +46,10 @@ include "../../components/1-header.php";
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Cliente</label>
-                  <select class="form-control" id="cliente" name="cliente" onchange="addCli()">
-                    <!-- <select class="form-control" id="cliente" name="cliente" > -->
-                    <?php if (!$_SESSION['cliente']) { ?>
-                      <option value=""></option>
-                    <?php } ?>
-                    <?php foreach ($CLIENTES as $cli) { ?>
-                      <option value="<?= $cli['ID'] ?>" <?= ($cli['ID'] === $_SESSION['cliente'] ? 'selected' : '') ?>><?= $cli['NOME'] ?></option>
-                    <?php } ?>
+                  <div class="row justify-content-md-center">
+                    <input type="text" class="form-control" id="cliente" value="<?= $dados_ordem[0]['NOME'] ?>" name="cliente" readonly="true">
+                  </div>
 
-                  </select>
                 </div>
               </div>
 
@@ -79,3 +73,9 @@ include "../../components/1-header.php";
     include "../../components/2-footer.php";
 
     ?>
+
+    <script>
+      function voltar(cliente) {
+        window.location.href = "<?= SIS_URL_LISOSCLI ?>?cli=" + cliente;
+      }
+    </script>

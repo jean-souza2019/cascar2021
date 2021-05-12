@@ -481,13 +481,16 @@ class Crd
   public function getOSsCliente($cliente, $os)
   {
 
-    $query = "SELECT OS, QUANTIDADE, VALOR, DATA, CLIENTE, PRODUTO 
-                  FROM itensordens 
-                WHERE CLIENTE = " . $cliente . " AND OS = " . $os;
+    $query = "SELECT ITENSORDENS.OS, ITENSORDENS.QUANTIDADE, ITENSORDENS.VALOR, ITENSORDENS.DATA, CLIENTES.NOME, ITENSORDENS.PRODUTO 
+                  FROM ITENSORDENS 
+                  INNER JOIN CLIENTES
+                  ON CLIENTES.ID = ITENSORDENS.CLIENTE
+                WHERE ITENSORDENS.CLIENTE = " . $cliente . " AND ITENSORDENS.OS = " . $os;
 
     $objeto = mysqli_query($this->conexao, $query);
+
     while ($obj = $objeto->fetch_assoc()) {
-      $objetos = $obj;
+      $objetos[] = $obj;
     }
     return $objetos;
   }

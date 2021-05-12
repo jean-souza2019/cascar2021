@@ -84,9 +84,8 @@ include "../../components/2-footer.php";
 ?>
 
 <script>
-  function moveOrdem(i) {
-    window.location.href = "<?= SIS_URL_LISOSCLI ?>?cli="+i; 
-    // alert(i);
+  function moveOrdem(cliente) {
+    window.location.href = "<?= SIS_URL_LISOSCLI ?>?cli=" + cliente;
   }
 
   function atualizarPagina() {
