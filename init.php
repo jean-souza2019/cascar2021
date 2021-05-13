@@ -21,6 +21,8 @@ define('SIS_URL_LISORD', SIS_URL . "src/pages/ordem/listar_ordem");
 define('SIS_URL_LISOSCLI', SIS_URL . "src/pages/ordem/listar_ordens_cliente");
 define('SIS_URL_CADOS', SIS_URL . "src/pages/ordem/cadastro_ordem");
 
+define('SIS_URL_CONANOTA', SIS_URL . "src/pages/anotacoes/consulta_anotacao");
+
 define('SIS_URL_FIMOS', SIS_URL . "src/pages/ordem/carrinhoOrdem/model_ins_carrinho");
 
 
@@ -60,5 +62,3 @@ function imprimir($array){
 if(!isset($_SESSION)){
     session_start();
 }
-
- ?>

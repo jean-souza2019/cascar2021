@@ -16,6 +16,7 @@ $anotacoes = $crd->getAnotacoes();
 
 // Incluí o cabeçalho
 include "src/Components/1-header.php";
+// $_SESSION['teste'] = '';
 ?>
 
 <div class="container-fluid ">
@@ -29,7 +30,8 @@ include "src/Components/1-header.php";
       <div class="card-body center">
         <div class="container-fluid">
 
-          <?php require_once('./src/pages/anotacoes/listar_anotacoes.php') ?>
+          <?php var_dump($_SESSION['teste']);
+          require_once('./src/pages/anotacoes/listar_anotacoes.php'); ?>
 
         </div>
       </div>
@@ -53,4 +55,6 @@ include "src/Components/1-header.php";
     function edit() {
       window.location.href = "?id=1";
     }
+
+
   </script>

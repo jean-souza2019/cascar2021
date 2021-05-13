@@ -123,7 +123,6 @@
             req.send(null);
         } else {
             document.getElementById("valorItem").value = "";
-
         }
     }
 </script>
