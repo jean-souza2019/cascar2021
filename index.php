@@ -24,7 +24,7 @@ include "src/Components/1-header.php";
   <div class="col-md-12">
     <div class="card">
       <div class="card-header azulcascar">
-        <h5 class="text-left">ANOTAÇÕES SEMANAIS <span class="atualizar" onclick="atualizarPagina()">Atualizar </span> </h5>
+        <h5 class="text-left">Anotações <span class="atualizar" onclick="atualizarPagina()">Atualizar </span> </h5>
       </div>
       <div class="card-body center">
         <div class="container-fluid">
