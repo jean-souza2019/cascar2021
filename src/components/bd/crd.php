@@ -497,7 +497,7 @@ class Crd
 
 
 
-  
+
   // ##########################    ANOTAÇÕES    ##########################
 
   //********************* BUSCAR TODAS ANOTAÇÕES ************************
@@ -515,5 +515,47 @@ class Crd
     return $objetos;
   }
 
+  //********************* GERAR ANOTAÇÕES ************************
+  public function gerarAnotações($dados)
+  {
+    $retorno = array();
+    $retorno['status_cod'] = null;
+    $retorno['status_message'] = null;
+    $retorno['dados'] = null;
 
+    $titulo = (!empty($dados['titulo'])) ? $dados['titulo'] : null;
+    $prioridade = (!empty($dados['prioridade'])) ? $dados['prioridade'] : null;
+    $descricao = (!empty($dados['descricao'])) ? $dados['descricao'] : null;
+
+
+    // Verifica se os campos obrigatórios foram preenchidos
+    if (empty($titulo) || empty($prioridade) || empty($descricao)) {
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Todos os campos Obrigatórios devem ser preenchidos";
+      return $retorno;
+    }
+
+    // Inclusão dos dados
+    try {
+      $query = "INSERT INTO CASCAR.ANOTACOES (TITULO, PRIORIDADE, MENSAGEM)
+           values ('" . $titulo . "', '" . $prioridade . "', '" . $descricao . "')";
+
+      $objeto = mysqli_query($this->conexao, $query);
+
+      if ($objeto > 0) {
+        // print_r($objeto);
+        $retorno['status_cod'] = 1;
+        $retorno['status_message'] = "Registro Incluido com Sucesso!";
+        return $retorno;
+      } else {
+        $retorno['status_cod'] = 1;
+        $retorno['status_message'] = "Ocorreu um problema ao gerar nova anotação.";
+        return $retorno;
+      }
+    } catch (PDOException $e) {
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Erro: " . $e->getMessage();
+      return $retorno;
+    }
+  }
 }

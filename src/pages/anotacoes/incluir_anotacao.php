@@ -10,12 +10,12 @@
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Título:</label>
-                        <input type="text" class="form-control" name="titulo2" placeholder="Título" id="titulo2">
+                        <input type="text" class="form-control" name="titulo" placeholder="Título" id="titulo">
                     </div>
 
                     <div class="mb-2">
                         <label for="recipient-name" class="col-form-label">Prioridade:</label>
-                        <select class="form-control" id="nomeItem2" name="nomeItem2" onchange="buscarValorProduto()">
+                        <select class="form-control" id="prioridade" name="prioridade" onchange="buscarValorProduto()">
                             <option value="1">Baixa</option>
                             <option value="2">Média</option>
                             <option value="3">Alta</option>
@@ -25,7 +25,7 @@
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Descrição:</label>
-                        <textarea class="form-control" name="mensagem2" placeholder="Descrição" id="mensagem2"></textarea>
+                        <textarea class="form-control" name="descricao" placeholder="Descrição" id="descricao"></textarea>
                     </div>
 
 
