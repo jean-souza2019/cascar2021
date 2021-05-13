@@ -53,8 +53,8 @@ include "../../components/1-header.php";
                     <td style="text-align:center;width: 5%;"><?= $item['CODIGO'] ?></td>
                     <td style="text-align:left; width: 40%;"><?= $item['DESCRICAO'] ?></td>
                     <td style="text-align:center; width: 10%;" class="enderecamento"><?= $item['ENDERECAMENTO'] ?></td>
-                    <td style="text-align:center; width: 10%;" class="valor">R$ <?= $item['VALOR'] ?></td>
-                    <td style="text-align:center; width: 10%;"><?= $item['QUANTIDADE_ESTOQUE'] ?></td>
+                    <td style="text-align:center; width: 10%;"> R$ <span class="maskNumero"><?= $item['VALOR'] ?></span></td>
+                    <td style="text-align:center; width: 10%;" class="maskNumero"><?= $item['QUANTIDADE_ESTOQUE'] ?></td>
                   </tr>
                 <?php } ?>
               <?php } ?>
@@ -84,7 +84,9 @@ include "../../components/2-footer.php";
 
   $(document).ready(function() {
     $(".enderecamento").mask("AA-AA-AA-AA");
-    // $(".valor").mask("AAA,000");
+    $(".maskNumero").mask("000.000.000", {
+      reverse: true
+    });
 
 
 

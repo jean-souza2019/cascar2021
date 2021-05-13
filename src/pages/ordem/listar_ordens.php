@@ -66,7 +66,7 @@ include "../../components/1-header.php";
                     <i><?= $cliente['VEICULO'] ?></i>
                   </p>
                   <br>
-                  <div class="card-text">Revisões efetuadas: <?= $cliente['REVISOES'] ?></div>
+                  <div class="card-text">Revisões efetuadas: <span class="maskNumero"> <?= $cliente['REVISOES'] ?> </span></div>
                   <div class="card-text">Última revisão: <?php
                                                           $dt = explode("-", $cliente['ULTIMA_REVISAO']);
                                                           echo ($dt[2] . "/" . $dt[1] . "/"
@@ -111,6 +111,11 @@ include "../../components/1-header.php";
 
           $(".cpf").mask("000.000.000-00");
           $(".tel").mask("(00) 0 0000-0000");
+
+
+          $(".maskNumero").mask("000.000.000", {
+            reverse: true
+          });
 
         });
 
