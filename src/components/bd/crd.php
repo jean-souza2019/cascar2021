@@ -494,4 +494,26 @@ class Crd
     }
     return $objetos;
   }
+
+
+
+  
+  // ##########################    ANOTAÇÕES    ##########################
+
+  //********************* BUSCAR TODAS ANOTAÇÕES ************************
+  public function getAnotacoes()
+  {
+
+    $query = "SELECT ID, TITULO, MENSAGEM
+                FROM CASCAR.ANOTACOES
+                  ORDER BY ID";
+
+    $objeto = mysqli_query($this->conexao, $query);
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos[] = $obj;
+    }
+    return $objetos;
+  }
+
+
 }

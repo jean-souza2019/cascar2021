@@ -211,6 +211,11 @@ span.atualizar {
     border-radius: 4px;
 }
 
+.textareaIndex {
+    background: none !important;
+    resize: none;
+}
+
 span.atualizar:hover {
     background: linear-gradient(to bottom, rgb(0, 77, 128) 0%, rgb(1, 50, 155) 100%);
     color: white !important;

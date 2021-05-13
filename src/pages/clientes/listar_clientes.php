@@ -45,7 +45,8 @@ include "../../components/1-header.php";
                 <th scope="col" style="text-align:center; width: 15%;">CPF</th>
                 <th scope="col" style="text-align:center; width: 15%;">Cidade</th>
                 <th scope="col" style="text-align:center; width: 15%;">Telefone</th>
-                <th scope="col" style="text-align:center;width: 15%;">Opções</th>
+                <th scope="col" style="text-align:center; width: 15%;">Veiculo</th>
+                <th scope="col" style="text-align:center;width: 20%;">Opções</th>
 
               </tr>
             </thead>
@@ -81,9 +82,10 @@ include "../../components/1-header.php";
                                                                             ?></td>
                     </td>
                     <td style="text-align:center; width: 15%;"><?= $item['CIDADE'] ?></td>
-                    <td style="text-align:center; width: 15%;" class="tel"><?= $item['TELEFONE'] ?></td>
+                    <td style="text-align:center; width: 8%;" class="tel"><?= $item['TELEFONE'] ?></td>
+                    <td style="text-align:center; width: 8%;"> <?= $item['VEICULO'] ?></td>
 
-                    <td style="text-align:center; width: 5%;" class=" btn-acoes">
+                    <td style="text-align:center; width: 6%;" class=" btn-acoes">
                       <a class="btn btn-outline-danger btn-sm" href="excluir_cliente?id=<?= $item['ID'] ?>" role="button"><i class="far fa-trash-alt"></i></a>
                       <a class="btn btn-outline-secondary btn-sm" href="editar_cliente?id=<?= $item['ID'] ?>" role="button"><i class="fas fa-pen"></i></a>
                     </td>
