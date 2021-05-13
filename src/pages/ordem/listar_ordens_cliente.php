@@ -64,7 +64,7 @@ include "../../components/1-header.php";
               <br>
 
               <h6>
-                <div class="card-text">Total: R$<?= $ordem['VLR_TOTAL'] ?></div>
+                <div class="card-text">Total: R$ <span id="valor_total"><?= $ordem['VLR_TOTAL'] ?></span></div>
               </h6>
             </div>
           </span>
@@ -103,6 +103,9 @@ include "../../components/2-footer.php";
 
   $(document).ready(function() {
 
+    // $("#valor_total").mask("000.000.000", {
+    //   reverse: true
+    // });
     $(".cpf").mask("000.000.000-00");
     $(".tel").mask("(00) 0 0000-0000");
   });

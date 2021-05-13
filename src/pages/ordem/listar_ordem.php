@@ -49,11 +49,17 @@ include "../../components/1-header.php";
                   <div class="row justify-content-md-center">
                     <input type="text" class="form-control" id="cliente" value="<?= $dados_ordem[0]['NOME'] ?>" name="cliente" readonly="true">
                   </div>
-
                 </div>
               </div>
 
-
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label>Data</label>
+                  <div class="row justify-content-md-center">
+                    <input type="date" class="form-control" id="data" value="<?= $dados_ordem[0]['DATA'] ?>" name="data" readonly="true">
+                  </div>
+                </div>
+              </div>
 
             </div>
           </div>
