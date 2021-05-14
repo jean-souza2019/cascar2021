@@ -1,9 +1,16 @@
+<?php echo $ano; ?>
 <div>
     <?php foreach ($anotacoes as $anotacao) { ?>
 
 
-        <span class="card text-white bg-primary card-OS buscar_ordem onPass" style="max-width: 18rem;" onclick="<?php $anotacoes = $anotacao['ID'] ?>" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap">
-            <div class="card-header TitVerde"></div>
+        <span class="card text-white bg-primary card-OS buscar_ordem onPass" style="max-width: 18rem;" onclick="buscarAnotacao(<?= $anotacao['ID'] ?>)" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap">
+            <div class="card-header <?php if ($anotacao['PRIORIDADE'] == 1) {
+                                        echo 'TitVerde';
+                                    } elseif ($anotacao['PRIORIDADE'] == 2) {
+                                        echo 'TitAmarelo';
+                                    } else {
+                                        echo 'TitVermelho';
+                                    } ?>"></div>
             <div class="card-body ">
                 <h5 class="card-title"><?= $anotacao['TITULO'] ?></h5>
                 <textarea class="form-control rounded-0 textareaIndex" id="exampleFormControlTextarea1" rows="4" readonly="true" disabled="true"><?= $anotacao['MENSAGEM'] ?></textarea>

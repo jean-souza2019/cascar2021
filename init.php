@@ -22,6 +22,7 @@ define('SIS_URL_LISOSCLI', SIS_URL . "src/pages/ordem/listar_ordens_cliente");
 define('SIS_URL_CADOS', SIS_URL . "src/pages/ordem/cadastro_ordem");
 
 define('SIS_URL_CONANOTA', SIS_URL . "src/pages/anotacoes/consulta_anotacao");
+define('SIS_URL_EXCANOTA', SIS_URL . "src/pages/anotacoes/excluir_anotacao");
 
 define('SIS_URL_FIMOS', SIS_URL . "src/pages/ordem/carrinhoOrdem/model_ins_carrinho");
 

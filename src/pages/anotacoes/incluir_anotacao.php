@@ -15,7 +15,7 @@
 
                     <div class="mb-2">
                         <label for="recipient-name" class="col-form-label">Prioridade:</label>
-                        <select class="form-control" id="prioridade" name="prioridade" onchange="buscarValorProduto()">
+                        <select class="form-control" id="prioridade" name="prioridade">
                             <option value="1">Baixa</option>
                             <option value="2">Média</option>
                             <option value="3">Alta</option>

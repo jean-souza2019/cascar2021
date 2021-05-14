@@ -435,6 +435,7 @@ ul.ultimos-chamados h4 {
 
 .TitVermelho {
     background: #b90000 !important;
+    border-color: #b90000 !important;
 }
 
 .onPass:hover {

@@ -504,7 +504,7 @@ class Crd
   public function getAnotacoes()
   {
 
-    $query = "SELECT ID, TITULO, MENSAGEM
+    $query = "SELECT ID, TITULO, MENSAGEM, PRIORIDADE
                 FROM CASCAR.ANOTACOES
                   ORDER BY ID";
 
@@ -558,4 +558,49 @@ class Crd
       return $retorno;
     }
   }
+
+  //********************* BUSCAR ANOTAÇÃO POR ID ************************
+  public function buscarAnotacao($id)
+  {
+
+    $query = "SELECT ID, TITULO, MENSAGEM, PRIORIDADE
+                FROM CASCAR.ANOTACOES
+                WHERE ID = " . $id;
+
+    $objeto = mysqli_query($this->conexao, $query);
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos[] = $obj;
+    }
+    return $objetos;
+  }
+
+
+   //********************* EXCLUIR ANOTAÇÃO POR ID ************************
+   public function excluirAnotacao($id)
+   {
+ 
+     $id = (!empty($id)) ? $id : null;
+ 
+     try {
+       $query = "DELETE FROM CASCAR.ANOTACOES WHERE ID = " . $id;
+ 
+       $objeto = mysqli_query($this->conexao, $query);
+ 
+       if ($objeto > 0) {
+         $retorno['status_cod'] = 1;
+         $retorno['status_message'] = "Registro excluido com sucesso!";
+         return $retorno;
+       } else {
+         $retorno['status_cod'] = 0;
+         $retorno['status_message'] = "Problema ao excluir registro.";
+         return $retorno;
+       }
+     } catch (PDOException $e) {
+       $retorno['status_cod'] = 0;
+       $retorno['status_message'] = "Erro: " . $e->getMessage();
+       return $retorno;
+     }
+     mysqli_close($this->conexao);
+   }
+ 
 }
