@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="form " method="post" action="">
+                <form class="form update_anotacao" method="post" action="">
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Título:</label>
@@ -32,7 +32,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         <button type="button" class="btn btn-primary TitVermelho" onclick="excluirAnotacao()">Excluir</button>
-                        <button type="submit" class="btn btn-primary ">Salvar</button>
+                        <button type="button" class="btn btn-primary" onclick="atualizarDados()">Salvar</button>
                     </div>
                 </form>
             </div>
@@ -43,6 +43,10 @@
 <script>
     var res_id;
 
+    function atualizarPagina() {
+      window.location.href = "<?= SIS_URL ?>";
+    }
+    
     function excluirAnotacao() {
         window.location.href = "<?= SIS_URL_EXCANOTA ?>?id=" + res_id;
     }
@@ -60,11 +64,7 @@
         // Arquivo PHP juntamente com o valor digitado no campo (método GET)
         var id_anotacao = id;
         if (id_anotacao > 0) {
-            // console.log(id_anotacao);
-
-
             var url = "src/pages/anotacoes/select_anotacao?id=" + id_anotacao;
-
             // Chamada do método open para processar a requisição
             req.open("Get", url, true);
             // Quando o objeto recebe o retorno, chamamos a seguinte função;
@@ -99,7 +99,16 @@
         }
     }
 
-    function tst(i) {
-        console.log(i);
+    function atualizarDados() {
+        var dados = $('.update_anotacao').serialize();
+        dados = dados + "&id_consulta=" + res_id;
+        $.ajax({
+            url: 'src/pages/anotacoes/update_anotacao.php',
+            type: 'POST',
+            data: dados,
+            success: function(data) {
+                window.location.href = "<?= SIS_URL ?>";
+            }
+        });
     }
 </script>

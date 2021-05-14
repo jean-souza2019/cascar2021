@@ -575,32 +575,81 @@ class Crd
   }
 
 
-   //********************* EXCLUIR ANOTAÇÃO POR ID ************************
-   public function excluirAnotacao($id)
-   {
- 
-     $id = (!empty($id)) ? $id : null;
- 
-     try {
-       $query = "DELETE FROM CASCAR.ANOTACOES WHERE ID = " . $id;
- 
-       $objeto = mysqli_query($this->conexao, $query);
- 
-       if ($objeto > 0) {
-         $retorno['status_cod'] = 1;
-         $retorno['status_message'] = "Registro excluido com sucesso!";
-         return $retorno;
-       } else {
-         $retorno['status_cod'] = 0;
-         $retorno['status_message'] = "Problema ao excluir registro.";
-         return $retorno;
-       }
-     } catch (PDOException $e) {
-       $retorno['status_cod'] = 0;
-       $retorno['status_message'] = "Erro: " . $e->getMessage();
-       return $retorno;
-     }
-     mysqli_close($this->conexao);
-   }
- 
+  //********************* EXCLUIR ANOTAÇÃO POR ID ************************
+  public function excluirAnotacao($id)
+  {
+
+    $id = (!empty($id)) ? $id : null;
+
+    try {
+      $query = "DELETE FROM CASCAR.ANOTACOES WHERE ID = " . $id;
+
+      $objeto = mysqli_query($this->conexao, $query);
+
+      if ($objeto > 0) {
+        $retorno['status_cod'] = 1;
+        $retorno['status_message'] = "Registro excluido com sucesso!";
+        return $retorno;
+      } else {
+        $retorno['status_cod'] = 0;
+        $retorno['status_message'] = "Problema ao excluir registro.";
+        return $retorno;
+      }
+    } catch (PDOException $e) {
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Erro: " . $e->getMessage();
+      return $retorno;
+    }
+    mysqli_close($this->conexao);
+  }
+
+
+  //********************* ATUALIZAR ANOTAÇÃO ************************
+  public function atualizarAnotacao($dados)
+  {
+    $retorno = array();
+    $retorno['status_cod'] = null;
+    $retorno['status_message'] = null;
+    $retorno['dados'] = null;
+
+    $id = (!empty($dados['id_consulta'])) ? $dados['id_consulta'] : null;
+    $titulo = (!empty($dados['titulo_consulta'])) ? $dados['titulo_consulta'] : null;
+    $prioridade = (!empty($dados['prioridade_consulta'])) ? $dados['prioridade_consulta'] : null;
+    $mensagem = (!empty($dados['mensagem_consulta'])) ? $dados['mensagem_consulta'] : null;
+
+
+    // Verifica se os campos obrigatórios foram preenchidos
+    if (
+      empty($id) ||   empty($titulo) || empty($prioridade) || empty($mensagem)
+    ) {
+
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Todos os campos Obrigatórios devem ser preenchidos";
+      return $retorno;
+    }
+
+    // Inclusão dos dados
+    try {
+      $query = "UPDATE CASCAR.ANOTACOES SET TITULO = '" . $titulo . "', PRIORIDADE = " . $prioridade . ", MENSAGEM = '" . $mensagem . "' WHERE ID = " . $id;
+
+      $objeto = mysqli_query($this->conexao, $query);
+
+      // print_r($objeto);
+      if ($objeto > 0) {
+        $retorno['status_cod'] = 1;
+        $retorno['status_message'] = "Registro atualizado com sucesso!";
+        return $retorno;
+      } else {
+
+        die();
+        $retorno['status_cod'] = 0;
+        $retorno['status_message'] = "Ocorreu um erro ao atualizar o registro! Favor entrar em contato com o suporte";
+        return $retorno;
+      }
+    } catch (PDOException $e) {
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Erro: " . $e->getMessage();
+      return $retorno;
+    }
+  }
 }

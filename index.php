@@ -41,17 +41,3 @@ include "src/Components/1-header.php";
   // Incluí o rodapé
   include "src/Components/2-footer.php";
   ?>
-
-  <script>
-    function salvarDados() {
-      // $('.form-senha').submit();
-    }
-
-    function atualizarPagina() {
-      window.location.href = "<?= SIS_URL ?>";
-    }
-
-    function edit() {
-      window.location.href = "?id=1";
-    }
-  </script>
