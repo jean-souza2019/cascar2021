@@ -8,4 +8,4 @@ require('querys.php');
 $query = new querys();
 
 $insert = $query->addItem($os, $cliente);
-echo '<script>window.location.href = "./limparItens"</script>';
+echo '<script>window.location.href = "./limparItens?ret=1"</script>';

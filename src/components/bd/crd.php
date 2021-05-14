@@ -366,6 +366,7 @@ class Crd
     $item = (!empty($item)) ? $item : null;
 
     try {
+      
       $query = "DELETE FROM CASCAR.ESTOQUE
                   WHERE CODIGO = " . $item;
 

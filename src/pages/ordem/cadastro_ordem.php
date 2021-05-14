@@ -110,11 +110,7 @@ include "../../components/1-header.php";
           data: {
             cliente: $('#cliente').val()
           },
-          success: function(data) {
-            window.location.href = "/Carrinho";
-            window.top.location.href = " <?php SIS_URL_CADOS ?>";
-
-          }
+          success: function(data) {}
         });
       }
 
@@ -126,6 +122,4 @@ include "../../components/1-header.php";
         $('#cliente').select2();
 
       });
-
-   
     </script>

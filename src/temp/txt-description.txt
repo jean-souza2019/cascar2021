@@ -1,5 +1,0 @@
-Sprint a fazer me 17/03/2021 até 19/03/2021
-
-- Fazer parada para visualizar os outros detalhes do cliente
-
-- Iniciar tela para criação de OS
