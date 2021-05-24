@@ -25,7 +25,7 @@ include "../../components/1-header.php";
     <div class="col-md-10">
       <div class='card card-formulario'>
         <div class="card-header azulcascar">
-          <h5 class="text-left"><a href="#" title="Listar Ordem" class="link">Listar Ordem</a> <span class="voltar3" onclick="voltar(<?= $cliente ?>)">voltar </span></h5>
+          <h5 class="text-left"><a href="#" title="Listar Ordem" class="link">Listar Ordem</a> <span class="voltar2" onclick="visualizar(<?= $cliente ?>,<?= $Ordem ?>)">visualizar </span> <span class="voltar3" onclick="voltar(<?= $cliente ?>)">voltar </span></h5>
         </div>
 
         <div class="card-body ">
@@ -83,5 +83,9 @@ include "../../components/1-header.php";
     <script>
       function voltar(cliente) {
         window.location.href = "<?= SIS_URL_LISOSCLI ?>?cli=" + cliente;
+      }
+
+      function visualizar(cliente, ordem) {
+        window.open('<?= SIS_URL_VISUOS ?>?cli=' + cliente + '&ord=' + ordem, '_blank');
       }
     </script>
