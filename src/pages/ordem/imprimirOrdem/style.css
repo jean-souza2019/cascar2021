@@ -1,0 +1,52 @@
+.logo {
+    width: 250px;
+}
+
+.linha {
+    width: 250px;
+    float: left;
+    text-align: center;
+    width: 33%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.tit {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    float: left;
+    text-align: center;
+    border: solid 1px;
+    border-radius: 0px 20px 0px 20px;
+    color: #4a4a4a;
+}
+
+.linha2 {
+    text-align: center;
+    float: none;
+}
+
+.linhaSub {
+    float: left;
+    width: 25%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.linhaSub2 {
+    float: left;
+    width: 25%;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.linhaSub3 {
+    width: 25%;
+    text-align: right;
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
