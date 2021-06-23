@@ -118,27 +118,6 @@ include "../../components/2-footer.php";
 
 
   $(document).ready(function() {
-    // var tam = $(".mask").length
-
-    // console.log($(".mask"));
-    // // console.log($(".mask").length)
-
-    // for (i = 0; i < tam; i++) {
-    //   var lng = $(".mask")[i].innerHTML;
-    //   console.log(lng.length);
-
-    //   if (lng.length <= 11) {
-    //     console.log("aq1");
-    //     $(".mask").mask("999.999.99-99");
-    //   } else if (lng.length === 13) {
-    //     console.log("aq2");
-    //     $(".mask").mask("00.000.000/0000-00");
-    //   }
-
-    // }
-
-
-
     $(".cpf").mask("000.000.000-00");
     $(".tel").mask("(00) 0 0000-0000");
   });

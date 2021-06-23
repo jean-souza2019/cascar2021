@@ -28,7 +28,7 @@
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading text-center">
-        <a href="<?= SIS_URL ?>" title="Painel"><img class="mb-4" src="<?= SIS_URL ?>src/assets/img/logo.png" alt="Agrodanieli" style=" max-width: 185px;"></a>
+        <a href="<?= SIS_URL ?>" title="Painel"><img class="mb-4" src="<?= SIS_URL ?>src/assets/img/logo.png" alt="Cascar" style=" max-width: 185px;"></a>
       </div>
 
       <div class="list-group list-group-flush" style="margin-bottom: 40px">
