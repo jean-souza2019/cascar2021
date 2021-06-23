@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14-Maio-2021 às 18:56
--- Versão do servidor: 10.4.18-MariaDB
+-- Tempo de geração: 23-Jun-2021 às 20:36
+-- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -34,6 +34,13 @@ CREATE TABLE `anotacoes` (
   `prioridade` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `anotacoes`
+--
+
+INSERT INTO `anotacoes` (`id`, `titulo`, `mensagem`, `prioridade`) VALUES
+(23, 'fazer gol turbo jean', 'tubo 1.6 alcool', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -52,8 +59,16 @@ CREATE TABLE `clientes` (
   `veiculo` varchar(255) NOT NULL,
   `ano` mediumint(9) NOT NULL,
   `modelo` varchar(255) NOT NULL,
-  `placa` varchar(50) NOT NULL
+  `placa` varchar(50) NOT NULL,
+  `endereco` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `nome`, `email`, `cidade`, `cep`, `bairro`, `cpfcnpj`, `telefone`, `veiculo`, `ano`, `modelo`, `placa`, `endereco`) VALUES
+(66, 'Jean Marcos de Souza', 'jiamarcos@outlook.com.br', 'Tapejara', '99950000', 'São Paulo', 4398942041, 54996660580, 'Golf', 2001, 'Sportline', 'DZG6E37', 'ate2');
 
 -- --------------------------------------------------------
 
@@ -69,6 +84,15 @@ CREATE TABLE `estoque` (
   `quantidade_estoque` int(11) NOT NULL,
   `imagem` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `estoque`
+--
+
+INSERT INTO `estoque` (`codigo`, `descricao`, `enderecamento`, `valor`, `quantidade_estoque`, `imagem`) VALUES
+(24, 'Mão de Obra', '-', 120, 1, NULL),
+(25, 'Amortecedor traseiros', 'a1b1c2d4', 300, 10, NULL),
+(26, 'teste produto 2', 'a', 122, 12, NULL);
 
 -- --------------------------------------------------------
 
@@ -86,6 +110,17 @@ CREATE TABLE `itensordens` (
   `produto` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `itensordens`
+--
+
+INSERT INTO `itensordens` (`id`, `os`, `quantidade`, `valor`, `data`, `cliente`, `produto`) VALUES
+(28, 1, 2, 120, '2021-05-24', '66', '24'),
+(29, 1, 2, 300, '2021-05-24', '66', '25'),
+(30, 2, 3, 120, '2021-05-28', '66', '24'),
+(31, 2, 4, 350, '2021-05-28', '66', '25'),
+(32, 3, 1, 122, '2021-06-23', '66', '26');
+
 -- --------------------------------------------------------
 
 --
@@ -101,7 +136,7 @@ CREATE TABLE `osid` (
 --
 
 INSERT INTO `osid` (`id`) VALUES
-(0);
+(3);
 
 -- --------------------------------------------------------
 
@@ -174,25 +209,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `anotacoes`
 --
 ALTER TABLE `anotacoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT de tabela `estoque`
 --
 ALTER TABLE `estoque`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de tabela `itensordens`
 --
 ALTER TABLE `itensordens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de tabela `osid`

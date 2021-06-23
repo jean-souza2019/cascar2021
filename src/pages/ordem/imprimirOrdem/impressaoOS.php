@@ -50,7 +50,8 @@ $DataOs = $explode[2] . "/" . $explode[1] . "/" . $explode[0];
 
         <span style="width: 250px;float: left;text-align: right;width: 33%;margin-top: 15px;">
             <p> Ordem nº: <?= $Ordem ?></p>
-            <p> Válido até 30/11/2020</p>
+            <!-- <p> Válido até 30/11/2020</p> -->
+            <p>Criada em <?= $DataOs ?></p>
         </span>
     </div>
 
@@ -157,9 +158,19 @@ $DataOs = $explode[2] . "/" . $explode[1] . "/" . $explode[0];
 </body>
 
 </html>
-<?=
-include "../../../components/2-footer.php";
-?>
+
+
+<script src="<?= SIS_URL ?>src/assets/js/jquery/jquery-3.5.1.min.js"></script>
+<script src="<?= SIS_URL ?>src/assets/js/jquery/jquery.mask.min.js"></script>
+<script src="<?= SIS_URL ?>src/assets/js/jquery/jquery.inputmask.bundle.js"></script>
+<script src="<?= SIS_URL ?>src/assets/js/bootstrap-4.2.1/js/bootstrap.min.js"></script>
+<script src="<?= SIS_URL ?>src/assets/js/bootstrap-4.2.1/js/bootstrap.bundle.min.js"></script>
+<script src="<?= SIS_URL ?>src/assets/js/Datatables/datatables.min.js"></script>
+<script src="<?= SIS_URL ?>src/assets/js/select2/select2.min.js"></script>
+<script src="<?= SIS_URL ?>src/assets/js/acc.js?t=<?= time() ?>"></script>
+<script src="<?= SIS_URL ?>src/Assets/JS/fontawesome-free-5.7.1/js/all.min.js"></script>
+<script src="<?= SIS_URL ?>src/assets/js/popper/popper-core-2.9.2.min.js"></script>
+
 <script>
     $(document).ready(function() {
 

@@ -32,6 +32,7 @@ class Crd
     $modelo = (!empty($dados['modelo'])) ? $dados['modelo'] : null;
     $ano = (!empty($dados['ano'])) ? $dados['ano'] : null;
     $placa = (!empty($dados['placa'])) ? $dados['placa'] : null;
+    $endereco = (!empty($dados['endereco'])) ? $dados['endereco'] : null;
 
 
     // Verifica se os campos obrigatórios foram preenchidos
@@ -48,8 +49,8 @@ class Crd
 
     // Inclusão dos dados
     try {
-      $query = "INSERT INTO CASCAR.CLIENTES (NOME, CPFCNPJ, TELEFONE, EMAIL, CIDADE, BAIRRO, CEP, VEICULO, MODELO, ANO, PLACA)
-            values ('" . $nome . "', " . $cpfcnpj . ", " . $telefone . ", '" . $email . "', '" . $cidade . "', '" . $bairro . "', " . $cep . ", '" . $veiculo . "', '" . $modelo . "', " . $ano . ", '" . $placa . "')";
+      $query = "INSERT INTO CASCAR.CLIENTES (NOME, CPFCNPJ, TELEFONE, EMAIL, CIDADE, BAIRRO, CEP, VEICULO, MODELO, ANO, PLACA, ENDERECO)
+            values ('" . $nome . "', " . $cpfcnpj . ", " . $telefone . ", '" . $email . "', '" . $cidade . "', '" . $bairro . "', " . $cep . ", '" . $veiculo . "', '" . $modelo . "', " . $ano . ", '" . $placa . "', '" . $endereco . "')";
 
       $objeto = mysqli_query($this->conexao, $query);
 
@@ -163,7 +164,7 @@ class Crd
   {
     $id = (!empty($id)) ? $id : null;
 
-    $query = "SELECT ID, NOME, CPFCNPJ, TELEFONE, EMAIL, CIDADE, BAIRRO, CEP, VEICULO, MODELO, ANO, PLACA
+    $query = "SELECT ID, NOME, CPFCNPJ, TELEFONE, EMAIL, CIDADE, BAIRRO, CEP, VEICULO, MODELO, ANO, PLACA, ENDERECO
                   FROM CASCAR.CLIENTES 
                   WHERE ID = " . $id;
 
@@ -196,6 +197,7 @@ class Crd
     $modelo = (!empty($dados['modelo'])) ? $dados['modelo'] : null;
     $ano = (!empty($dados['ano'])) ? $dados['ano'] : null;
     $placa = (!empty($dados['placa'])) ? $dados['placa'] : null;
+    $endereco = (!empty($dados['endereco'])) ? $dados['endereco'] : null;
 
 
     // Verifica se os campos obrigatórios foram preenchidos
@@ -212,7 +214,7 @@ class Crd
 
     // Inclusão dos dados
     try {
-      $query = "UPDATE CASCAR.CLIENTES SET NOME = '" . $nome . "', CPFCNPJ = " . $cpfcnpj . ", TELEFONE = " . $telefone . ", EMAIL = '" . $email . "', CIDADE = '" . $cidade . "', 
+      $query = "UPDATE CASCAR.CLIENTES SET NOME = '" . $nome . "', CPFCNPJ = " . $cpfcnpj . ", ENDERECO = '" . $endereco . "', TELEFONE = " . $telefone . ", EMAIL = '" . $email . "', CIDADE = '" . $cidade . "', 
       BAIRRO = '" . $bairro . "', CEP = " . $cep . ", VEICULO = '" . $veiculo . "', MODELO = '" . $modelo . "', ANO = " . $ano . ", PLACA = '" . $placa . "'
       WHERE ID = " . $id;
 
@@ -366,7 +368,7 @@ class Crd
     $item = (!empty($item)) ? $item : null;
 
     try {
-      
+
       $query = "DELETE FROM CASCAR.ESTOQUE
                   WHERE CODIGO = " . $item;
 

@@ -76,6 +76,13 @@ include "../../components/1-header.php";
                 </div>
 
 
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Endereço</label>
+                    <input type="text" class="form-control" name="endereco" id="endereco" />
+                  </div>
+                </div>
+
                 <div class="col-md-2">
                   <div class="form-group">
                     <label>CEP</label>

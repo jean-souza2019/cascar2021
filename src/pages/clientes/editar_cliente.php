@@ -36,7 +36,7 @@ include "../../components/1-header.php";
                 <div class="col-md-2">
                   <div class="form-group">
                     <label>ID</label>
-                    <input type="text" class="form-control" id="id" name="id" placeholder="" value="<?php foreach ($objetos as $item) echo $item['ID']?>" autofocus="true" readonly="true">
+                    <input type="text" class="form-control" id="id" name="id" placeholder="" value="<?php foreach ($objetos as $item) echo $item['ID'] ?>" autofocus="true" readonly="true">
                   </div>
                 </div>
 
@@ -51,14 +51,14 @@ include "../../components/1-header.php";
                 <div class="col-md-2">
                   <div class="form-group">
                     <label>CPF</label>
-                    <input class="form-control" id="cpfcnpj" name="cpfcnpj" value="<?php foreach ($objetos as $item) echo $item['CPFCNPJ']?>" placeholder="" autofocus="true">
+                    <input class="form-control" id="cpfcnpj" name="cpfcnpj" value="<?php foreach ($objetos as $item) echo $item['CPFCNPJ'] ?>" placeholder="" autofocus="true">
                   </div>
                 </div>
 
                 <div class="col-md-2">
                   <div class="form-group">
                     <label>Telefone</label>
-                    <input class="form-control" id="telefone" name="telefone" value="<?php foreach ($objetos as $item) echo $item['TELEFONE']?>" placeholder="" autofocus="true">
+                    <input class="form-control" id="telefone" name="telefone" value="<?php foreach ($objetos as $item) echo $item['TELEFONE'] ?>" placeholder="" autofocus="true">
                   </div>
                 </div>
 
@@ -66,7 +66,7 @@ include "../../components/1-header.php";
                 <div class="col-md-3">
                   <div class="form-group">
                     <label>Email</label>
-                    <input type="text" class="form-control" id="email" name="email" value="<?php foreach ($objetos as $item) echo $item['EMAIL']?>" placeholder="" autofocus="true">
+                    <input type="text" class="form-control" id="email" name="email" value="<?php foreach ($objetos as $item) echo $item['EMAIL'] ?>" placeholder="" autofocus="true">
                   </div>
                 </div>
 
@@ -74,7 +74,7 @@ include "../../components/1-header.php";
                 <div class="col-md-3">
                   <div class="form-group">
                     <label>Cidade</label>
-                    <input type="text" class="form-control" id="cidade" name="cidade" value="<?php foreach ($objetos as $item) echo $item['CIDADE']?>" placeholder="" autofocus="true">
+                    <input type="text" class="form-control" id="cidade" name="cidade" value="<?php foreach ($objetos as $item) echo $item['CIDADE'] ?>" placeholder="" autofocus="true">
                   </div>
                 </div>
 
@@ -82,15 +82,21 @@ include "../../components/1-header.php";
                 <div class="col-md-3">
                   <div class="form-group">
                     <label>Bairro</label>
-                    <input type="text" class="form-control" id="bairro" name="bairro" value="<?php foreach ($objetos as $item) echo $item['BAIRRO']?>" placeholder="" autofocus="true">
+                    <input type="text" class="form-control" id="bairro" name="bairro" value="<?php foreach ($objetos as $item) echo $item['BAIRRO'] ?>" placeholder="" autofocus="true">
                   </div>
                 </div>
 
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Endereço</label>
+                    <input type="text"  class="form-control" name="endereco" id="endereco" value="<?php foreach ($objetos as $item) echo $item['ENDERECO'] ?>" />
+                  </div>
+                </div>
 
                 <div class="col-md-2">
                   <div class="form-group">
                     <label>CEP</label>
-                    <input class="form-control" name="cep" id="cep" pattern="[0-9]+$" value="<?php foreach ($objetos as $item) echo $item['CEP']?>" />
+                    <input class="form-control" name="cep" id="cep" pattern="[0-9]+$" value="<?php foreach ($objetos as $item) echo $item['CEP'] ?>" />
                   </div>
                 </div>
 
@@ -102,28 +108,28 @@ include "../../components/1-header.php";
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>Veiculo</label>
-                        <input class="form-control" name="veiculo" id="veiculo" value="<?php foreach ($objetos as $item) echo $item['VEICULO']?>" />
+                        <input class="form-control" name="veiculo" id="veiculo" value="<?php foreach ($objetos as $item) echo $item['VEICULO'] ?>" />
                       </div>
                     </div>
 
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>Modelo</label>
-                        <input class="form-control" name="modelo" id="modelo" value="<?php foreach ($objetos as $item) echo $item['MODELO']?>" />
+                        <input class="form-control" name="modelo" id="modelo" value="<?php foreach ($objetos as $item) echo $item['MODELO'] ?>" />
                       </div>
                     </div>
 
                     <div class="col-md-2">
                       <div class="form-group">
                         <label>Ano</label>
-                        <input class="form-control" name="ano" id="ano"  value="<?php foreach ($objetos as $item) echo $item['ANO']?>"/>
+                        <input class="form-control" name="ano" id="ano" value="<?php foreach ($objetos as $item) echo $item['ANO'] ?>" />
                       </div>
                     </div>
 
                     <div class="col-md-2">
                       <div class="form-group">
                         <label>Placa</label>
-                        <input class="form-control" name="placa" id="placa" value="<?php foreach ($objetos as $item) echo $item['PLACA']?>" />
+                        <input class="form-control" name="placa" id="placa" value="<?php foreach ($objetos as $item) echo $item['PLACA'] ?>" />
                       </div>
                     </div>
 

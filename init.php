@@ -33,7 +33,7 @@ define('SIS_TITULO', 'Casca Autocar');
 define('SIS_TELEFONE1', '(54) 99161-0893');
 define('SIS_TELEFONE2', '(54) 99925-6529');
 define('SIS_EMAIL', 'leonardo.milani.pizzi@gmail.com');
-define('SIS_ENDERECO', 'R. Dr. Júlio de Castilhos - Centro');
+define('SIS_ENDERECO', 'R. Antônio José Vivan, 602, Centro');
 define('SIS_AUTOR', 'Jean DEV it.');
 
 
