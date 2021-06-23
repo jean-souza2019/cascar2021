@@ -14,7 +14,8 @@
   <link rel="stylesheet" href="<?= SIS_URL ?>src/Assets/CSS/style-padrao.css?t=<?= time() ?>">
   <link rel="stylesheet" href="<?= SIS_URL ?>src/Assets/CSS/style.css?t=<?= time() ?>">
   <link rel="stylesheet" href="<?= SIS_URL ?>src/Assets/CSS/select2/select2.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="<?= SIS_URL ?>src/Assets/js/jquery/jquery-3.5.1.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
   <title><?= $pagina_titulo ?></title>
 
