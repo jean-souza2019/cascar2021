@@ -1,5 +1,7 @@
 <?php
 
+// limpar base de dados
+// TRUNCATE `cascar`.`anotacoes`
 class Crd
 {
   private $conexao;
