@@ -21,25 +21,28 @@ class Crd
     $retorno['status_message'] = null;
     $retorno['dados'] = null;
 
+    // Obrigatorios
     $nome = (!empty($dados['nome'])) ? $dados['nome'] : null;
     $cpfcnpj = (!empty($dados['cpfcnpj'])) ? $dados['cpfcnpj'] : null;
     $telefone = (!empty($dados['telefone'])) ? $dados['telefone'] : null;
-    $email = (!empty($dados['email'])) ? $dados['email'] : null;
     $cidade = (!empty($dados['cidade'])) ? $dados['cidade'] : null;
+
+    // String
+    $email = (!empty($dados['email'])) ? $dados['email'] : null;
     $bairro = (!empty($dados['bairro'])) ? $dados['bairro'] : null;
-    $cep = (!empty($dados['cep'])) ? $dados['cep'] : null;
     $veiculo = (!empty($dados['veiculo'])) ? $dados['veiculo'] : null;
     $modelo = (!empty($dados['modelo'])) ? $dados['modelo'] : null;
-    $ano = (!empty($dados['ano'])) ? $dados['ano'] : null;
     $placa = (!empty($dados['placa'])) ? $dados['placa'] : null;
     $endereco = (!empty($dados['endereco'])) ? $dados['endereco'] : null;
+
+    // Numero
+    $cep = (!empty($dados['cep'])) ? $dados['cep'] : null;
+    $ano = (!empty($dados['ano'])) ? $dados['ano'] : null;
 
 
     // Verifica se os campos obrigatórios foram preenchidos
     if (
-      empty($nome) || empty($cpfcnpj) || empty($telefone) || empty($email)
-      || empty($cidade) || empty($bairro) || empty($cep) || empty($veiculo)
-      || empty($modelo) || empty($ano) || empty($placa)
+      empty($nome) || empty($cpfcnpj) || empty($telefone) || empty($cidade)
     ) {
 
       $retorno['status_cod'] = 0;
@@ -185,26 +188,37 @@ class Crd
     $retorno['status_message'] = null;
     $retorno['dados'] = null;
 
-    $nome = (!empty($dados['nome'])) ? $dados['nome'] : null;
+    $query = "UPDATE CASCAR.CLIENTES SET ";
+
+    // Obrigatorios
+    (!empty($dados['nome'])) ? $query = $query . " NOME = '" . $dados['nome'] . "' " : null;
+    (!empty($dados['cpfcnpj'])) ? $query = $query . ", cpfcnpj = " . $dados['cpfcnpj'] : null;
+    (!empty($dados['telefone'])) ? $query = $query . ", telefone = " . $dados['telefone'] : null;
+    (!empty($dados['cidade'])) ? $query = $query . ", cidade = '" . $dados['cidade'] . "' " : null;
+
+    // String
+    (!empty($dados['email'])) ? $query = $query . ", email = '" . $dados['email'] . "' " : $query = $query . ", email = null ";
+    (!empty($dados['bairro'])) ? $query = $query . ", bairro = '" . $dados['bairro'] . "' " : $query = $query . ", bairro = null ";
+    (!empty($dados['veiculo'])) ? $query = $query . ", veiculo = '" . $dados['veiculo'] . "' " : $query = $query . ", veiculo = null ";
+    (!empty($dados['modelo'])) ? $query = $query . ", modelo = '" . $dados['modelo'] . "' " : $query = $query . ", modelo = null ";
+    (!empty($dados['placa'])) ? $query = $query . ", placa = '" . $dados['placa'] . "' " : $query = $query . ", placa = null ";
+    (!empty($dados['endereco'])) ? $query = $query . ", endereco = '" . $dados['endereco'] . "' " : $query = $query . ", endereco = null ";
+
+    // Numero
+    (!empty($dados['cep'])) ? $query = $query . ", cep = " . $dados['cep'] : $query = $query . ", cep = null ";
+    (!empty($dados['ano'])) ? $query = $query . ", ano = " . $dados['ano'] : $query = $query . ", ano = null ";
+
+
     $id = (!empty($dados['id'])) ? $dados['id'] : null;
+    $nome = (!empty($dados['nome'])) ? $dados['nome'] : null;
     $cpfcnpj = (!empty($dados['cpfcnpj'])) ? $dados['cpfcnpj'] : null;
-    $telefone = (!empty($dados['telefone'])) ? $dados['telefone'] : null;
-    $email = (!empty($dados['email'])) ? $dados['email'] : null;
     $cidade = (!empty($dados['cidade'])) ? $dados['cidade'] : null;
-    $bairro = (!empty($dados['bairro'])) ? $dados['bairro'] : null;
-    $cep = (!empty($dados['cep'])) ? $dados['cep'] : null;
-    $veiculo = (!empty($dados['veiculo'])) ? $dados['veiculo'] : null;
-    $modelo = (!empty($dados['modelo'])) ? $dados['modelo'] : null;
-    $ano = (!empty($dados['ano'])) ? $dados['ano'] : null;
-    $placa = (!empty($dados['placa'])) ? $dados['placa'] : null;
-    $endereco = (!empty($dados['endereco'])) ? $dados['endereco'] : null;
+    $telefone = (!empty($dados['telefone'])) ? $dados['telefone'] : null;
 
 
     // Verifica se os campos obrigatórios foram preenchidos
     if (
-      empty($id) ||   empty($nome) || empty($cpfcnpj) || empty($telefone) || empty($email)
-      || empty($cidade) || empty($bairro) || empty($cep) || empty($veiculo)
-      || empty($modelo) || empty($ano) || empty($placa)
+      empty($id) ||   empty($nome) || empty($cpfcnpj) || empty($telefone)  || empty($cidade)
     ) {
 
       $retorno['status_cod'] = 0;
@@ -214,15 +228,10 @@ class Crd
 
     // Inclusão dos dados
     try {
-      $query = "UPDATE CASCAR.CLIENTES SET NOME = '" . $nome . "', CPFCNPJ = " . $cpfcnpj . ", ENDERECO = '" . $endereco . "', TELEFONE = " . $telefone . ", EMAIL = '" . $email . "', CIDADE = '" . $cidade . "', 
-      BAIRRO = '" . $bairro . "', CEP = " . $cep . ", VEICULO = '" . $veiculo . "', MODELO = '" . $modelo . "', ANO = " . $ano . ", PLACA = '" . $placa . "'
-      WHERE ID = " . $id;
-
-      // print_r($query);
+      $query = $query . " WHERE ID = " . $id;
 
       $objeto = mysqli_query($this->conexao, $query);
 
-      // print_r($objeto);
       if ($objeto > 0) {
         $retorno['status_cod'] = 1;
         $retorno['status_message'] = "Registro Atualizado com Sucesso!";
@@ -277,8 +286,13 @@ class Crd
     $retorno['status_message'] = null;
     $retorno['dados'] = null;
 
+    // Obrigatorios
     $descricao = (!empty($dados['descricao'])) ? $dados['descricao'] : null;
+
+    // String
     $enderecamento = (!empty($dados['enderecamento'])) ? $dados['enderecamento'] : null;
+
+    // Numero
     $valor = (!empty($dados['valor'])) ? $dados['valor'] : null;
     $quantidade_estoque = (!empty($dados['quantidade_estoque'])) ? $dados['quantidade_estoque'] : null;
 
@@ -293,7 +307,7 @@ class Crd
 
     // Verifica se os campos obrigatórios foram preenchidos
     if (
-      empty($descricao) || empty($enderecamento) || empty($valor) || empty($quantidade_estoque)
+      empty($descricao)
     ) {
 
       $retorno['status_cod'] = 0;
@@ -316,12 +330,11 @@ class Crd
 
 
       $query = "INSERT INTO CASCAR.ESTOQUE (DESCRICAO, ENDERECAMENTO, VALOR, QUANTIDADE_ESTOQUE " . $img . ")
-             values ('" . $descricao . "', '" . $enderecamento . "', " . $valor . ", " . $quantidade_estoque . " " . $tempImg . ")";
+             values ('" . $descricao . "', '" . $enderecamento . "', '" . $valor . "', '" . $quantidade_estoque . "' " . $tempImg . ")";
 
       $objeto = mysqli_query($this->conexao, $query);
 
       if ($objeto > 0) {
-        // print_r($objeto);
         $retorno['status_cod'] = 1;
         $retorno['status_message'] = "Novo Registro Incluido com Sucesso!";
         return $retorno;
@@ -402,11 +415,17 @@ class Crd
     $retorno['status_message'] = null;
     $retorno['dados'] = null;
 
+
+    // Obrigatorios
     $codigo = (!empty($dados['codigo'])) ? $dados['codigo'] : null;
     $descricao = (!empty($dados['descricao'])) ? $dados['descricao'] : null;
+
+    // String
     $enderecamento = (!empty($dados['enderecamento'])) ? $dados['enderecamento'] : null;
-    $valor = (!empty($dados['valor'])) ? $dados['valor'] : null;
-    $quantidade_estoque = (!empty($dados['quantidade_estoque'])) ? $dados['quantidade_estoque'] : null;
+
+    // Numero
+    $valor = (!empty($dados['valor'])) ? $dados['valor'] : 'null';
+    $quantidade_estoque = (!empty($dados['quantidade_estoque'])) ? $dados['quantidade_estoque'] : 'null';
 
 
     if ($_FILES['imagem']['name']) {
@@ -420,7 +439,7 @@ class Crd
 
     // Verifica se os campos obrigatórios foram preenchidos
     if (
-      empty($codigo) || empty($descricao) || empty($enderecamento) || empty($valor) || empty($quantidade_estoque)
+      empty($codigo) || empty($descricao)
     ) {
 
       $retorno['status_cod'] = 0;

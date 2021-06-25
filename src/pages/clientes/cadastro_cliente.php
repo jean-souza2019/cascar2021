@@ -31,7 +31,7 @@ include "../../components/1-header.php";
 
                 <div class="col-md-8">
                   <div class="form-group">
-                    <label>Nome</label>
+                    <label>Nome*</label>
                     <input type="text" class="form-control" id="nome" name="nome" placeholder="" autofocus="true">
                   </div>
                 </div>
@@ -39,14 +39,14 @@ include "../../components/1-header.php";
 
                 <div class="col-md-2">
                   <div class="form-group">
-                    <label>CPF</label>
+                    <label>CPF*</label>
                     <input class="form-control" id="cpfcnpj" name="cpfcnpj" placeholder="" autofocus="true">
                   </div>
                 </div>
 
                 <div class="col-md-2">
                   <div class="form-group">
-                    <label>Telefone</label>
+                    <label>Telefone*</label>
                     <input class="form-control" id="telefone" name="telefone" placeholder="" autofocus="true">
                   </div>
                 </div>
@@ -62,7 +62,7 @@ include "../../components/1-header.php";
 
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label>Cidade</label>
+                    <label>Cidade*</label>
                     <input type="text" class="form-control" id="cidade" name="cidade" placeholder="" autofocus="true">
                   </div>
                 </div>
@@ -157,32 +157,35 @@ include "../../components/1-header.php";
         $('.form-cadcli').submit();
       }
 
+
       $(document).ready(function() {
-        //   $('.busslc').select2();
+        // Tratamento para input de telefone ser apenas número
+        document.getElementById("telefone").onkeypress = function(e) {
+          var chr = String.fromCharCode(e.which);
+          if ("1234567890".indexOf(chr) < 0)
+            return false;
+        };
 
+        // Tratamento para input de cpf ser apenas número
+        document.getElementById("cpfcnpj").onkeypress = function(e) {
+          var chr = String.fromCharCode(e.which);
+          if ("1234567890".indexOf(chr) < 0)
+            return false;
+        };
 
+        // Tratamento para input de Ano ser apenas número
+        document.getElementById("cep").onkeypress = function(e) {
+          var chr = String.fromCharCode(e.which);
+          if ("1234567890".indexOf(chr) < 0)
+            return false;
+        };
 
-        // // Ajustar CEP
-        // $('#cep').mask('00000-000');
-
-        // // Ajustar Telefone
-        // $('#telefone').mask('(00) 0 0000-0000');
-
-        // // Ajustar CPF
-        // $('#cpfcnpj').mask('000.000.000-00');
+        // Tratamento para input de Cep ser apenas número
+        document.getElementById("ano").onkeypress = function(e) {
+          var chr = String.fromCharCode(e.which);
+          if ("1234567890".indexOf(chr) < 0)
+            return false;
+        };
 
       });
-
-
-      // Formatar maskara do Cnpj
-      function formatoDoc() {
-        // $(document).ready(function() {
-        //   var cnpjcpf = $("#cgccpf").val().length;
-        //   if (cnpjcpf <= 11) {
-        //     $("#cgccpf").mask("999.999.999-99");
-        //   } else {
-        //     $("#cgccpf").mask("99.999.999/9999-99");
-        //   }
-        // });
-      }
     </script>

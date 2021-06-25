@@ -55,7 +55,7 @@ include "../../components/1-header.php";
                 <div class="col-md-2  ">
                   <div class="form-group">
                     <label>Quantidade Atual Estoque</label>
-                    <input class="form-control" id="quantidade_estoque" name="quantidade_estoque" placeholder="" autofocus="true">
+                    <input class="form-control" id="quantidade_estoque" name="quantidade_estoque" value="1" placeholder="" autofocus="true">
                   </div>
                 </div>
 
@@ -65,7 +65,7 @@ include "../../components/1-header.php";
                     <input type="file" class="form-control" name="imagem" id="imagem" />
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </form>
@@ -97,7 +97,21 @@ include "../../components/1-header.php";
         // $('.form-cadimg').submit();
       }
 
-      $(document).ready(function() {
 
+
+      $(document).ready(function() {
+        // Tratamento para input de valor ser apenas número
+        document.getElementById("valor").onkeypress = function(e) {
+          var chr = String.fromCharCode(e.which);
+          if ("1234567890".indexOf(chr) < 0)
+            return false;
+        };
+
+        // Tratamento para input de quantidade estoque ser apenas número
+        document.getElementById("quantidade_estoque").onkeypress = function(e) {
+          var chr = String.fromCharCode(e.which);
+          if ("1234567890".indexOf(chr) < 0)
+            return false;
+        };
       });
     </script>

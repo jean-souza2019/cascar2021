@@ -13,8 +13,6 @@ $conexao = new Conexao();
 $crd = new Crd($conexao);
 
 $objetos = $crd->getClientePnl($_GET['id']);
-// Consulta todos os registros
-// print_r($objetos);
 
 // Incluí o cabeçalho
 include "../../components/1-header.php";
@@ -42,7 +40,7 @@ include "../../components/1-header.php";
 
                 <div class="col-md-8">
                   <div class="form-group">
-                    <label>Nome</label>
+                    <label>Nome*</label>
                     <input type="text" class="form-control" id="nome" name="nome" value="<?php foreach ($objetos as $item) echo $item['NOME'] ?>" placeholder="" autofocus="true">
                   </div>
                 </div>
@@ -50,14 +48,33 @@ include "../../components/1-header.php";
 
                 <div class="col-md-2">
                   <div class="form-group">
-                    <label>CPF</label>
-                    <input class="form-control" id="cpfcnpj" name="cpfcnpj" value="<?php foreach ($objetos as $item) echo $item['CPFCNPJ'] ?>" placeholder="" autofocus="true">
+                    <label>CPF*</label>
+                    <input class="form-control" id="cpfcnpj" name="cpfcnpj" value="<?php foreach ($objetos as $item)
+                                                                                      if (strlen($item['CPFCNPJ']) < 11) {
+                                                                                        $dif = 11 - strlen($item['CPFCNPJ']);
+                                                                                        $acrescento = 0;
+                                                                                        for ($x = 1; $x < $dif; $x += 1) {
+                                                                                          $acrescento = $acrescento . "0";
+                                                                                        }
+                                                                                        echo $acrescento . $item['CPFCNPJ'];
+                                                                                      } elseif ((strlen($item['CPFCNPJ']) >= 11) and (strlen($item['CPFCNPJ']) < 14)) {
+                                                                                        $dif = 14 - strlen($item['CPFCNPJ']);
+                                                                                        $acrescento = 0;
+                                                                                        for ($x = 1; $x < $dif; $x += 1) {
+                                                                                          $acrescento = $acrescento . "0";
+                                                                                        }
+                                                                                        echo $acrescento . $item['CPFCNPJ'];
+                                                                                      } else {
+                                                                                        echo $item['CPFCNPJ'];
+                                                                                      }
+
+                                                                                    ?>" placeholder="" autofocus="true">
                   </div>
                 </div>
 
                 <div class="col-md-2">
                   <div class="form-group">
-                    <label>Telefone</label>
+                    <label>Telefone*</label>
                     <input class="form-control" id="telefone" name="telefone" value="<?php foreach ($objetos as $item) echo $item['TELEFONE'] ?>" placeholder="" autofocus="true">
                   </div>
                 </div>
@@ -66,14 +83,14 @@ include "../../components/1-header.php";
                 <div class="col-md-3">
                   <div class="form-group">
                     <label>Email</label>
-                    <input type="text" class="form-control" id="email" name="email" value="<?php foreach ($objetos as $item) echo $item['EMAIL'] ?>" placeholder="" autofocus="true">
+                    <input type="text" class="form-control" id="email" name="email" value="<?php foreach ($objetos as $item) echo $item['EMAIL'] ?>" placeholder="" >
                   </div>
                 </div>
 
 
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label>Cidade</label>
+                    <label>Cidade*</label>
                     <input type="text" class="form-control" id="cidade" name="cidade" value="<?php foreach ($objetos as $item) echo $item['CIDADE'] ?>" placeholder="" autofocus="true">
                   </div>
                 </div>
@@ -82,14 +99,14 @@ include "../../components/1-header.php";
                 <div class="col-md-3">
                   <div class="form-group">
                     <label>Bairro</label>
-                    <input type="text" class="form-control" id="bairro" name="bairro" value="<?php foreach ($objetos as $item) echo $item['BAIRRO'] ?>" placeholder="" autofocus="true">
+                    <input type="text" class="form-control" id="bairro" name="bairro" value="<?php foreach ($objetos as $item) echo $item['BAIRRO'] ?>" >
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Endereço</label>
-                    <input type="text"  class="form-control" name="endereco" id="endereco" value="<?php foreach ($objetos as $item) echo $item['ENDERECO'] ?>" />
+                    <input type="text" class="form-control" name="endereco" id="endereco" value="<?php foreach ($objetos as $item) echo $item['ENDERECO'] ?>" />
                   </div>
                 </div>
 
@@ -150,7 +167,6 @@ include "../../components/1-header.php";
               </div>
             </div>
           </form>
-          <!-- <button class="btn btn-sm btn-primary btn-registrar " onclick="">Cancelar</button> -->
         </div>
       </div>
 
@@ -166,11 +182,39 @@ include "../../components/1-header.php";
         }
 
 
-        function cancelar() {
-          Response.Redirect("http://WWW.SITE_DESTINO.COM.BR");
-        }
-
         function atualizarPagina() {
           window.location.href = "<?= SIS_URL_EDITCLI ?>";
         }
+
+
+        $(document).ready(function() {
+          // Tratamento para input de telefone ser apenas número
+          document.getElementById("telefone").onkeypress = function(e) {
+            var chr = String.fromCharCode(e.which);
+            if ("1234567890".indexOf(chr) < 0)
+              return false;
+          };
+
+          // Tratamento para input de cpf ser apenas número
+          document.getElementById("cpfcnpj").onkeypress = function(e) {
+            var chr = String.fromCharCode(e.which);
+            if ("1234567890".indexOf(chr) < 0)
+              return false;
+          };
+
+          // Tratamento para input de Ano ser apenas número
+          document.getElementById("cep").onkeypress = function(e) {
+            var chr = String.fromCharCode(e.which);
+            if ("1234567890".indexOf(chr) < 0)
+              return false;
+          };
+
+          // Tratamento para input de Cep ser apenas número
+          document.getElementById("ano").onkeypress = function(e) {
+            var chr = String.fromCharCode(e.which);
+            if ("1234567890".indexOf(chr) < 0)
+              return false;
+          };
+
+        });
       </script>

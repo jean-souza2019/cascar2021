@@ -112,5 +112,21 @@ include "../../components/1-header.php";
       $(document).ready(function() {
         var imagem = document.getElementById('imagem');
         imagem.src = "teste";
+
+
+
+        // Tratamento para input de valor ser apenas número
+        document.getElementById("valor").onkeypress = function(e) {
+          var chr = String.fromCharCode(e.which);
+          if ("1234567890".indexOf(chr) < 0)
+            return false;
+        };
+
+        // Tratamento para input de quantidade estoque ser apenas número
+        document.getElementById("quantidade_estoque").onkeypress = function(e) {
+          var chr = String.fromCharCode(e.which);
+          if ("1234567890".indexOf(chr) < 0)
+            return false;
+        };
       });
     </script>
