@@ -48,15 +48,17 @@ include "../../components/1-header.php";
             </thead>
             <tbody>
               <?php if (!empty($objetos)) { ?>
-                <?php foreach ($objetos as $item) { ?>
-                  <tr>
-                    <td style="text-align:center;width: 5%;"><?= $item['CODIGO'] ?></td>
-                    <td style="text-align:left; width: 40%;"><?= $item['DESCRICAO'] ?></td>
-                    <td style="text-align:center; width: 10%;" class="enderecamento"><?= $item['ENDERECAMENTO'] ?></td>
-                    <td style="text-align:center; width: 10%;"> R$ <span class="maskNumero"><?= $item['VALOR'] ?></span></td>
-                    <td style="text-align:center; width: 10%;" class="maskNumero"><?= $item['QUANTIDADE_ESTOQUE'] ?></td>
-                  </tr>
-                <?php } ?>
+                <?php foreach ($objetos as $item) {
+                  if ($item['EXCLUIDO'] == 0) { ?>
+                    <tr>
+                      <td style="text-align:center;width: 5%;"><?= $item['CODIGO'] ?></td>
+                      <td style="text-align:left; width: 40%;"><?= $item['DESCRICAO'] ?></td>
+                      <td style="text-align:center; width: 10%;" class="enderecamento"><?= $item['ENDERECAMENTO'] ?></td>
+                      <td style="text-align:center; width: 10%;"> R$ <span class="maskNumero"><?= $item['VALOR'] ?></span></td>
+                      <td style="text-align:center; width: 10%;" class="maskNumero"><?= $item['QUANTIDADE_ESTOQUE'] ?></td>
+                    </tr>
+                <?php }
+                } ?>
               <?php } ?>
             </tbody>
           </table>

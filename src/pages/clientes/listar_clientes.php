@@ -52,46 +52,48 @@ include "../../components/1-header.php";
             </thead>
             <tbody>
               <?php if (!empty($objetos)) { ?>
-                <?php foreach ($objetos as $item) { ?>
-                  <tr>
+                <?php foreach ($objetos as $item) {
+                  if ($item['EXCLUIDO'] == 0) { ?>
+                    <tr>
 
-                    <td style="text-align:center;width: 5%;"><?= $item['ID'] ?></td>
-                    <td style="text-align:left; width: 35%;"><?= $item['NOME'] ?></td>
-                    <td style="text-align:center; width: 15%;" class="cpf"><?php
+                      <td style="text-align:center;width: 5%;"><?= $item['ID'] ?></td>
+                      <td style="text-align:left; width: 35%;"><?= $item['NOME'] ?></td>
+                      <td style="text-align:center; width: 15%;" class="cpf"><?php
 
-                                                                            if (strlen($item['CPFCNPJ']) < 11) {
-                                                                              $dif = 11 - strlen($item['CPFCNPJ']);
-                                                                              $acrescento = 0;
-                                                                              for ($x = 1; $x < $dif; $x += 1) {
-                                                                                $acrescento = $acrescento . "0";
+                                                                              if (strlen($item['CPFCNPJ']) < 11) {
+                                                                                $dif = 11 - strlen($item['CPFCNPJ']);
+                                                                                $acrescento = 0;
+                                                                                for ($x = 1; $x < $dif; $x += 1) {
+                                                                                  $acrescento = $acrescento . "0";
+                                                                                }
+                                                                                echo $acrescento . $item['CPFCNPJ'];
+                                                                              } elseif ((strlen($item['CPFCNPJ']) >= 11) and (strlen($item['CPFCNPJ']) < 14)) {
+                                                                                $dif = 14 - strlen($item['CPFCNPJ']);
+                                                                                $acrescento = 0;
+                                                                                for ($x = 1; $x < $dif; $x += 1) {
+                                                                                  $acrescento = $acrescento . "0";
+                                                                                }
+                                                                                echo $acrescento . $item['CPFCNPJ'];
+                                                                              } else {
+                                                                                echo $item['CPFCNPJ'];
                                                                               }
-                                                                              echo $acrescento . $item['CPFCNPJ'];
-                                                                            } elseif ((strlen($item['CPFCNPJ']) >= 11) and (strlen($item['CPFCNPJ']) < 14)) {
-                                                                              $dif = 14 - strlen($item['CPFCNPJ']);
-                                                                              $acrescento = 0;
-                                                                              for ($x = 1; $x < $dif; $x += 1) {
-                                                                                $acrescento = $acrescento . "0";
-                                                                              }
-                                                                              echo $acrescento . $item['CPFCNPJ'];
-                                                                            } else {
-                                                                              echo $item['CPFCNPJ'];
-                                                                            }
 
 
 
-                                                                            ?></td>
-                    </td>
-                    <td style="text-align:center; width: 15%;"><?= $item['CIDADE'] ?></td>
-                    <td style="text-align:center; width: 8%;" class="tel"><?= $item['TELEFONE'] ?></td>
-                    <td style="text-align:center; width: 8%;"> <?= $item['VEICULO'] ?></td>
+                                                                              ?></td>
+                      </td>
+                      <td style="text-align:center; width: 15%;"><?= $item['CIDADE'] ?></td>
+                      <td style="text-align:center; width: 8%;" class="tel"><?= $item['TELEFONE'] ?></td>
+                      <td style="text-align:center; width: 8%;"> <?= $item['VEICULO'] ?></td>
 
-                    <td style="text-align:center; width: 6%;" class=" btn-acoes">
-                      <a class="btn btn-outline-danger btn-sm" href="excluir_cliente?id=<?= $item['ID'] ?>" role="button"><i class="far fa-trash-alt"></i></a>
-                      <a class="btn btn-outline-secondary btn-sm" href="editar_cliente?id=<?= $item['ID'] ?>" role="button"><i class="fas fa-pen"></i></a>
-                    </td>
+                      <td style="text-align:center; width: 6%;" class=" btn-acoes">
+                        <a class="btn btn-outline-danger btn-sm" href="excluir_cliente?id=<?= $item['ID'] ?>" role="button"><i class="far fa-trash-alt"></i></a>
+                        <a class="btn btn-outline-secondary btn-sm" href="editar_cliente?id=<?= $item['ID'] ?>" role="button"><i class="fas fa-pen"></i></a>
+                      </td>
 
-                  </tr>
-                <?php } ?>
+                    </tr>
+                <?php }
+                } ?>
               <?php } ?>
             </tbody>
           </table>

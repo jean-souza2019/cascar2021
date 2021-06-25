@@ -36,8 +36,8 @@ class Crd
     $endereco = (!empty($dados['endereco'])) ? $dados['endereco'] : null;
 
     // Numero
-    $cep = (!empty($dados['cep'])) ? $dados['cep'] : null;
-    $ano = (!empty($dados['ano'])) ? $dados['ano'] : null;
+    $cep = (!empty($dados['cep'])) ? $dados['cep'] : 'null';
+    $ano = (!empty($dados['ano'])) ? $dados['ano'] : 'null';
 
 
     // Verifica se os campos obrigatórios foram preenchidos
@@ -58,7 +58,6 @@ class Crd
       $objeto = mysqli_query($this->conexao, $query);
 
       if ($objeto > 0) {
-        // print_r($objeto);
         $retorno['status_cod'] = 1;
         $retorno['status_message'] = "Novo Registro Incluido com Sucesso!";
         return $retorno;
@@ -81,7 +80,7 @@ class Crd
 
     $query = "SELECT ID,NOME,EMAIL, CIDADE, 
         CEP, BAIRRO, CPFCNPJ, TELEFONE, VEICULO, 
-        ANO, MODELO, PLACA
+        ANO, MODELO, PLACA, EXCLUIDO
                 FROM CASCAR.CLIENTES
                   ORDER BY ID";
 
@@ -114,7 +113,7 @@ class Crd
   }
 
 
-  //********************* BUSCAR CLIENTE COM OS ************************
+  //********************* BUSCAR OS COM CLIENTE ************************
   public function getOSCliente($id)
   {
 
@@ -131,9 +130,60 @@ class Crd
   }
 
 
+  //********************* BUSCAR OS COM ITEM ************************
+  public function getOSItem($id)
+  {
+
+    $query = "SELECT 1
+		            FROM ITENSORDENS
+                WHERE ITENSORDENS.PRODUTO = " . $id;
+
+    $objeto = mysqli_query($this->conexao, $query);
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos[] = $obj;
+    }
+    return $objetos;
+  }
+
+
 
   //********************* EXCLUIR CLIENTE ************************
+
   public function excluirCliente($id)
+  {
+
+    $id = (!empty($id)) ? $id : null;
+
+    if (empty($this->getOSCliente($id))) {
+      try {
+        $query = "UPDATE CASCAR.CLIENTES SET excluido = 1 WHERE ID = " . $id;
+
+        $objeto = mysqli_query($this->conexao, $query);
+
+        if ($objeto > 0) {
+          $retorno['status_cod'] = 1;
+          $retorno['status_message'] = "Registro excluido com Sucesso!";
+          return $retorno;
+        } else {
+          $retorno['status_cod'] = 0;
+          $retorno['status_message'] = "Problema ao excluir registro.";
+          return $retorno;
+        }
+      } catch (PDOException $e) {
+        $retorno['status_cod'] = 0;
+        $retorno['status_message'] = "Erro: " . $e->getMessage();
+        return $retorno;
+      }
+    } else {
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Problema ao excluir registro. Existem Ordens de Serviço vinculadas a esse cliente.";
+      return $retorno;
+    }
+    mysqli_close($this->conexao);
+  }
+
+
+  public function deleteCliente($id)
   {
 
     $id = (!empty($id)) ? $id : null;
@@ -188,32 +238,25 @@ class Crd
     $retorno['status_message'] = null;
     $retorno['dados'] = null;
 
-    $query = "UPDATE CASCAR.CLIENTES SET ";
 
     // Obrigatorios
-    (!empty($dados['nome'])) ? $query = $query . " NOME = '" . $dados['nome'] . "' " : null;
-    (!empty($dados['cpfcnpj'])) ? $query = $query . ", cpfcnpj = " . $dados['cpfcnpj'] : null;
-    (!empty($dados['telefone'])) ? $query = $query . ", telefone = " . $dados['telefone'] : null;
-    (!empty($dados['cidade'])) ? $query = $query . ", cidade = '" . $dados['cidade'] . "' " : null;
-
-    // String
-    (!empty($dados['email'])) ? $query = $query . ", email = '" . $dados['email'] . "' " : $query = $query . ", email = null ";
-    (!empty($dados['bairro'])) ? $query = $query . ", bairro = '" . $dados['bairro'] . "' " : $query = $query . ", bairro = null ";
-    (!empty($dados['veiculo'])) ? $query = $query . ", veiculo = '" . $dados['veiculo'] . "' " : $query = $query . ", veiculo = null ";
-    (!empty($dados['modelo'])) ? $query = $query . ", modelo = '" . $dados['modelo'] . "' " : $query = $query . ", modelo = null ";
-    (!empty($dados['placa'])) ? $query = $query . ", placa = '" . $dados['placa'] . "' " : $query = $query . ", placa = null ";
-    (!empty($dados['endereco'])) ? $query = $query . ", endereco = '" . $dados['endereco'] . "' " : $query = $query . ", endereco = null ";
-
-    // Numero
-    (!empty($dados['cep'])) ? $query = $query . ", cep = " . $dados['cep'] : $query = $query . ", cep = null ";
-    (!empty($dados['ano'])) ? $query = $query . ", ano = " . $dados['ano'] : $query = $query . ", ano = null ";
-
-
     $id = (!empty($dados['id'])) ? $dados['id'] : null;
     $nome = (!empty($dados['nome'])) ? $dados['nome'] : null;
     $cpfcnpj = (!empty($dados['cpfcnpj'])) ? $dados['cpfcnpj'] : null;
-    $cidade = (!empty($dados['cidade'])) ? $dados['cidade'] : null;
     $telefone = (!empty($dados['telefone'])) ? $dados['telefone'] : null;
+    $cidade = (!empty($dados['cidade'])) ? $dados['cidade'] : null;
+
+    // String
+    $email = (!empty($dados['email'])) ? $dados['email'] : null;
+    $bairro = (!empty($dados['bairro'])) ? $dados['bairro'] : null;
+    $veiculo = (!empty($dados['veiculo'])) ? $dados['veiculo'] : null;
+    $modelo = (!empty($dados['modelo'])) ? $dados['modelo'] : null;
+    $placa = (!empty($dados['placa'])) ? $dados['placa'] : null;
+    $endereco = (!empty($dados['endereco'])) ? $dados['endereco'] : null;
+
+    // Numero
+    $cep = (!empty($dados['cep'])) ? $dados['cep'] : 'null';
+    $ano = (!empty($dados['ano'])) ? $dados['ano'] : 'null';
 
 
     // Verifica se os campos obrigatórios foram preenchidos
@@ -228,7 +271,9 @@ class Crd
 
     // Inclusão dos dados
     try {
-      $query = $query . " WHERE ID = " . $id;
+      $query = "UPDATE CASCAR.CLIENTES SET NOME = '" . $nome . "', CPFCNPJ = " . $cpfcnpj . ", ENDERECO = '" . $endereco . "', TELEFONE = " . $telefone . ", EMAIL = '" . $email . "', CIDADE = '" . $cidade . "', 
+      BAIRRO = '" . $bairro . "', CEP = " . $cep . ", VEICULO = '" . $veiculo . "', MODELO = '" . $modelo . "', ANO = " . $ano . ", PLACA = '" . $placa . "'
+      WHERE ID = " . $id;
 
       $objeto = mysqli_query($this->conexao, $query);
 
@@ -263,7 +308,7 @@ class Crd
   public function getEstoque()
   {
 
-    $query = "SELECT CODIGO, DESCRICAO, ENDERECAMENTO, VALOR, QUANTIDADE_ESTOQUE, IMAGEM
+    $query = "SELECT CODIGO, DESCRICAO, ENDERECAMENTO, VALOR, QUANTIDADE_ESTOQUE, IMAGEM, EXCLUIDO
                 FROM CASCAR.ESTOQUE
                   ORDER BY CODIGO";
 
@@ -371,9 +416,47 @@ class Crd
   }
 
 
-
-  //********************* BUSCAR P/ LISTAR ITEM ************************
+  //********************* EXCLUIR ITEM ************************
   public function excluirItem($item)
+  {
+    $retorno['status_cod'] = null;
+    $retorno['status_message'] = null;
+
+    $item = (!empty($item)) ? $item : null;
+
+    if (empty($this->getOSItem($item))) {
+      try {
+
+        $query =  "UPDATE CASCAR.ESTOQUE SET excluido = 1 WHERE CODIGO = " . $item;
+
+
+        $objeto = mysqli_query($this->conexao, $query);
+
+        if ($objeto > 0) {
+          $retorno['status_cod'] = 1;
+          $retorno['status_message'] = "Item Excluido com Sucesso!";
+          return $retorno;
+        } else {
+          $retorno['status_cod'] = 1;
+          $retorno['status_message'] = "Ocorreu um problema ao excluir item.";
+          return $retorno;
+        }
+      } catch (PDOException $e) {
+        $retorno['status_cod'] = 0;
+        $retorno['status_message'] = "Erro: " . $e->getMessage();
+        return $retorno;
+      }
+    } else {
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Problema ao excluir registro. Existem Ordens de Serviço vinculadas a esse produto.";
+      return $retorno;
+    }
+    mysqli_close($this->conexao);
+  }
+
+
+
+  public function deletarItem($item)
   {
     $retorno['status_cod'] = null;
     $retorno['status_message'] = null;
@@ -388,7 +471,6 @@ class Crd
       $objeto = mysqli_query($this->conexao, $query);
 
       if ($objeto > 0) {
-        // print_r($objeto);
         $retorno['status_cod'] = 1;
         $retorno['status_message'] = "Item Excluido com Sucesso!";
         return $retorno;
@@ -405,7 +487,7 @@ class Crd
   }
 
 
-  //********************* GERAR ITEM ************************
+  //********************* ATUALIZAR ITEM ************************
 
   public function atualizarItem($dados)
   {
