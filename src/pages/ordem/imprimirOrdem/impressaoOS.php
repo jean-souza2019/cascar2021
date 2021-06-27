@@ -16,6 +16,7 @@ $crd = new Crd($conexao);
 
 $Clientes = $crd->getClientePnl($Cliente);
 $Dados_Ordem = $crd->getOSsCliente($Cliente, $Ordem);
+$config = $crd->getConfiguracaoOs();
 
 // Tratamento para datas
 $explode = explode('-', $Dados_Ordem[0]['DATA']);
@@ -37,15 +38,14 @@ $DataOs = $explode[2] . "/" . $explode[1] . "/" . $explode[0];
     <div style="margin-bottom: 15px;width: 100%;float: left;text-align: center;border: solid 1px;border-radius: 0px 20px 0px 20px;color: #4a4a4a;">
 
         <span style="width: 250px;float: left;text-align: center;width: 33%;margin-top: 15px;margin-bottom: 15px;">
-            <!-- <img src="https://i.postimg.cc/SNdm7tZL/logoEmp.png" style="width: 250px;margin-top: 15px;" /> -->
             <img src="<?= SIS_URL ?>src/assets/img/logo.png" style="width: 200px;margin-top: 20px;">
         </span>
 
         <span style="width: 350px;float: left;text-align: center;width: 33%;">
-            <h1>CASCA AUTOCAR</h1>
-            <p> <?= SIS_ENDERECO ?></p>
-            <p><?= SIS_TELEFONE1 ?> / <?= SIS_TELEFONE2 ?></p>
-            <p> <?= SIS_EMAIL ?> </p>
+            <?= ($config[0]['LIS_TITULO'] === '1') ? '<h1>' . $config[0]['TITULO'] . '</h1>' : '' ?>
+            <?= ($config[0]['LIS_ENDERECO'] === '1') ? '<p>' . $config[0]['ENDERECO'] . '</p>' : '' ?>
+            <?= ($config[0]['LIS_TEL1'] === '1') ? '<p>' . $config[0]['TEL1'] . (($config[0]['LIS_TEL2'] === '1') ? ' / ' . $config[0]['TEL2'] : '') . '</p>' : (($config[0]['LIS_TEL2'] === '1') ?  $config[0]['TEL2'] : '') . '</p>' ?>
+            <?= ($config[0]['LIS_EMAIL'] === '1') ? '<p>' . $config[0]['EMAIL'] . '</p>' : '' ?>
         </span>
 
         <span style="width: 250px;float: left;text-align: right;width: 33%;margin-top: 15px;">

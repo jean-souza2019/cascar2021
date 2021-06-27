@@ -43,6 +43,11 @@
       <div class="list-group list-group-flush">
         <a href="<?= SIS_URL_LISOS ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-file-alt"></i> Ordem Serviço</a>
       </div>
+      <div class="list-group list-group-flush" style="margin-top: 40px">
+        <a href="<?= SIS_URL_CFGOS ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-cogs"></i> Configurações</a>
+        <hr>
+      </div>
+
 
     </div>
     <!-- Sidebar -->

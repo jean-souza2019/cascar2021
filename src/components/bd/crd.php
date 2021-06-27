@@ -758,4 +758,92 @@ class Crd
       return $retorno;
     }
   }
+
+
+  // ##########################    CONFIGURAÇÕES    ##########################
+
+  //********************* BUSCAR TODAS CONFIGURAÇÕES DE OS ************************
+  public function getConfiguracaoOs()
+  {
+
+    $query = "SELECT ID, TITULO, LIS_TITULO, ENDERECO, LIS_ENDERECO, TEL1, LIS_TEL1, TEL2, LIS_TEL2, EMAIL, LIS_EMAIL
+                FROM CASCAR.CONFIG_OS
+                  ORDER BY ID";
+
+    $objeto = mysqli_query($this->conexao, $query);
+    while ($obj = $objeto->fetch_assoc()) {
+      $objetos[] = $obj;
+    }
+    return $objetos;
+  }
+
+
+
+  //********************* ATUALIZAR CONFIGURAÇÃO DE OS ************************
+  public function atualizarConfiguracaoOs($dados)
+  {
+    $retorno = array();
+    $retorno['status_cod'] = null;
+    $retorno['status_message'] = null;
+    $retorno['dados'] = null;
+
+    $titulo = (!empty($dados['titulo'])) ? $dados['titulo'] : null;
+    $endereco = (!empty($dados['endereco'])) ? $dados['endereco'] : null;
+    $telefone1 = (!empty($dados['telefone1'])) ? $dados['telefone1'] : null;
+    $telefone2 = (!empty($dados['telefone2'])) ? $dados['telefone2'] : null;
+    $email = (!empty($dados['email'])) ? $dados['email'] : null;
+
+    $checktitulo = (!empty($dados['checktitulo'])) ? $dados['checktitulo'] : null;
+    $checkendereco = (!empty($dados['checkendereco'])) ? $dados['checkendereco'] : null;
+    $checktel1 = (!empty($dados['checktel1'])) ? $dados['checktel1'] : null;
+    $checktel2 = (!empty($dados['checktel2'])) ? $dados['checktel2'] : null;
+    $checkemail = (!empty($dados['checkemail'])) ? $dados['checkemail'] : null;
+
+    // Verifica se os campos obrigatórios foram preenchidos
+    if (empty($titulo)) {
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Pelo menos precisa ser preenchido o Titulo";
+      return $retorno;
+    }
+
+    // Inclusão dos dados
+    try {
+      $query = "UPDATE CASCAR.CONFIG_OS SET 
+      TITULO = '" . $titulo . "', 
+      LIS_TITULO = " . (($checktitulo === 'on') ? 1 : 0) . ", 
+      
+      ENDERECO = '" . $endereco . "', 
+      LIS_ENDERECO = " . (($checkendereco === 'on') ? 1 : 0) . ",
+      
+      TEL1 = '" . $telefone1 . "', 
+      LIS_TEL1 = " . (($checktel1 === 'on') ? 1 : 0) . ",
+      
+      TEL2 = '" . $telefone2 . "',
+      LIS_TEL2 = " . (($checktel2 === 'on') ? 1 : 0) . ",
+      
+      EMAIL = '" . $email . "',
+      LIS_EMAIL = " . (($checkemail === 'on') ? 1 : 0) . "
+      
+      WHERE ID = 1";
+
+      // print_r($query);
+      $objeto = mysqli_query($this->conexao, $query);
+
+      if ($objeto > 0) {
+        $retorno['status_cod'] = 1;
+        $retorno['status_message'] = "Registro atualizado com sucesso!";
+        return $retorno;
+      } else {
+
+        die();
+        $retorno['status_cod'] = 0;
+        $retorno['status_message'] = "Ocorreu um erro ao atualizar o registro! Favor entrar em contato com o suporte";
+        return $retorno;
+      }
+    } catch (PDOException $e) {
+      $retorno['status_cod'] = 0;
+      $retorno['status_message'] = "Erro: " . $e->getMessage();
+      return $retorno;
+    }
+  }
 }

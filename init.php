@@ -27,6 +27,9 @@ define('SIS_URL_EXCANOTA', SIS_URL . "src/pages/anotacoes/excluir_anotacao");
 
 define('SIS_URL_FIMOS', SIS_URL . "src/pages/ordem/carrinhoOrdem/model_ins_carrinho");
 
+define( 'SIS_URL_CFGOS', SIS_URL . "src/pages/configuracoes/config_os");
+// define('SIS_URL_LISCFG', SIS_URL . "src/pages/configuracoes/listar_configuracoes");
+
 
 define('SIS_ATUALIZACAO', true);
 define('SIS_TITULO', 'Casca Autocar');
