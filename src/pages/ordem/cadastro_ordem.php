@@ -54,7 +54,6 @@ include "../../components/1-header.php";
                 <div class="form-group">
                   <label>Cliente</label>
                   <select class="form-control" id="cliente" name="cliente" onchange="addCli()">
-                    <!-- <select class="form-control" id="cliente" name="cliente" > -->
                     <?php if (!$_SESSION['cliente']) { ?>
                       <option value=""></option>
                     <?php } ?>
@@ -89,7 +88,6 @@ include "../../components/1-header.php";
             </div>
           </div>
           <?php
-          // var_dump($_SESSION);
           ?>
         </div>
       </div>
@@ -120,6 +118,5 @@ include "../../components/1-header.php";
 
       $(document).ready(function() {
         $('#cliente').select2();
-
       });
     </script>

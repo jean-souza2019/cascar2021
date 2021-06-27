@@ -45,6 +45,9 @@
       </div>
       <div class="list-group list-group-flush" style="margin-top: 40px">
         <a href="<?= SIS_URL_CFGOS ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-cogs"></i> Configurações</a>
+      </div>
+      <div class="list-group list-group-flush mostrar" >
+        <a href="<?= SIS_URL ?>src/Components/bd/sair.php" class="list-group-item list-group-item-action bg-light "><i class="fas fa-sign-out-alt "></i> Sair</a>
         <hr>
       </div>
 
@@ -87,7 +90,7 @@
                         </li> -->
               <li class="nav-item ">
                 <a class="nav-link" role="button" href="<?= SIS_URL ?>src/Components/bd/sair.php">
-                  <i class="fas fa-sign-out-alt"></i>
+                  <i class="fas fa-sign-out-alt sair2"></i>
                 </a>
               </li>
             </ul>

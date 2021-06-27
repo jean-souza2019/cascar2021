@@ -452,6 +452,14 @@ thead th {
     }
 }
 
+@media screen and (min-width:991px) {
+    .mostrar {
+        left: -15rem !important;
+        position: relative !important;
+        /* background-color: red !important; */
+    }
+}
+
 @media screen and (max-width:890px) {
     /* #wrapper.toggled #page-content-wrapper {
     margin-left: 0;

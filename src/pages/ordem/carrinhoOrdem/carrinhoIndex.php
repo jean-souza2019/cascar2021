@@ -76,12 +76,12 @@
         window.location.href = "./carrinhoOrdem/limparItens";
     }
 
-    $(document).ready(function() {
-        $('#nomeItem').select2({
-            width: '100%'
-        });
+    // $(document).ready(function() {
+    //     $('#nomeItem').select2({
+    //         width: '100%'
+    //     });
+    // });
 
-    });
 
 
     function buscarValorProduto() {
