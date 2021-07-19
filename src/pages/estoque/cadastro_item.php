@@ -94,7 +94,6 @@ include "../../components/1-header.php";
     <script>
       function salvarDados() {
         $('.form-caditem').submit();
-        // $('.form-cadimg').submit();
       }
 
 

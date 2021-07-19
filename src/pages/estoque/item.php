@@ -28,7 +28,6 @@ include "../../components/1-header.php";
 
 
         <div class="card-body">
-          <!-- <form class="form-caditem" action="gerar_item" method="POST" enctype="multipart/form-data"> -->
           <div class="col-md-12">
             <div class="row justify-content-md-center">
 
@@ -92,11 +91,6 @@ include "../../components/1-header.php";
       ?>
 
       <script>
-        // function salvarDados() {
-        // $('.form-i').submit();
-
-        // }
-
         $(document).ready(function() {
           $("#enderecamento").mask("AA-AA-AA-AA");
         });

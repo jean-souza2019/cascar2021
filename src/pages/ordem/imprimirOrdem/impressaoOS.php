@@ -44,7 +44,7 @@ $DataOs = $explode[2] . "/" . $explode[1] . "/" . $explode[0];
         <span style="width: 350px;float: left;text-align: center;width: 33%;">
             <?= ($config[0]['LIS_TITULO'] === '1') ? '<h1>' . $config[0]['TITULO'] . '</h1>' : '' ?>
             <?= ($config[0]['LIS_ENDERECO'] === '1') ? '<p>' . $config[0]['ENDERECO'] . '</p>' : '' ?>
-            <?= ($config[0]['LIS_TEL1'] === '1') ? '<p>' . $config[0]['TEL1'] . (($config[0]['LIS_TEL2'] === '1') ? ' / ' . $config[0]['TEL2'] : '') . '</p>' : (($config[0]['LIS_TEL2'] === '1') ?  $config[0]['TEL2'] : '') . '</p>' ?>
+            <?= ($config[0]['LIS_TEL1'] === '1') ? '<p>' . '<span class="telefone">' . $config[0]['TEL1'] . '</span>' . (($config[0]['LIS_TEL2'] === '1') ? ' / ' . '<span class="telefone">' . $config[0]['TEL2'] . '</span>' : '') . '</p>' : (($config[0]['LIS_TEL2'] === '1') ?  '<span class="telefone">' . $config[0]['TEL2'] . '</span>' : '') ?>
             <?= ($config[0]['LIS_EMAIL'] === '1') ? '<p>' . $config[0]['EMAIL'] . '</p>' : '' ?>
         </span>
 
