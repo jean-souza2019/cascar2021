@@ -22,6 +22,9 @@ define( 'SIS_URL_LISOSCLI', SIS_URL . "src/pages/ordem/listar_ordens_cliente");
 define('SIS_URL_VISUOS', SIS_URL . "src/pages/ordem/imprimirOrdem/impressaoOS");
 define('SIS_URL_CADOS', SIS_URL . "src/pages/ordem/cadastro_ordem");
 
+// OS Simplificada
+define('SIS_URL_OSSIMP', SIS_URL . "src/pages/ordem/os_simplificada");
+
 define('SIS_URL_CONANOTA', SIS_URL . "src/pages/anotacoes/consulta_anotacao");
 define('SIS_URL_EXCANOTA', SIS_URL . "src/pages/anotacoes/excluir_anotacao");
 

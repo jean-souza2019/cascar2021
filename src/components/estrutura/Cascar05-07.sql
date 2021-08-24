@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Jul-2021 às 02:59
+-- Tempo de geração: 19-Jul-2021 às 12:52
 -- Versão do servidor: 10.4.19-MariaDB
 -- versão do PHP: 7.3.28
 
@@ -34,13 +34,6 @@ CREATE TABLE `anotacoes` (
   `prioridade` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Extraindo dados da tabela `anotacoes`
---
-
-INSERT INTO `anotacoes` (`id`, `titulo`, `mensagem`, `prioridade`) VALUES
-(3, 'Gol turbo Jean ', 'Fazer gol tudo do Jean \r\n\r\n\r\nTeste ', 3);
-
 -- --------------------------------------------------------
 
 --
@@ -63,15 +56,6 @@ CREATE TABLE `clientes` (
   `endereco` varchar(255) DEFAULT NULL,
   `excluido` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `clientes`
---
-
-INSERT INTO `clientes` (`id`, `nome`, `email`, `cidade`, `cep`, `bairro`, `cpfcnpj`, `telefone`, `veiculo`, `ano`, `modelo`, `placa`, `endereco`, `excluido`) VALUES
-(1, 'Jean Marcos', '', 'Tapejara', NULL, '', 4398942041, 54996660580, '', NULL, '', '', '', 0),
-(2, 'Ademir de Souza', '', 'Tapejara', '99950000', '', 4398942041, 54996147241, '', NULL, '', '', '', 0),
-(3, 'Tainara Policarpi', 'tai-policarpi@hotmail.com', 'Tapejara', '99950000', 'São Paulo', 4564564456, 54999999999, 'Ka', 2007, '', 'IFZ3768', '', 0);
 
 -- --------------------------------------------------------
 
@@ -116,14 +100,6 @@ CREATE TABLE `estoque` (
   `excluido` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Extraindo dados da tabela `estoque`
---
-
-INSERT INTO `estoque` (`codigo`, `descricao`, `enderecamento`, `valor`, `quantidade_estoque`, `imagem`, `excluido`) VALUES
-(1, 'Tainara', '', 102, 1, 'img/376abc99aceec60f850ed6a2a7d8ee6e8242247548615961009327388554.jpg', 0),
-(2, 'Solange ', '', 0, 1, 'img/4ca1c6c5c6880ec5689a509992a0cb518237886043051598969973887769.jpg', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -140,18 +116,6 @@ CREATE TABLE `itensordens` (
   `produto` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Extraindo dados da tabela `itensordens`
---
-
-INSERT INTO `itensordens` (`id`, `os`, `quantidade`, `valor`, `data`, `cliente`, `produto`) VALUES
-(1, 2, 1, 10, '2021-06-27', '1', '1'),
-(2, 3, 6, 60, '2021-06-27', '1', '1'),
-(3, 4, 1, 10, '2021-06-27', '3', '2'),
-(4, 4, 1, 20, '2021-06-27', '3', '1'),
-(5, 5, 1, 10, '2021-06-27', '1', '2'),
-(6, 6, 3, 102, '2021-06-27', '3', '1');
-
 -- --------------------------------------------------------
 
 --
@@ -167,7 +131,7 @@ CREATE TABLE `osid` (
 --
 
 INSERT INTO `osid` (`id`) VALUES
-(6);
+(0);
 
 -- --------------------------------------------------------
 
@@ -276,7 +240,7 @@ ALTER TABLE `itensordens`
 -- AUTO_INCREMENT de tabela `osid`
 --
 ALTER TABLE `osid`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`

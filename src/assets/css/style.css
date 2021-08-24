@@ -442,3 +442,8 @@ ul.ultimos-chamados h4 {
     box-shadow: 0px 0px 21px 3px rgb(50 50 50 / 77%) !important;
     cursor: pointer;
 }
+
+.mgeral50 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

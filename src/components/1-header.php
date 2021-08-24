@@ -32,7 +32,7 @@
       </div>
 
       <div class="list-group list-group-flush" style="margin-bottom: 40px">
-        <a href="<?= SIS_URL ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-home"></i> Início</a>
+        <a href="<?= SIS_URL ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-clipboard-list"></i> Anotações</a>
       </div>
       <div class="list-group list-group-flush">
         <a href="<?= SIS_URL_LISCLI ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user-plus"></i> Clientes</a>
@@ -43,9 +43,13 @@
       <div class="list-group list-group-flush">
         <a href="<?= SIS_URL_LISOS ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-file-alt"></i> Ordem Serviço</a>
       </div>
+      <div class="list-group list-group-flush">
+        <a href="<?= SIS_URL_OSSIMP ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-list-alt"></i> OS Simplificada</a>
+      </div>
       <div class="list-group list-group-flush" style="margin-top: 40px">
         <a href="<?= SIS_URL_CFGOS ?>" class="list-group-item list-group-item-action bg-light"><i class="fas fa-cogs"></i> Configurações</a>
       </div>
+      
       <div class="list-group list-group-flush mostrar" >
         <a href="<?= SIS_URL ?>src/Components/bd/sair.php" class="list-group-item list-group-item-action bg-light "><i class="fas fa-sign-out-alt "></i> Sair</a>
         <hr>
