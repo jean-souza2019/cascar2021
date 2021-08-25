@@ -75,7 +75,7 @@ include "../../components/1-header.php";
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Telefone</span>
                                         </div>
-                                        <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                        <input type="text" class="form-control" id="telefone" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@ include "../../components/1-header.php";
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">CEP</span>
                                         </div>
-                                        <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                        <input type="text" class="form-control" id="CEP" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                     </div>
                                 </div>
                             </div>
@@ -162,63 +162,63 @@ include "../../components/1-header.php";
                             </div>
 
 
-                            <div class="col-md-12 mgeral50" >
+                            <div class="col-md-12 mgeral50">
                                 <div class="row justify-content-md-center">
 
-                            <!-- Veiculo -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">Veiculo</span>
+                                    <!-- Veiculo -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroup-sizing-default">Veiculo</span>
+                                                </div>
+                                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                            </div>
                                         </div>
-                                        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- Placa -->
+                                    <!-- Placa -->
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">Placa</span>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroup-sizing-default">Placa</span>
+                                                </div>
+                                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                            </div>
                                         </div>
-                                        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                     </div>
-                                </div>
-                            </div>
 
 
-                            <!-- Modelo -->
+                                    <!-- Modelo -->
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">Modelo</span>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroup-sizing-default">Modelo</span>
+                                                </div>
+                                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                            </div>
                                         </div>
-                                        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- Ano -->
+                                    <!-- Ano -->
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">Ano</span>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroup-sizing-default">Ano</span>
+                                                </div>
+                                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                            </div>
                                         </div>
-                                        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                     </div>
+
+
                                 </div>
-                            </div>
-
-
-                            </div>
                             </div>
 
 
@@ -234,7 +234,7 @@ include "../../components/1-header.php";
                         <div class="col-md-12">
                             <div class="row justify-content-md-center">
                                 <div class="form-label-group">
-                                    <button class="btn btn-sm btn-primary btn-registrar " onclick="finalizar()">
+                                    <button class="btn btn-sm btn-primary btn-registrar " onclick="gravarOs()">
                                         Finalizar
                                     </button>
 
@@ -270,4 +270,16 @@ include "../../components/1-header.php";
             function finalizar() {
                 window.location.href = "<?= SIS_URL_FIMOS ?>?os=<?= $os ?>&cliente=<?= $_SESSION['cliente'] ?>";
             }
+
+
+            $(document).ready(function() {
+                $('#CEP').mask('00000-000');
+                $('#telefone').mask('(00) 0 0000-0000');
+            });
+
+            function gravarOs() {
+                var x = document.getElementById("telefone").value.replace(/\D/gim, '')
+            }
         </script>
+
+        <!-- https://igorescobar.github.io/jQuery-Mask-Plugin/docs.html#callback-examples -->
